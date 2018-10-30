@@ -16,7 +16,7 @@ public class out {
     System.out.printf("%s = %b\n", name, Boolean.valueOf(b));
   }
 
-  public static void out(@NotNull final String name, @Nullable final Collection<Object> os) {
+  public static void out( final @NotNull String name, final @Nullable  Collection<Object> os) {
     assert name != null;
     if (os == null || os.isEmpty()) {
       System.out.printf("No %s\n", name);
@@ -41,11 +41,11 @@ public class out {
     System.out.printf("%s = %d\n", name, Integer.valueOf(i));
   }
 
-  public static void out(final String name, @Nullable final Object a) {
+  public static void out(final String name, final @Nullable  Object a) {
     System.out.printf((a == null ? "No" : "%s =") + " %s\n", name, a);
   }
 
-  public static void out(@NotNull final String name, @Nullable final Object[] os) {
+  public static void out( final @NotNull String name, final @Nullable  Object[] os) {
     assert name != null;
     if (os == null || os.length <= 0)
       System.out.printf("No %s\n", name);

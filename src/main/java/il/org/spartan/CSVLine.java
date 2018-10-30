@@ -74,7 +74,7 @@ import il.org.spartan.utils.Separate.*;
     return map.get(key);
   }
 
-  @Override @NotNull public Collection<String> keys() {
+  @Override public @NotNull Collection<String> keys() {
     return map.keySet();
   }
 
@@ -234,7 +234,7 @@ import il.org.spartan.utils.Separate.*;
    * @param key   The key to be added; must not be <code><b>null</b></code>
    * @param value The value associated with the key
    * @return this */
-  @Override @NotNull public final CSVLine put(final String key, final String value) {
+  @Override public @NotNull final CSVLine put(final String key, final String value) {
     map.put(key, value);
     return this;
   }
@@ -252,7 +252,7 @@ import il.org.spartan.utils.Separate.*;
     return map.size();
   }
 
-  @Override @NotNull public Collection<String> values() {
+  @Override public @NotNull Collection<String> values() {
     return map.values();
   }
 

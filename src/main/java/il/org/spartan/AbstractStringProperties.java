@@ -2,6 +2,7 @@ package il.org.spartan;
 
 import java.util.*;
 
+
 import org.jetbrains.annotations.*;
 
 import fluent.ly.*;
@@ -19,7 +20,7 @@ public abstract class AbstractStringProperties {
     this.renderer = renderer;
   }
 
-  @Override @Nullable public AbstractStringProperties clone() {
+  @Override public @Nullable AbstractStringProperties clone() {
     try {
       return (AbstractStringProperties) super.clone();
     } catch (final CloneNotSupportedException ¢) {
@@ -28,7 +29,7 @@ public abstract class AbstractStringProperties {
     }
   }
 
-  @Nullable public abstract String get(String key);
+  public @Nullable abstract String get(String key);
 
   /** A total inspector
    * @return the header of the CSV line */
@@ -55,19 +56,19 @@ public abstract class AbstractStringProperties {
   }
 
   public static class ListProperties extends AbstractStringProperties {
-    private final List<String> keys = new ArrayList<>();
-    private final List<String> values = new ArrayList<>();
+    private final @NotNull List<String> keys = new ArrayList<>();
+    private final@NotNull List<String> values = new ArrayList<>();
 
-    @Override @SuppressWarnings("null") @Nullable public String get(final String key) {
+    @Override public @Nullable String get(final String key) {
       final int $ = keys.lastIndexOf(key);
       return $ < 0 ? null : values.get($);
     }
 
-    @Override @NotNull public Iterable<String> keys() {
+    @Override public @NotNull Iterable<String> keys() {
       return keys;
     }
 
-    @Override @NotNull public ListProperties put(final String key, final String value) {
+    @Override public @NotNull ListProperties put(final String key, final String value) {
       keys.add(key);
       values.add(value);
       return this;
@@ -80,7 +81,7 @@ public abstract class AbstractStringProperties {
       return keys.size();
     }
 
-    @Override @NotNull public Iterable<String> values() {
+    @Override public @NotNull Iterable<String> values() {
       return values;
     }
   }
@@ -92,11 +93,11 @@ public abstract class AbstractStringProperties {
       static final String QUOTE = '"' + "";
       static final String DELIMETER = ",";
 
-      @Override @NotNull public String headerEnd() {
+      @Override public @NotNull String headerEnd() {
         return "";
       }
 
-      @Override @NotNull public String makeField(@Nullable final String ¢) {
+      @Override public @NotNull String makeField(final @Nullable  String ¢) {
         return ¢ == null ? "" : !¢.contains(QUOTE) && !¢.contains(delimiter()) ? ¢ : QUOTE + ¢.replaceAll(QUOTE, QUOTE + QUOTE) + QUOTE;
       }
 
@@ -121,7 +122,7 @@ public abstract class AbstractStringProperties {
       }
     },
     MATRIX {
-      static final String DELIMETER = " ";
+      static final @NotNull String DELIMETER = " ";
       static final int WIDTH = 3;
 
       @Override @NotNull String allBottom() {
@@ -177,7 +178,7 @@ public abstract class AbstractStringProperties {
         return "\\\\";
       }
 
-      @Override @NotNull String makeField(@Nullable final String ¢) {
+      @Override @NotNull String makeField(final @Nullable  String ¢) {
         return ¢ == null ? "" : !¢.contains(delimiter()) ? ¢ : ¢.replaceAll(delimiter(), "\\" + delimiter());
       }
     };

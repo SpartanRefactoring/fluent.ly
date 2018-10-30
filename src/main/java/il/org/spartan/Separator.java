@@ -22,7 +22,7 @@ import fluent.ly.*;
  * @since 12/02/2006) */
 public final class Separator {
   /** @param args JD */
-  public static void main(@NotNull final String[] args) {
+  public static void main( final @NotNull String[] args) {
     for (final String a : args)
       System.out.print(new Separator(", ") + a);
   }
@@ -35,7 +35,7 @@ public final class Separator {
     if (is.length == 0)
       return "";
     @NotNull String $ = "";
-    @NotNull final Separator s = new Separator(between);
+     final @NotNull Separator s = new Separator(between);
     for (final int ¢ : is)
       $ += s + (Integer.valueOf(¢) + "");
     return $;
@@ -46,7 +46,7 @@ public final class Separator {
    * @param between what to put between the items
    * @param ts      JD
    * @return the parameters separated */
-  public static <T> String separateBy(final String between, @NotNull final T[] ts) {
+  public static <T> String separateBy(final String between,  final @NotNull T[] ts) {
     return wrap("", "", ts, between);
   }
 
@@ -69,8 +69,8 @@ public final class Separator {
   public static <T> String wrap(final String begin, final String end, final Iterable<T> ts, final String between) {
     if (is.empty(ts))
       return "";
-    @NotNull final StringBuilder $ = new StringBuilder(begin);
-    @NotNull final Separator s = new Separator(between);
+     final @NotNull StringBuilder $ = new StringBuilder(begin);
+     final @NotNull Separator s = new Separator(between);
     for (final T ¢ : ts)
       $.append(s).append(¢);
     return as.string($.append(end));
@@ -81,11 +81,11 @@ public final class Separator {
    * @param end     what to place after the items
    * @param ts      JD
    * @param between what to put between the items */
-  public static <T> String wrap(final String begin, final String end, @NotNull final T[] ts, final String between) {
+  public static <T> String wrap(final String begin, final String end,  final @NotNull T[] ts, final String between) {
     if (ts.length == 0)
       return "";
-    @NotNull final StringBuilder $ = new StringBuilder(begin);
-    @NotNull final Separator s = new Separator(between);
+     final @NotNull StringBuilder $ = new StringBuilder(begin);
+     final @NotNull Separator s = new Separator(between);
     for (final T ¢ : ts)
       $.append(s).append(¢);
     return as.string($.append(end));

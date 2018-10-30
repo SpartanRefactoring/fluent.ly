@@ -5,6 +5,9 @@ import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
 
+import org.eclipse.jdt.annotation.*;
+import org.jetbrains.annotations.*;
+
 import il.org.spartan.*;
 import il.org.spartan.utils.*;
 
@@ -36,8 +39,8 @@ public interface English {
     String getIng();
   }
 
-  String DOUBLE_FORMAT = "0.00";
-  String SEPARATOR = ", ";
+  @NotNull   String DOUBLE_FORMAT = "0.00";
+  @NotNull String  SEPARATOR = ", ";
   String TRIM_SUFFIX = "...";
   int TRIM_THRESHOLD = 50;
   /** Error string, replacing null/error value. */

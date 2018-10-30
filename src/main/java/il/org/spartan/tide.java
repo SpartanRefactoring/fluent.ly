@@ -16,7 +16,7 @@ public interface tide {
         .replaceAll("^\\s", "") // Opening whites
         .replaceAll("\\s$", "") // Closing whites
     ;
-    for (@NotNull final String operator : new String[] { ":", "/", "%", ",", "\\{", "\\}", "=", ":", "\\?", ";", "\\+", ">", ">=", "!=", "==", "<",
+    for ( final @NotNull String operator : new String[] { ":", "/", "%", ",", "\\{", "\\}", "=", ":", "\\?", ";", "\\+", ">", ">=", "!=", "==", "<",
         "<=", "-", "\\*", "\\|", "\\&", "%", "\\(", "\\)", "[\\^]" })
       $ = $ //
           .replaceAll(tide.WHITES + operator, operator) // Preceding whites
@@ -25,7 +25,7 @@ public interface tide {
     return $;
   }
 
-  static boolean eq(@Nullable final String s1, @Nullable final String s2) {
+  static boolean eq(final @Nullable  String s1, final @Nullable  String s2) {
     return s1 == s2 || (s1 == null ? s2 == null : s1.equals(s2) || s2 != null && s2.equals(s1));
   }
 }

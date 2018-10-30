@@ -8,12 +8,10 @@ import java.io.*;
 
 import org.jetbrains.annotations.*;
 
-import il.org.spartan.streotypes.*;
-
 /** A class to generate a CSV (comma separated values) file, by writing into it
  * a sequence of {@link CSVLine} records.
  * @author Yossi Gil, 2008/06/20 */
-@Instantiable public class CSVWriter {
+final   public class CSVWriter {
   @Nullable private static FileWriter open(final File $) {
     try {
       return new FileWriter($);
@@ -26,7 +24,7 @@ import il.org.spartan.streotypes.*;
   private @Nullable String header;
   /** The n1ame of the file into which records are written. */
   private final String fileName;
-  @Nullable private final OutputStreamWriter inner;
+   private final @NotNull OutputStreamWriter inner;
 
   /** Create a new instance, writing into the standard output stream. */
   public CSVWriter() {
@@ -98,11 +96,12 @@ import il.org.spartan.streotypes.*;
   }
 
   void writeln(final String s) {
-    try {
-      inner.write(s);
-      inner.write("\n");
-    } catch (final IOException ¢) {
-      ¢.printStackTrace();
-    }
+    if (inner != null)
+      try {
+        inner.write(s);
+        inner.write("\n");
+      } catch (final IOException ¢) {
+        ¢.printStackTrace();
+      }
   }
 }

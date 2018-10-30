@@ -1,6 +1,6 @@
 package fluent.ly;
 
-import org.eclipse.jdt.annotation.Nullable;
+
 import org.jetbrains.annotations.*;
 import org.junit.*;
 
@@ -8,11 +8,11 @@ import org.junit.*;
  * @param <T> JD
  * @since @{year}-@{month}-@{day} */
 public class maybe<@Nullable T> {
-  @NotNull public static <@Nullable T> maybe<T> no() {
+  public static @NotNull  <@Nullable T> maybe<T> no() {
     return new maybe<>();
   }
 
-  @NotNull public static <@Nullable T> maybe<T> yes(final T ¢) {
+  public static @NotNull  <@Nullable T> maybe<T> yes(final T ¢) {
     return new maybe<>(¢);
   }
 
@@ -28,12 +28,12 @@ public class maybe<@Nullable T> {
     inner = null;
   }
 
-  @NotNull public maybe<@Nullable T> clear() {
+  public @NotNull maybe<@Nullable T> clear() {
     inner = null;
     return this;
   }
 
-  @Nullable public T get() {
+  public @Nullable T get() {
     return inner;
   }
 
@@ -46,7 +46,7 @@ public class maybe<@Nullable T> {
   }
 
   /** @param inner TODO document this parameter */
-  @NotNull public maybe<@Nullable T> set(final T inner) {
+  public @NotNull maybe<@Nullable T> set(final T inner) {
     this.inner = inner;
     return this;
   }

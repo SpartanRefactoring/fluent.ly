@@ -2,6 +2,8 @@ package il.org.spartan.tables;
 
 import java.util.*;
 
+import org.jetbrains.annotations.*;
+
 import fluent.ly.*;
 import il.org.spartan.*;
 
@@ -146,7 +148,7 @@ import il.org.spartan.*;
 
   // @formatter:off
 
-  default String arraySeparator() { return "; "; }
+  default @NotNull String arraySeparator() { return "; "; }
 
   default String beforeFooter() { return empty(); }
 

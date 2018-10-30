@@ -5,7 +5,7 @@ import static fluent.ly.azzert.*;
 
 import java.util.function.*;
 
-import org.eclipse.jdt.annotation.Nullable;
+
 import org.jetbrains.annotations.*;
 import org.junit.*;
 
@@ -18,13 +18,13 @@ public interface idiomatic {
   String QUOTE = "'";
   /** an evaluating trigger */
   Trigger eval = new Trigger() {
-    @Override public <@Nullable T> T eval(@NotNull final Supplier<T> ¢) {
+    @Override public <@Nullable T> T eval( final @NotNull Supplier<T> ¢) {
       return ¢.get();
     }
   };
   /** an ignoring trigger */
   @Nullable Trigger ignore = new Trigger() {
-    @Override @Nullable public <@Nullable T> T eval(final Supplier<T> ____) {
+    @Override public @Nullable <@Nullable T> T eval(final Supplier<T> ____) {
       return null;
     }
   };
@@ -33,7 +33,7 @@ public interface idiomatic {
    * @param   <T> JD
    * @param $ result
    * @return an identical supplier which is also a {@link Holder} */
-  static <T> Holder<T> eval(@NotNull final Supplier<@Nullable T> $) {
+  static <T> Holder<T> eval( final @NotNull Supplier<@Nullable T> $) {
     return () -> $.get();
   }
 
@@ -42,7 +42,7 @@ public interface idiomatic {
    * @condition the condition to use prior to taking this value;
    * @return the parameter if condition holds, otherwise, null
    *         <code>incase</code> */
-  @Nullable static <T> T incase(final boolean condition, final T t) {
+  @Nullable static <@Nullable T> @Nullable T incase(final boolean condition, final T t) {
     return condition ? t : null;
   }
 
@@ -52,7 +52,7 @@ public interface idiomatic {
    * @param $ JD
    * @return result of invoking the parameter, or <code><b>null</b></code> if an
    *         exception occurred. */
-  static <@Nullable T> T katching(@NotNull final Producer<T> $) {
+  static <@Nullable T> @Nullable T katching( final @NotNull Producer<T> $) {
     try {
       return $.λ();
     } catch (final Exception ¢) {

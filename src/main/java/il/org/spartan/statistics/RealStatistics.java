@@ -26,7 +26,7 @@ public class RealStatistics extends ImmutableStatistics {
   /** Make a record of the sequence of elements.
    * @param vs values to be recorded
    * @return the receiver, to be used, e.g., in chaining more such operations */
-  @NotNull public RealStatistics record(final double... vs) {
+  public @NotNull RealStatistics record(final double... vs) {
     for (final double v : vs)
       record(v);
     return this;
@@ -36,7 +36,7 @@ public class RealStatistics extends ImmutableStatistics {
    * are not recorded.
    * @param v the value to be recorded
    * @return the receiver, to be used, e.g., in chaining more such operations */
-  @NotNull public RealStatistics record(final double v) {
+  public @NotNull RealStatistics record(final double v) {
     return Double.isNaN(v) || Double.isInfinite(v) ? recordMissing() : recordValue(v);
   }
 
@@ -44,13 +44,13 @@ public class RealStatistics extends ImmutableStatistics {
    * reference, and NaN and infinite values not recorded as ''missing'' values.
    * @param v the value to be recorded
    * @return the receiver, to be used, e.g., in chaining more such operations */
-  @NotNull public Statistics record(@Nullable final Double v) {
+  public @NotNull Statistics record(final @Nullable  Double v) {
     return v == null ? recordMissing() : record(v.doubleValue());
   }
 
   /** Add a ''missing'' value to the sequence.
    * @return the receiver, to be used, e.g., in chaining more such operations */
-  @NotNull public RealStatistics recordMissing() {
+  public @NotNull RealStatistics recordMissing() {
     ++missing;
     return this;
   }
@@ -117,13 +117,13 @@ public class RealStatistics extends ImmutableStatistics {
     }
 
     @Test(expected = ArithmeticException.class) public void meanEmpty() {
-      @NotNull final RealStatistics x = new RealStatistics();
+       final @NotNull RealStatistics x = new RealStatistics();
       assertEquals(0, x.mean(), 1E-20);
       x.relativeError();
     }
 
     @Test public void meanZero() {
-      @NotNull final RealStatistics x = new RealStatistics().record(1).record(-1);
+       final @NotNull RealStatistics x = new RealStatistics().record(1).record(-1);
       assertEquals(0, x.mean(), 1E-20);
       x.relativeError();
     }

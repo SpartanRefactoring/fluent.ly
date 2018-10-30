@@ -5,6 +5,8 @@ import static il.org.spartan.Utils.*;
 
 import org.jetbrains.annotations.*;
 
+import il.org.spartan.*;
+
 /** A utility class, with a collection of function to box primitive types in
  * their reference type equivalent representation. Similarly, this class offers
  * functions to box arrays of primitive types into their reference type
@@ -29,8 +31,8 @@ public enum box {
    * @return an array of {@link Boolean} of the same length as that of the
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Boolean[] box(final boolean bs[]) {
-    @NotNull final Boolean[] $ = new Boolean[bs.length];
+  public static @NotNull Boolean[] box(final boolean bs[]) {
+    final @NotNull Boolean[] $ = new Boolean[bs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = box(bs[¢]);
     return $;
@@ -40,8 +42,8 @@ public enum box {
    * @param ¢ some <code><b>long</b></code> value
    * @return a non-<code><b>null</b></code> {@link Long} with the value of
    *         <code>l</code> */
-  public static Byte box(final byte ¢) {
-    return Byte.valueOf(¢);
+  public static @NotNull Byte box(final byte ¢) {
+    return Utils.canBeNull(Byte.valueOf(¢));
   }
 
   /** box an array of <code><b>byte</b></code>s into an array of {@link Byte}s.
@@ -49,8 +51,8 @@ public enum box {
    * @return an array of {@link Byte} of the same length as that of the parameter,
    *         and such that it in its <tt>i</tt><em>th</em> position is the boxed
    *         value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Byte[] box(final byte bs[]) {
-    @NotNull final Byte[] $ = new Byte[bs.length];
+  public static @NotNull Byte[] box(final byte bs[]) {
+    final @NotNull Byte[] $ = new Byte[bs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = box(bs[¢]);
     return $;
@@ -70,8 +72,8 @@ public enum box {
    * @return an array of {@link Character} of the same length as that of the
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Character[] box(final char cs[]) {
-    @NotNull final Character[] $ = new Character[cs.length];
+  public static @NotNull Character@NotNull[] box(final char cs[]) {
+    final Character @NotNull [] $ = new Character[cs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = box(cs[¢]);
     return $;
@@ -91,8 +93,8 @@ public enum box {
    * @return an array of {@link Double} of the same length as that of the
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Double[] box(final double ds[]) {
-    @NotNull final Double[] $ = new Double[ds.length];
+  public static @NotNull Double[] box(final double ds[]) {
+    final Double @NotNull [] $ = new Double[ds.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = box(ds[¢]);
     return $;
@@ -111,8 +113,8 @@ public enum box {
    * @return an array of {@link Float} of the same length as that of the
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Float[] box(final float fs[]) {
-    @NotNull final Float[] $ = new Float[fs.length];
+  public static @NotNull Float[] box(final float fs[]) {
+    final @NotNull Float[] $ = new Float[fs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = box(fs[¢]);
     return $;
@@ -131,8 +133,8 @@ public enum box {
    * @return an array of {@link Integer} of the same length as that of the
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Integer[] box(final int is[]) {
-    @NotNull final Integer[] $ = new Integer[is.length];
+  public static @NotNull Integer[] box(final int is[]) {
+    final @NotNull Integer[] $ = new Integer[is.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = box(is[¢]);
     return $;
@@ -142,7 +144,7 @@ public enum box {
    * @param ¢ some <code><b>long</b></code> value
    * @return a non-<code><b>null</b></code> {@link Long} with the value of
    *         <code>l</code> */
-  public static Long box(final long ¢) {
+  public static @NotNull Long box(final long ¢) {
     return Long.valueOf(¢);
   }
 
@@ -151,8 +153,8 @@ public enum box {
    * @return an array of {@link Long} of the same length as that of the parameter,
    *         and such that it in its <tt>i</tt><em>th</em> position is the boxed
    *         value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Long[] box(final long ls[]) {
-    @NotNull final Long[] $ = new Long[ls.length];
+  public static @NotNull Long @NotNull [] box(final long ls[]) {
+    final Long @NotNull [] $ = new Long[ls.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = box(ls[¢]);
     return $;
@@ -171,8 +173,8 @@ public enum box {
    * @return an array of {@link Short} of the same length as that of the
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Short[] box(final short ss[]) {
-    @NotNull final Short[] $ = new Short[ss.length];
+  public static @NotNull Short[] box(final short ss[]) {
+    final Short @NotNull [] $ = new Short[ss.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = box(ss[¢]);
     return $;
@@ -192,8 +194,8 @@ public enum box {
    * @return an array of {@link Boolean} of the same length as that of the
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Boolean[] it(final boolean bs[]) {
-    @NotNull final Boolean @NotNull [] $ = new Boolean @NotNull [bs.length];
+  public static @NotNull Boolean[] it(final boolean bs[]) {
+    final @NotNull Boolean @NotNull [] $ = new Boolean @NotNull [bs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = box(bs[¢]);
     return $;
@@ -212,10 +214,10 @@ public enum box {
    * @return an array of {@link Byte} of the same length as that of the parameter,
    *         and such that it in its <tt>i</tt><em>th</em> position is the boxed
    *         value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Byte[] it(final byte bs[]) {
-    @NotNull final Byte @NotNull [] $ = new Byte @NotNull [bs.length];
+  public static @NotNull Byte[] it(final byte bs[]) {
+    final @NotNull Byte @NotNull [] $ = new Byte @NotNull [bs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
-      $[¢] = it(bs[¢]);
+      $[¢] = box(bs[¢]);
     return $;
   }
 
@@ -233,8 +235,8 @@ public enum box {
    * @return an array of {@link Character} of the same length as that of the
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Character[] it(final char cs[]) {
-    @NotNull final Character @NotNull [] $ = new Character @NotNull [cs.length];
+  public static @NotNull Character[] it(final char cs[]) {
+    final @NotNull Character @NotNull [] $ = new Character @NotNull [cs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = it(cs[¢]);
     return $;
@@ -254,10 +256,10 @@ public enum box {
    * @return an array of {@link Double} of the same length as that of the
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Double[] it(final double ds[]) {
-    @NotNull final Double @NotNull [] $ = new Double @NotNull [ds.length];
+  public static @NotNull Double[] it(final double ds[]) {
+    final  Double @NotNull [] $ = new Double  [ds.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
-      $[¢] = it(ds[¢]);
+      $[¢] = box(ds[¢]);
     return $;
   }
 
@@ -274,8 +276,8 @@ public enum box {
    * @return an array of {@link Float} of the same length as that of the
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Float[] it(final float fs[]) {
-    @NotNull final Float @NotNull [] $ = new Float @NotNull [fs.length];
+  public static @NotNull Float[] it(final float fs[]) {
+    final @NotNull Float @NotNull [] $ = new Float @NotNull [fs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = it(fs[¢]);
     return $;
@@ -295,7 +297,7 @@ public enum box {
    * @return an array of {@link Integer} of the same length as that of the
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Integer[] it(final int ¢[]) {
+  public static @NotNull Integer[] it(final int ¢[]) {
     return box(¢);
   }
 
@@ -312,8 +314,8 @@ public enum box {
    * @return an array of {@link Long} of the same length as that of the parameter,
    *         and such that it in its <tt>i</tt><em>th</em> position is the boxed
    *         value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Long[] it(final long ls[]) {
-    @NotNull final Long @NotNull [] $ = new Long @NotNull [ls.length];
+  public static @NotNull Long[] it(final long ls[]) {
+    final Long @NotNull [] $ = new Long[ls.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = it(ls[¢]);
     return $;
@@ -332,8 +334,8 @@ public enum box {
    * @return an array of {@link Short} of the same length as that of the
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
-  @NotNull public static Short[] it(final short ss[]) {
-    @NotNull final Short @NotNull [] $ = new Short @NotNull [ss.length];
+  public static @NotNull Short[] it(final short ss[]) {
+    final @NotNull Short @NotNull [] $ = new Short @NotNull [ss.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = it(ss[¢]);
     return $;

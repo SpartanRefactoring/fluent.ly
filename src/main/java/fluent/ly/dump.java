@@ -4,7 +4,7 @@ import java.lang.management.*;
 import java.lang.reflect.*;
 import java.util.*;
 
-import org.eclipse.jdt.annotation.Nullable;
+
 import org.jetbrains.annotations.*;
 
 import il.org.spartan.*;
@@ -17,7 +17,7 @@ import il.org.spartan.*;
 public class dump {
   /** Dump a class object
    * @param ¢ JD */
-  public static void go(@NotNull final Class<?> ¢) {
+  public static void go( final @NotNull Class<?> ¢) {
     out.out("\n\n--IDENTIFICATION--\n");
     out.out("Simple Name", ¢.getSimpleName());
     out.out("Canonical Name", ¢.getCanonicalName());
@@ -70,7 +70,7 @@ public class dump {
     out.out("---------------------------\n");
   }
 
-  public static <T> void go(@NotNull final List<T> ts, @NotNull final String... ss) {
+  public static <T> void go( final @NotNull List<T> ts,  final @NotNull String... ss) {
     out.out("Exploring list");
     for (final String ¢ : ss)
       out.out(¢);
@@ -78,13 +78,13 @@ public class dump {
       dump.go(¢);
   }
 
-  public static void go(final Object os[], @NotNull final String... ss) {
+  public static void go(final Object os[],  final @NotNull String... ss) {
     for (final String ¢ : ss)
       out.out(¢);
     out.out("elements", os);
   }
 
-  public static void go(final @Nullable Object o, @NotNull final String... ss) {
+  public static void go(final @Nullable Object o,  final @NotNull String... ss) {
     for (final String ¢ : ss)
       out.out(¢);
     if (o == null) {
@@ -95,7 +95,7 @@ public class dump {
     out.out("\n\n--BEGIN " + c.getSimpleName() + " object: " + o + "\n");
     out.out("Class canonical name", c.getCanonicalName());
     out.out("Class name", c.getName());
-    for (@NotNull final Method m : c.getMethods()) {
+    for ( final @NotNull Method m : c.getMethods()) {
       if (m.getParameterTypes().length != 0)
         continue;
       String name = m.getName();

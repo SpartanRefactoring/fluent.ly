@@ -6,7 +6,7 @@ import java.io.*;
 import java.lang.reflect.*;
 import java.util.*;
 
-import org.eclipse.jdt.annotation.Nullable;
+
 import org.jetbrains.annotations.*;
 
 /** This class realize the CSV specification, by comprising methods for
@@ -26,10 +26,10 @@ public enum CSV {
    * @param cs Input array
    * @return Combined string
    * @see #splitToClasses(String) */
-  public static String combine( final Class<?>[] cs) {
-    @NotNull final String[] $ = new String[cs.length];
+  public static String combine(final Class<?>[] cs) {
+    final @NotNull String[] $ = new String[cs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
-      $[¢] = cs[¢] == null ? null : cs[¢].getName();
+      $[¢] = cs[¢] == null ? null : Utils.cantBeNull(cs[¢].getName());
     return combine($);
   }
 
@@ -40,11 +40,11 @@ public enum CSV {
    * @param parts Input array
    * @return Combined string
    * @see CSV#escape(String) */
-  public static <T> String combine(@NotNull final T[] parts) {
+  public static <T> String combine(final @NotNull T[] parts) {
     nonnull(parts);
-    @NotNull final StringBuilder $ = new StringBuilder(10 * parts.length);
-    @NotNull final Separator sep = new Separator(",");
-    for (@Nullable final T ¢ : parts)
+    final @NotNull StringBuilder $ = new StringBuilder(10 * parts.length);
+    final @NotNull Separator sep = new Separator(",");
+    for (final @Nullable T ¢ : parts)
       $.append(sep + escape(¢ == null ? null : ¢ + ""));
     return $ + "";
   }
@@ -56,10 +56,10 @@ public enum CSV {
    * @param parts Input array
    * @return Combined string
    * @see CSV#escape(String) */
-  public static <T extends Enum<T>> String combine(@NotNull final T[] parts) {
-    @NotNull final String[] $ = new String[parts.length];
+  public static <T extends Enum<T>> String combine(final @NotNull T[] parts) {
+    final String @NotNull [] $ = new String[parts.length];
     for (int ¢ = 0; ¢ < $.length; ++¢) {
-      @NotNull final T t = parts[¢];
+      final @NotNull T t = parts[¢];
       $[¢] = t == null ? null : t.name();
     }
     return combine($);
@@ -68,11 +68,11 @@ public enum CSV {
   /** Escape the given input
    * @param s Input string
    * @return Escaped form of the input */
-  public static String escape(@Nullable final String s) {
+  public static String escape(final @Nullable String s) {
     if (s == null)
       return NULL;
     final int len = s.length();
-    @NotNull final StringBuilder $ = new StringBuilder(len);
+    final @NotNull StringBuilder $ = new StringBuilder(len);
     for (final char ¢ : s.toCharArray())
       $.append(¢ == '\\' ? "\\\\" : ¢ == '\n' ? "\\n" : ¢ == '\r' ? "\\r" : ¢ == '\t' ? "\\t" : ¢ == ',' ? "\\." : ¢);
     return $ + "";
@@ -90,13 +90,13 @@ public enum CSV {
    * @param r input reader
    * @return a two dimensional array of strings */
   public static String[][] load(final Reader r) {
-    @NotNull final ArrayList<String[]> $ = new ArrayList<>(20);
-    for (@NotNull final Scanner ¢ = new Scanner(r); ¢.hasNext();)
+    final @NotNull ArrayList<String[]> $ = new ArrayList<>(20);
+    for (final @NotNull Scanner ¢ = new Scanner(r); ¢.hasNext();)
       $.add(split(¢.nextLine()));
     return $.toArray(new String[$.size()][]);
   }
 
-  public static void save(final File f, @NotNull final String[][] data) throws IOException {
+  public static void save(final File f, final @NotNull String[][] data) throws IOException {
     try (final PrintWriter pw = new PrintWriter(new FileWriter(f))) {
       pw.print(toCsv(data));
     }
@@ -107,9 +107,9 @@ public enum CSV {
    * @param clazz Class object of T
    * @param s     Input string
    * @return Array of T */
-  @NotNull public static <T extends Enum<T>> T[] split(final Class<T> clazz, final String s) {
-    @NotNull final String[] ss = split(s);
-    @NotNull @SuppressWarnings("unchecked") final T[] $ = (T[]) Array.newInstance(clazz, ss.length);
+  public static @NotNull <T extends Enum<T>> T[] split(final Class<T> clazz, final String s) {
+    final @NotNull String[] ss = split(s);
+    final T @NotNull [] $ = (T[]) Array.newInstance(clazz, ss.length);
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = ss[¢] == null ? null : Enum.valueOf(clazz, ss[¢]);
     return $;
@@ -118,10 +118,10 @@ public enum CSV {
   /** Split a comma separated string into its sub parts
    * @param s input string
    * @return Array of sub parts, in their original order */
-  @NotNull public static String[] split(final String s) {
+  public static @NotNull String[] split(final String s) {
     if (s.length() == 0)
       return new String[0];
-    @NotNull final List<String> $ = new ArrayList<>();
+    final @NotNull List<String> $ = new ArrayList<>();
     for (int from = 0;;) {
       final int to = s.indexOf(',', from);
       if (to < 0) {
@@ -136,9 +136,9 @@ public enum CSV {
   /** Split a comma separated string into an array of classes.
    * @param s input string
    * @return Array of T */
-  @NotNull public static Class<?>[] splitToClasses(final String s) {
-    @NotNull final String[] names = split(s);
-    @NotNull final Class<?>[] $ = new Class<?>[names.length]; // (T[])
+  public static @NotNull Class<?>[] splitToClasses(final String s) {
+    final String @NotNull [] names = split(s);
+    final Class<?> @NotNull [] $ = new Class<?>[names.length]; // (T[])
     // Array.newInstance(cls,
     // arr.length);
     for (int i = 0; i < $.length; ++i)
@@ -150,11 +150,11 @@ public enum CSV {
     return $;
   }
 
-  public static String toCsv(@NotNull final String[][] data) {
-    @NotNull final StringWriter $ = new StringWriter();
-    @NotNull final PrintWriter pw = new PrintWriter($);
-    for (@NotNull final String[] line : data) {
-      @NotNull final Separator comma = new Separator(",");
+  public static String toCsv(final @NotNull String[][] data) {
+    final @NotNull StringWriter $ = new StringWriter();
+    final @NotNull PrintWriter pw = new PrintWriter($);
+    for (final @NotNull String[] line : data) {
+      final @NotNull Separator comma = new Separator(",");
       for (final String ¢ : line)
         pw.print(comma + escape(¢));
       pw.println();
@@ -171,7 +171,7 @@ public enum CSV {
       return null;
     boolean esc = false;
     final int length = s.length();
-    @NotNull final StringBuilder $ = new StringBuilder(length);
+    final @NotNull StringBuilder $ = new StringBuilder(length);
     for (int i = 0; i < length; ++i) {
       final char c = s.charAt(i);
       if (!esc) {

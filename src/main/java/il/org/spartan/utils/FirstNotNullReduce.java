@@ -1,6 +1,6 @@
 package il.org.spartan.utils;
 
-import org.eclipse.jdt.annotation.*;
+import org.jetbrains.annotations.*;
 
 /** Return the first element that is not null
  * @author oran1248

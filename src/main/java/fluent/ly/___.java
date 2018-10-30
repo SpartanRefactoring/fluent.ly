@@ -28,7 +28,7 @@ public abstract class ___ {
    * @param __   the unused parameter
    * @param ____ more unused parameters */
   public static void ______unused(final long __, final Object... ____) {
-    // empty
+    unused(____);    
   }
 
   /** A do nothing method to document the fact that some <code>Object</code>(s)
@@ -352,15 +352,15 @@ public abstract class ___ {
     // empty
   }
 
-  public static String nprintf(final String format, final double d, final Object o) {
+  public static String nprintf(final @NotNull String format, final double d, final Object o) {
     return sprintf(format, box(d), o);
   }
 
-  public static String nprintf(final String format, final int n1, final int n2) {
+  public static String nprintf(final @NotNull String format, final int n1, final int n2) {
     return sprintf(format, box(n1), box(n2));
   }
 
-  public static String nprintf(final String format, final int i, final Object o) {
+  public static String nprintf(final @NotNull String format, final int i, final Object o) {
     return sprintf(format, box(i), o);
   }
 

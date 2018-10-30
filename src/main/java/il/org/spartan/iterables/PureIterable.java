@@ -12,7 +12,7 @@ import org.jetbrains.annotations.*;
  * @since 2014-06-03
  * @param <T> some arbitrary type */
 public interface PureIterable<T> extends Iterable<T> {
-  @Override @NotNull PureIterator<@NotNull T> iterator();
+  @Override @Nullable PureIterator<@NotNull T> iterator();
 
   /** A kind of {@link PureIterable} which provides an additional {@link #size()}
    * service.
@@ -37,7 +37,7 @@ public interface PureIterable<T> extends Iterable<T> {
   abstract class Sized<T> implements PureIterable<T> {
     /** see @see il.org.spartan.iterables.PureIterable#iterator()
      * (auto-generated) */
-    @Override @NotNull public PureIterator<@NotNull T> iterator() {
+    @Override @Nullable public PureIterator<@NotNull T> iterator() {
       return null;
     }
 

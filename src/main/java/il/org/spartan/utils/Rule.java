@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 import java.util.*;
 import java.util.function.*;
 
-import org.eclipse.jdt.annotation.*;
+import org.jetbrains.annotations.*;
 
 import fluent.ly.*;
 
@@ -67,7 +67,7 @@ public interface Rule<T, R> extends Function<T, R>, Recursive<Rule<T, R>> {
    * @return a lambda of type {@link OnApplicator}
    * @author Yossi Gil
    * @since 2017-03-10 */
-  static <@Nullable T, R> OnApplicator<T, R> on(final Predicate<T> p) {
+  static <@Nullable T, R> @Nullable OnApplicator<T, R> on(final Predicate<T> p) {
     return c -> new Rule.Stateful<T, R>() {
       @Override public R fire() {
         c.accept(current());
@@ -275,7 +275,7 @@ public interface Rule<T, R> extends Function<T, R>, Recursive<Rule<T, R>> {
    * @author Yossi Gil
    * @since 2017-03-13 */
   abstract class Stateful<T, R> implements Rule<T, R> {
-    @Nullable public T current;
+    public @Nullable T current;
 
     @Override public final R apply(final T ¢) {
       if (!ready())

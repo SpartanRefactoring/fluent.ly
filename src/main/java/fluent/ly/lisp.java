@@ -5,19 +5,19 @@ import static il.org.spartan.Utils.*;
 import java.util.*;
 import java.util.stream.*;
 
-import org.eclipse.jdt.annotation.Nullable;
+
 import org.jetbrains.annotations.*;
 
 /** @noinspection unused */
 public interface lisp {
-  @Nullable static <T> List<T> chop(@NotNull final List<T> ¢) {
+  @Nullable static <T> List<T> chop( final @NotNull List<T> ¢) {
     if (¢.isEmpty())
       return null;
     ¢.remove(0);
     return ¢;
   }
 
-  @NotNull static <T> List<T> cons(final T first, @NotNull final List<T> rest) {
+  @NotNull static <T> List<T> cons(final T first,  final @NotNull List<T> rest) {
     rest.add(0, first);
     return rest;
   }
@@ -27,7 +27,7 @@ public interface lisp {
    * @param ts the indexed list
    * @return following item in the list, if such such an item exists, otherwise,
    *         the last node */
-  @Nullable static <T> T next(final int i, @NotNull final List<T> ts) {
+  @Nullable static <T> T next(final int i,  final @NotNull List<T> ts) {
     return inRange(i + 1, ts) ? ts.get(i + 1) : the.lastOf(ts);
   }
 
@@ -36,7 +36,7 @@ public interface lisp {
    * @param ts the indexed list
    * @return previous item in the list, if such an item exists, otherwise, the
    *         last node */
-  static <T> T prev(final int i, @NotNull final List<T> ts) {
+  static <T> T prev(final int i,  final @NotNull List<T> ts) {
     return ts.get(i < 1 ? 0 : i - 1);
   }
 
@@ -45,7 +45,7 @@ public interface lisp {
    * @param element the element to be added to the list
    * @param index   the index that should be replaced
    * @return the list after the replacement */
-  @Contract("null, _, _ -> null") @Nullable static <T> List<T> replace(@Nullable final List<T> ts, final T element, final int index) {
+  @Contract("null, _, _ -> null") @Nullable static <T> List<T> replace(final @Nullable  List<T> ts, final T element, final int index) {
     if (ts == null || index < 0 || index >= ts.size())
       return ts;
     ts.remove(index);
@@ -65,11 +65,11 @@ public interface lisp {
    * @param ts      the indexed list
    * @param element the element to be added to the list
    * @return the list after the replacement */
-  @Contract("null, _ -> null") @Nullable static <T> List<T> replaceLast(@NotNull final List<T> ts, final T element) {
+  @Contract("null, _ -> null") @Nullable static <T> List<T> replaceLast( final @NotNull List<T> ts, final T element) {
     return replace(ts, element, ts.size() - 1);
   }
 
-  @NotNull static <T> Iterable<T> rest2(@NotNull final Iterable<T> ¢) {
+  @NotNull static <T> Iterable<T> rest2( final @NotNull Iterable<T> ¢) {
     return the.lastOf(the.lastOf(¢));
   }
 

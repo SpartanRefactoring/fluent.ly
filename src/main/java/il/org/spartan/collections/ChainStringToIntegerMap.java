@@ -20,7 +20,7 @@ public class ChainStringToIntegerMap {
     return inner.entrySet();
   }
 
-  @SuppressWarnings("null") public int get(final Object key) {
+  public int get(final Object key) {
     return inner.get(key).intValue();
   }
 
@@ -48,7 +48,7 @@ public class ChainStringToIntegerMap {
     return this;
   }
 
-  public ChainStringToIntegerMap putOn(final int value, @NotNull final String... keys) {
+  public ChainStringToIntegerMap putOn(final int value,  final @NotNull String... keys) {
     for (final String key : keys)
       put(key, value);
     return this;

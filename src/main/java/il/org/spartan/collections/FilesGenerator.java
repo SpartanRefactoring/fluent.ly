@@ -3,7 +3,7 @@ package il.org.spartan.collections;
 import java.io.*;
 import java.util.*;
 
-import org.eclipse.jdt.annotation.Nullable;
+
 import org.jetbrains.annotations.*;
 
 import fluent.ly.*;
@@ -46,10 +46,10 @@ public class FilesGenerator {
 
   /** @param directory should be a directory, but we still need to account for
    *                  weird creatures such as "System Volume Information" */
-  @Nullable static Iterator<File> directoryIterator(@Nullable final File directory) {
+  @Nullable static Iterator<File> directoryIterator(final @Nullable  File directory) {
     if (directory == null || !directory.isDirectory() || directory.list() == null)
       return null;
-    @NotNull final Iterator<String> $ = as.list(directory.list()).iterator();
+     final @NotNull Iterator<String> $ = as.list(directory.list()).iterator();
     return new Iterator<File>() {
       @Nullable File next;
 
@@ -65,15 +65,15 @@ public class FilesGenerator {
         }
       }
 
-      @Override @Nullable public File next() {
+      @Override public @Nullable File next() {
         return next;
       }
     };
   }
 
-  private static Iterable<File> asFiles(final Iterable<String> fileNames) {
-    @NotNull final List<File> $ = new ArrayList<>();
-    for (@NotNull final String fileName : fileNames)
+  private static Iterable<File> asFiles(final Iterable<@NotNull String> fileNames) {
+     final @NotNull List<File> $ = new ArrayList<>();
+    for ( final @NotNull String fileName : fileNames)
       $.add(new File(fileName));
     return $;
   }
@@ -126,7 +126,7 @@ public class FilesGenerator {
       this.from = from;
     }
 
-    @Override @NotNull public Iterator<File> iterator() {
+    @Override public @NotNull Iterator<File> iterator() {
       return new FilesIterator(from.iterator());
     }
 
@@ -162,7 +162,7 @@ public class FilesGenerator {
       }
 
       private boolean ofInterest() {
-        for (@NotNull final String extension : extensions)
+        for ( final @NotNull String extension : extensions)
           if (next.getName().endsWith(extension))
             return true;
         return false;

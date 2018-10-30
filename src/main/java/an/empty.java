@@ -9,7 +9,7 @@ import org.jetbrains.annotations.*;
  * @since 2017-04-01 */
 public enum empty {
   ;
-  public static <T> List<T> list() {
+  public static <T> @NotNull List<T> list() {
     return new ArrayList<>();
   }
 

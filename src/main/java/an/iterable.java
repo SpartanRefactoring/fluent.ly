@@ -18,9 +18,9 @@ public interface iterable {
    * @param    < T > an arbitrary type
    * @param ts what to iterate on
    * @return an {@link Iterable} over the parameter */
-  @SafeVarargs @NotNull static <T> Iterable<T> over(@NotNull final T... ts) {
+  @SafeVarargs @NotNull static <T> Iterable<T> over( final @NotNull T... ts) {
     return new Iterable<T>() {
-      @Override @NotNull public Iterator<T> iterator() {
+      @Override public @NotNull Iterator<T> iterator() {
         return new Iterator<T>() {
           int current;
 

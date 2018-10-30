@@ -8,7 +8,7 @@ import static fluent.ly.azzert.*;
 
 import java.util.*;
 
-import org.eclipse.jdt.annotation.Nullable;
+
 import org.jetbrains.annotations.*;
 import org.junit.*;
 
@@ -27,7 +27,7 @@ import org.junit.*;
  * @since 27/08/2008 */
 public enum prune {
   ;
-  @NotNull private static String[] asArrray(@NotNull final List<String> $) {
+  private static  @NotNull String[] asArrray( final @NotNull List<String> $) {
     return cantBeNull($.toArray(new String @NotNull [0]));
   }
 
@@ -35,8 +35,8 @@ public enum prune {
    * @param    <T> JD
    * @param    <C> JD
    * @param ts JD */
-  @NotNull public static <T, C extends Collection<T>> C nulls(@NotNull final C $) {
-    for (@NotNull final Iterator<T> ¢ = $.iterator(); ¢.hasNext();)
+  public static @NotNull  <T, C extends Collection<T>> C nulls( final @NotNull C $) {
+    for ( final @NotNull Iterator<T> ¢ = $.iterator(); ¢.hasNext();)
       if (¢.next() == null)
         ¢.remove();
     return $;
@@ -49,9 +49,9 @@ public enum prune {
    *         elements of the parameter, and in the same order. No
    *         <code><b>null</b></code> elements are present on this returned
    *         collection. */
-  @NotNull public static <T> List<T> nulls(@NotNull final Iterable<T> ts) {
-    @NotNull final ArrayList<T> $ = new ArrayList<>();
-    for (@Nullable final T ¢ : ts)
+  public static @NotNull  <T> List<T> nulls( final @NotNull Iterable<T> ts) {
+     final @NotNull ArrayList<T> $ = new ArrayList<>();
+    for (final @Nullable  T ¢ : ts)
       if (¢ != null)
         $.add(¢);
     return $;
@@ -64,9 +64,9 @@ public enum prune {
    *         elements of the parameter, and in the same order. No
    *         <code><b>null</b></code> elements are present on this returned
    *         collection. */
-  @NotNull public static <T> T[] nulls(@NotNull final T[] ts) {
-    @NotNull final List<T> $ = new ArrayList<>();
-    for (@Nullable final T ¢ : ts)
+  public static @NotNull  <T> T[] nulls( final @NotNull T[] ts) {
+     final @NotNull List<T> $ = new ArrayList<>();
+    for (final @Nullable  T ¢ : ts)
       if (¢ != null)
         $.add(¢);
     return cantBeNull($.toArray(shrink(ts)));
@@ -76,13 +76,13 @@ public enum prune {
    * @param   <T> type of elements in the input array.
    * @param ¢ an array of values.
    * @return an array of size 0 of elements of type <code>T</code>. */
-  private static <T> T[] shrink(@NotNull final T[] ¢) {
+  private static <T> T[] shrink( final  T@NotNull[] ¢) {
     return Arrays.copyOf(¢, 0);
   }
 
-  public static <T> String[] whites(@NotNull final T... ts) {
-    @NotNull final List<String> $ = new ArrayList<>();
-    for (@Nullable final T ¢ : ts)
+  public static <T> @NotNull String@NotNull[] whites( final @NotNull T... ts) {
+     final @NotNull List<String> $ = new ArrayList<>();
+    for (final @Nullable  T ¢ : ts)
       if (¢ != null)
         accumulate.to($).add((¢ + "").trim());
     return asArrray($);
@@ -93,10 +93,10 @@ public enum prune {
    * @since 27/08/2008 */
   @SuppressWarnings({ "static-method", "synthetic-access" }) //
   public static class TEST1 {
-    final String @Nullable [] alternatingArray = new String @Nullable [] { null, "A", null, null, "B", null, null, null, "C", null };
-    final String[] nonNullArray = { "1", "2", "4" };
-    private final lazy<List<String>> sparseCollection = new lazy<List<String>>() {
-      @Override @NotNull public List<String> get() {
+    final @NotNull  String @Nullable [] alternatingArray = new String @Nullable [] { null, "A", null, null, "B", null, null, null, "C", null };
+    final @NotNull String[] nonNullArray = { "1", "2", "4" };
+    private final @NotNull lazy<List<String>> sparseCollection = new lazy<List<String>>() {
+      @Override public @NotNull List<String> get() {
         return as.list(null, null, null, null, null, "A", null, null, null, "B", null, "C", null, null, null, null, null);
       }
     };
@@ -122,7 +122,7 @@ public enum prune {
     }
 
     @Test public void nullsPruneSparseCollectionContents() {
-      @NotNull final String[] a = nulls(sparseCollection.get()).toArray(new String[3]);
+       final @NotNull String[] a = nulls(sparseCollection.get()).toArray(new String[3]);
       assertEquals("A", a[0]);
       assertEquals("B", a[1]);
       assertEquals("C", a[2]);
@@ -138,11 +138,11 @@ public enum prune {
     }
 
     @Test public void shrinkArray() {
-      assertEquals(0, shrink(new Object @Nullable [10]).length);
+      assertEquals(0, shrink(new Object  [10]).length);
     }
 
     @Test public void shrinkEmptyArray() {
-      assertEquals(0, shrink(new Object @Nullable [0]).length);
+      assertEquals(0, shrink(new Object  [0]).length);
     }
 
     @Test public void whitesEmptyArray() {
@@ -158,8 +158,8 @@ public enum prune {
    * @author Yossi Gil, the Technion.
    * @since 27/08/2008 */
   @SuppressWarnings({ "static-method", "synthetic-access" }) public static class TEST2 {
-    final String @Nullable [] alternatingArray = new String[] { null, "A", null, null, "B", null, null, null, "C", null };
-    final String[] nonNullArray = { "1", "2", "4" };
+    final @Nullable String @NotNull [] alternatingArray = new String[] { null, "A", null, null, "B", null, null, null, "C", null };
+    final @NotNull String@NotNull[] nonNullArray = { "1", "2", "4" };
     private ArrayList<String> sparseCollection;
 
     @Before public void initSparseCollection() {
@@ -203,7 +203,7 @@ public enum prune {
     }
 
     @Test public void testPruneSparseCollectionContents() {
-      @NotNull final String[] a = nulls(sparseCollection).toArray(new String[3]);
+       final @NotNull String[] a = nulls(sparseCollection).toArray(new String[3]);
       azzert.that(a[0], is("A"));
       azzert.that(a[1], is("B"));
       azzert.that(a[2], is("C"));

@@ -89,9 +89,9 @@ public enum Token {
     main(new RawTokenizer(System.in));
   }
 
-  private static void main(@NotNull final RawTokenizer tokenizer) throws IOException {
+  private static void main( final @NotNull RawTokenizer tokenizer) throws IOException {
     for (;;) {
-      @Nullable final Token t = tokenizer.next();
+      final @Nullable  Token t = tokenizer.next();
       System.out.println(Separate.bySpaces(//
           "t=" + t, //
           "text=" + tokenizer.text(), //

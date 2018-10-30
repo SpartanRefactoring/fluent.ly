@@ -24,7 +24,7 @@ public enum defaults {
    *                     <code><b>null</b></code>
    * @return <code>v</code> if it is not <code><b>null</b></code>, otherwise
    *         <code>defaultValue</code> */
-  public static int to(@Nullable final Integer v, final int defaultValue) {
+  public static int to(final @Nullable  Integer v, final int defaultValue) {
     return v != null ? v.intValue() : defaultValue;
   }
 
@@ -34,7 +34,7 @@ public enum defaults {
    *                     <code><b>null</b></code>
    * @return <code>v</code> if it is not <code><b>null</b></code>, otherwise
    *         <code>defaultValue</code> */
-  public static int to(@Nullable final Integer v, final Integer defaultValue) {
+  public static int to(final @Nullable  Integer v, final Integer defaultValue) {
     return (v != null ? v : defaultValue).intValue();
   }
 
@@ -45,7 +45,7 @@ public enum defaults {
    *                     <code><b>null</b></code>
    * @return <code>v</code> if it is not <code><b>null</b></code>, otherwise
    *         <code>defaultValue</code> */
-  @Nullable public static <T> T to(@Nullable final T v, final T defaultValue) {
+  public @Nullable static <T> T to(final @Nullable  T v, final T defaultValue) {
     return v != null ? v : defaultValue;
   }
 }

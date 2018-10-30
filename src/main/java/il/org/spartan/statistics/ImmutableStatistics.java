@@ -15,11 +15,11 @@ public abstract class ImmutableStatistics extends Statistics implements java.io.
    * the values of <code>1L</code> to maintain upward compatibility. */
   private static final long serialVersionUID = 1;
 
-  private static StringBuilder appendValue(@NotNull final StringBuilder b, final String name, final double v, @NotNull final Unit u) {
+  private static StringBuilder appendValue(final @NotNull StringBuilder b, final String name, final double v, final @NotNull Unit u) {
     return b.append(name).append('=').append(u.format(v));
   }
 
-  private static void appendValue(@NotNull final StringBuilder b, final String name, final int i) {
+  private static void appendValue(final @NotNull StringBuilder b, final String name, final int i) {
     b.append(name).append('=').append(i);
   }
 
@@ -29,7 +29,7 @@ public abstract class ImmutableStatistics extends Statistics implements java.io.
 
   /** Generate a copy of the set of all recorded values
    * @return an array containing all recorded values */
-  public final double[] all() {
+  public final double @NotNull [] all() {
     return Arrays.copyOf(values, n);
   }
 
@@ -41,14 +41,14 @@ public abstract class ImmutableStatistics extends Statistics implements java.io.
     return format(unit != null ? unit : Unit.DOUBLE);
   }
 
-  public String format(@NotNull final Unit ¢) {
+  public String format(final @NotNull Unit ¢) {
     return n() == 1 ? ¢.format(mean()) : format(¢, "A D R N");
   }
 
-  public String format(@NotNull final Unit u, @Nullable final String format) {
+  public String format(final @NotNull Unit u, final @Nullable String format) {
     if (format == null)
       return format(u);
-    @NotNull final StringBuilder $ = new StringBuilder();
+    final @NotNull StringBuilder $ = new StringBuilder();
     for (final char ¢ : format.toCharArray())
       switch (¢) {
         case 'A':
@@ -131,7 +131,7 @@ public abstract class ImmutableStatistics extends Statistics implements java.io.
     return unit;
   }
 
-  @NotNull private StringBuilder appendError(@NotNull final StringBuilder b, final double d) {
+  @NotNull private StringBuilder appendError(final @NotNull StringBuilder b, final double d) {
     return n() <= 1 ? b : b.append('±').append(RELATIVE.format(d));
   }
 }

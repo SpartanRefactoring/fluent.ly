@@ -39,7 +39,7 @@ public class CSVLineWriter extends CSVLine.Ordered {
     writer = new CSVWriter(fileName + extension());
   }
 
-  @Nullable public String absolutePath() {
+  public @Nullable String absolutePath() {
     return writer.file() == null ? null : writer.file().getAbsolutePath();
   }
 

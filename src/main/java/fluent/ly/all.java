@@ -16,10 +16,10 @@ public enum all {
    * @return <code><b>true</b></code> <i>iff</i> <code>ts</code> is not
    *         <code><b>null</b></code> and all elements in it is not are not
    *         <code><b>null</b></code> */
-  public static <T> boolean notNull(@Nullable final Iterable<T> ts) {
+  public static <T> boolean notNull(final @Nullable  Iterable<T> ts) {
     if (ts == null)
       return false;
-    for (@Nullable final T ¢ : ts)
+    for (final @Nullable  T ¢ : ts)
       if (¢ == null)
         return false;
     return true;
@@ -31,10 +31,10 @@ public enum all {
    * @return <code><b>true</b></code> <i>iff</i> <code>ts</code> is not
    *         <code><b>null</b></code> and all elements in it are not
    *         <code><b>null</b></code>. */
-  public static <T> boolean notNull(@Nullable final T[] ts) {
+  public static <T> boolean notNull(final @Nullable  T[] ts) {
     if (ts == null)
       return false;
-    for (@Nullable final T ¢ : ts)
+    for (final @Nullable  T ¢ : ts)
       if (¢ == null)
         return false;
     return true;

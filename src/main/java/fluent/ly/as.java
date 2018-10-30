@@ -32,7 +32,7 @@ public enum as {
    *           type is isomorphic to array parameters in Java
    * @return an {@link Iterable} over the array, which can then be used to to
    *         iterate over the parameter(s) */
-  public static Iterable<Integer> asIterable(@NotNull final Integer... is) {
+  public static Iterable<Integer> asIterable( final @NotNull Integer... is) {
     // Create an object of a new <em>anonymous</em> class that
     // <code><b>implements</b></code> {@link Iterable}
     return () -> new Iterator<Integer>() {
@@ -48,7 +48,7 @@ public enum as {
     };
   }
 
-  public static Iterable<Integer> asIterableLambda(@NotNull final Integer... is) {
+  public static Iterable<Integer> asIterableLambda( final @NotNull Integer... is) {
     return () -> new Iterator<Integer>() {
       int current;
 
@@ -83,8 +83,8 @@ public enum as {
    * @param is what to covert
    * @return parameter, converted to the {@link List} of non-
    *         <code><b>int</b></code> {@link Integer}s form. */
-  @NotNull public static List<Integer> ingeterList(final int... is) {
-    @NotNull final List<Integer> $ = new ArrayList<>();
+  public static @NotNull  List<Integer> ingeterList(final int... is) {
+     final @NotNull List<Integer> $ = new ArrayList<>();
     for (final int ¢ : is)
       $.add(fluent.ly.box.it(¢));
     return $;
@@ -94,7 +94,7 @@ public enum as {
    * @param $ some sequence of values of the type parameter
    * @return parameters, organized as an array with entries whose type is the type
    *         parameter */
-  public static int[] intArray(final int... $) {
+  public static int @NotNull [] intArray(final int... $) {
     return $;
   }
 
@@ -103,7 +103,7 @@ public enum as {
    * @param is the list to be converted, none of the elements in it can be
    *           <code><b>null</b></code>
    * @return an array of <code><b>int</b></code>. representing the input. */
-  public static int @NotNull [] intArray(@NotNull final List<Integer> is) {
+  public static int @NotNull [] intArray( final @NotNull List<Integer> is) {
     final int @NotNull [] $ = new int @NotNull [is.size()];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = is.get(¢).intValue();
@@ -131,7 +131,7 @@ public enum as {
    * @param   <T> type of items to be converted
    * @param $ what to convert
    * @return parameter, converted to the {@link List} of the given type */
-  public static <T> List<T> list(@NotNull final Iterable<? extends T> $) {
+  public static <T>   @NotNull  List<T> list( final @NotNull Iterable<? extends T> $) {
     return accumulate.to(new ArrayList<T>()).add($).elements();
   }
 
@@ -140,8 +140,8 @@ public enum as {
    * @param   <T> type of objects to be converted
    * @param $ what to covert
    * @return result parameter, converted into a {@link List} */
-  @SafeVarargs public static <T> List<T> list(final @Nullable T... $) {
-    return accumulate.to(new ArrayList<T>()).add($).elements();
+  @SafeVarargs public static <T> @NotNull List<@Nullable T> list(final @Nullable T... $) {
+    return accumulate.to(new ArrayList<@Nullable T>()).add($).elements();
   }
 
   /** Converts a sequence of objects of a given type into a {@link Set} of values
@@ -156,7 +156,7 @@ public enum as {
    * references to valid instances, into a {@link NotNull}
    * @param $ some value
    * @return parameter, after bing to a non-null string. */
-  @NotNull public static String string(@Nullable final Object $) {
+  public static @NotNull  String string(final @Nullable  Object $) {
     return $ == null ? "null" : as.string($ + "");
   }
 
@@ -164,7 +164,7 @@ public enum as {
    * an actual String, into a {@link NotNull} String.
    * @param $ some value
    * @return parameter, after bing to a non-null string. */
-  @NotNull public static String string(@Nullable final String $) {
+  public static @NotNull  String string(final @Nullable  String $) {
     return $ != null ? $ : "null";
   }
 
@@ -172,15 +172,15 @@ public enum as {
    * @param os what to covert
    * @return an array of the parameter values, each converted to i
    *         {@link String} */
-  public static String[] strings(@NotNull final Iterable<? extends @Nullable Object> os) {
-    @NotNull final List<@NotNull String> $ = new ArrayList<>();
+  public static String[] strings( final @NotNull Iterable<? extends @Nullable Object> os) {
+     final @NotNull List<@NotNull String> $ = new ArrayList<>();
     for (final @Nullable Object ¢ : os)
       if (¢ != null)
         $.add(¢ + "");
     return Utils.cantBeNull($.toArray(new String @NotNull [$.size()]));
   }
 
-  static Iterable<Integer> asIterableEssence(@NotNull final Integer... is) {
+  static Iterable<Integer> asIterableEssence( final @NotNull Integer... is) {
     return () -> new Iterator<Integer>() {
       int current;
 
@@ -218,7 +218,7 @@ public enum as {
 
     @Test public void asListSimple() {
       // direct call `as.list(12, 13, 14)` kills Travis --or
-      @NotNull final List<Integer> is = as.list(new int[] { 12, 13, 14 });
+       final @NotNull List<Integer> is = as.list(new int @NotNull [] { 12, 13, 14 });
       azzert.that(is.get(0), is(fluent.ly.box.it(12)));
       azzert.that(is.get(1), is(fluent.ly.box.it(13)));
       azzert.that(is.get(2), is(fluent.ly.box.it(14)));
@@ -231,7 +231,7 @@ public enum as {
 
     @Test public void stringWhenToStringReturnsNull() {
       azzert.that(as.string(new Object() {
-        @Override @Nullable public String toString() {
+        @Override public @Nullable String toString() {
           return null;
         }
       }), is("null"));

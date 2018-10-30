@@ -31,7 +31,7 @@ public abstract class Statistics {
   }
 
   public static double @NotNull [] prune(final double @NotNull [] ds) {
-    @NotNull final List<Double> $ = new ArrayList<>();
+     final @NotNull List<Double> $ = new ArrayList<>();
     final double median = median(ds), mad = mad(ds);
     for (final double ¢ : ds)
       if (median - 2 * mad <= ¢ && ¢ <= median + 2 * mad)

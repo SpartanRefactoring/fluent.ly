@@ -21,7 +21,7 @@ public enum ReflectionAnalyzer {
     class LocalClass {
       // Nothing here.
     }
-    dump.go(int[].class);
+    dump.go(int  [].class);
     dump.go(void.class);
     dump.go(Object[].class);
     dump.go(ReflectionAnalyzer.class);
