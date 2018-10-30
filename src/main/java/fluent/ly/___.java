@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import static fluent.ly.box.*;
 import static fluent.ly.string.*;
 
+import org.jetbrains.annotations.*;
 import org.junit.*;
 
 import fluent.ly.___.Bug.*;
@@ -248,7 +249,7 @@ public abstract class ___ {
    * be nonnegative.
    * @param is a array which must be nonnegative
    * @throws NonNegative in case <code>n</code> was negative */
-  public static void nonnegative(final int[] is) throws NonNegative {
+  public static void nonnegative(final int @NotNull [] is) throws NonNegative {
     for (final int ¢ : is)
       nonnegative(¢);
   }
@@ -257,7 +258,7 @@ public abstract class ___ {
    * never be <code><b>null</b></code>.
    * @param o if <code><b>null</b></code>, program will halt.
    * @throws NotNull in case <code>o</code> was <code><b>null</b></code> */
-  public static void nonnull(final Object ¢) throws NotNull {
+  public static void nonnull(final Object ¢) throws NotNullValue {
     nonnull(¢, "");
   }
 
@@ -266,7 +267,7 @@ public abstract class ___ {
    * @param o       if <code><b>null</b></code>, program will halt.
    * @param message an error message to be associated with the failure
    * @throws NotNull in case <code>o</code> was <code><b>null</b></code> */
-  public static void nonnull(final Object o, final String message) throws NotNull {
+  public static void nonnull(final Object o, final String message) throws NotNullValue {
     nonnull(o, message, "");
   }
 
@@ -278,9 +279,9 @@ public abstract class ___ {
    * @param args   <code>printf</code>-like arguments to be used with the format
    *               string.
    * @throws NotNull in case <code>o</code> was <code><b>null</b></code> */
-  public static void nonnull(final Object o, final String format, final Object... args) throws NotNull {
+  public static void nonnull(final Object o, final String format, final Object... args) throws NotNullValue {
     if (o == null)
-      throw new NotNull(format, args);
+      throw new NotNullValue(format, args);
   }
 
   /** A possibly non-returning method to be used for checking integers which must
@@ -658,20 +659,20 @@ public abstract class ___ {
          * be non-code><b>null</b></code>.
          * @author Yossi Gil
          * @since 18/01/2008 */
-        public static final class NotNull extends Value {
+        public static final class NotNullValue extends Value {
           private static final long serialVersionUID = -0x5D86AA1C39A3BBD1L;
 
           /** instantiate this class with no textual description */
-          public NotNull() {
+          public NotNullValue() {
           }
 
           /** instantiate this class with a given textual description
            * @param message a description of the exceptional situation */
-          public NotNull(final String message) {
+          public NotNullValue(final String message) {
             super(message);
           }
 
-          public NotNull(final String format, final Object... args) {
+          public NotNullValue(final String format, final Object... args) {
             super(format, args);
           }
         }
@@ -1018,17 +1019,17 @@ public abstract class ___ {
       ___.nonnull(new Object());
       try {
         ___.nonnull(null);
-      } catch (final NotNull e) {
+      } catch (final Exception e) {
         assertEquals("", e.getMessage());
       }
       try {
         ___.nonnull(null, "nonnull");
-      } catch (final NotNull e) {
+      } catch (final Exception e) {
         assertEquals("nonnull", e.getMessage());
       }
       try {
         ___.nonnull(null, "nonnull %s message %s", "this", "now");
-      } catch (final NotNull e) {
+      } catch (final Exception e) {
         assertEquals("nonnull this message now", e.getMessage());
       }
     }
