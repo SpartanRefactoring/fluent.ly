@@ -27,7 +27,7 @@ public enum CSV {
    * @return Combined string
    * @see #splitToClasses(String) */
   public static String combine( final Class<?>[] cs) {
-    @NotNull final String[] $ = new String[cs.lengt                                 `h];
+    @NotNull final String[] $ = new String[cs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = cs[¢] == null ? null : cs[¢].getName();
     return combine($);
