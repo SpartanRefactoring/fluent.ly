@@ -1,15 +1,13 @@
 package il.org.spartan;
 // TODO: Yossi: I commented this one too.
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.*;
 
 // import static il.org.spartan.utils.___.*;
-import il.org.spartan.Aggregator.Aggregation.FormatSpecifier;
-import il.org.spartan.statistics.ImmutableStatistics;
-import il.org.spartan.statistics.RealStatistics;
+import il.org.spartan.Aggregator.Aggregation.*;
+import il.org.spartan.statistics.*;
 
 /** Similar to {@link CSVWriter}, except that in addition to the production of
  * output to the main CSV file, this class generates a secondary CSV file,
@@ -24,19 +22,20 @@ public class CSVStatistics extends CSVLine.Ordered {
     return baseName.replaceFirst("\\.csv$", "");
   }
 
-  @NotNull private final String keysHeader;
+  private final String keysHeader;
   final Map<String, RealStatistics> stats = new LinkedHashMap<>();
-  @NotNull final CSVWriter inner;
-  @NotNull final CSVWriter summarizer;
+  final CSVWriter inner;
+  final CSVWriter summarizer;
 
   /** Instantiate this class, setting the names of the main and secondary CSV
    * files.
-   * @param baseName the name of the files into which statistics should be
-   *        written; if this name ends with ".csv", this extension is removed.
-   * @param keysHeader the name of the column in which the names of the
-   *        numerical columns in the principal file
+   * @param baseName   the name of the files into which statistics should be
+   *                   written; if this name ends with ".csv", this extension is
+   *                   removed.
+   * @param keysHeader the name of the column in which the names of the numerical
+   *                   columns in the principal file
    * @throws IOException */
-  public CSVStatistics(@NotNull final String baseName, @NotNull final String keysHeader) {
+  public CSVStatistics(final String baseName, final String keysHeader) {
     assert baseName != null;
     assert keysHeader != null;
     inner = new CSVWriter(removeExtension(baseName));
@@ -44,7 +43,7 @@ public class CSVStatistics extends CSVLine.Ordered {
     this.keysHeader = keysHeader;
   }
 
-  @NotNull public String close() {
+  public String close() {
     inner.close();
     for (final String key : stats.keySet()) {
       @NotNull final CSVLine l = new CSVLine.Ordered.Separated("%");
@@ -67,7 +66,7 @@ public class CSVStatistics extends CSVLine.Ordered {
     return summarizer.close();
   }
 
-  @NotNull public String mainFileName() {
+  public String mainFileName() {
     return inner.fileName();
   }
 
@@ -93,7 +92,7 @@ public class CSVStatistics extends CSVLine.Ordered {
     return this;
   }
 
-  @NotNull public String summaryFileName() {
+  public String summaryFileName() {
     return summarizer.fileName();
   }
 

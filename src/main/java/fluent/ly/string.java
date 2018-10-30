@@ -127,7 +127,7 @@ public enum string {
     try {
       Double.valueOf(s);
       return true;
-    } catch (@NotNull final NumberFormatException __) {
+    } catch (final NumberFormatException __) {
       return false;
     }
   }
@@ -136,7 +136,7 @@ public enum string {
     try {
       Float.valueOf(s);
       return true;
-    } catch (@NotNull final NumberFormatException __) {
+    } catch (final NumberFormatException __) {
       return false;
     }
   }
@@ -145,7 +145,7 @@ public enum string {
     try {
       Integer.valueOf(s);
       return true;
-    } catch (@NotNull final NumberFormatException __) {
+    } catch (final NumberFormatException __) {
       return false;
     }
   }
@@ -154,7 +154,7 @@ public enum string {
     try {
       Long.valueOf(s);
       return true;
-    } catch (@NotNull final NumberFormatException __) {
+    } catch (final NumberFormatException __) {
       return false;
     }
   }
@@ -263,8 +263,7 @@ public enum string {
 
   /** Quote an object
    * @param ¢ a non-<code><b>null</b></code> object for quoting
-   * @return the result of <code>o.toString()</code> wrapped with single
-   *         quotes */
+   * @return the result of <code>o.toString()</code> wrapped with single quotes */
   @NotNull public static String quote(final Object ¢) {
     return wrap('\'', ¢ + "");
   }
@@ -309,7 +308,7 @@ public enum string {
 
   /** Strip the first and last character of a string.
    * @param ¢ a non-<code><b>null</b></code> string of length at least two to
-   *        strip
+   *          strip
    * @return <code>s</code> but without its first and last character. */
   public static String strip(@NotNull final String ¢) {
     nonnull(¢);

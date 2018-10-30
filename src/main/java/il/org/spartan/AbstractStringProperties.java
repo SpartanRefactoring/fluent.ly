@@ -4,7 +4,7 @@ import java.util.*;
 
 import org.jetbrains.annotations.*;
 
-import fluent.ly.separate;
+import fluent.ly.*;
 
 /** @author Yossi Gil
  * @since Apr 8, 2012 */
@@ -22,7 +22,7 @@ public abstract class AbstractStringProperties {
   @Override @Nullable public AbstractStringProperties clone() {
     try {
       return (AbstractStringProperties) super.clone();
-    } catch (@NotNull final CloneNotSupportedException ¢) {
+    } catch (final CloneNotSupportedException ¢) {
       ¢.printStackTrace();
       return null;
     }
@@ -32,25 +32,25 @@ public abstract class AbstractStringProperties {
 
   /** A total inspector
    * @return the header of the CSV line */
-  @NotNull public String header() {
+  public String header() {
     return renderer.allTop() + makeLine(keys()) + renderer.headerEnd();
   }
 
-  @NotNull public abstract Iterable<String> keys();
+  public abstract Iterable<String> keys();
 
   /** A total inspector
    * @return the content of the CSV line as per all recorded values. */
-  @NotNull public final String line() {
+  public final String line() {
     return makeLine(values());
   }
 
-  @NotNull public abstract AbstractStringProperties put(String key, String value);
+  public abstract AbstractStringProperties put(String key, String value);
 
   public abstract int size();
 
-  @NotNull public abstract Iterable<String> values();
+  public abstract Iterable<String> values();
 
-  @NotNull protected String makeLine(final Iterable<String> ¢) {
+  protected String makeLine(final Iterable<String> ¢) {
     return renderer.makeLine(¢);
   }
 
@@ -87,8 +87,8 @@ public abstract class AbstractStringProperties {
 
   public enum Renderer {
     CSV {
-      /** Wraps values in a CSV line. Occurrences of this character in field
-       * content are escaped by typing it twice. */
+      /** Wraps values in a CSV line. Occurrences of this character in field content
+       * are escaped by typing it twice. */
       static final String QUOTE = '"' + "";
       static final String DELIMETER = ",";
 
@@ -181,25 +181,25 @@ public abstract class AbstractStringProperties {
         return ¢ == null ? "" : !¢.contains(delimiter()) ? ¢ : ¢.replaceAll(delimiter(), "\\" + delimiter());
       }
     };
-    @NotNull public String makeLine(final Iterable<String> ¢) {
+    public String makeLine(final Iterable<String> ¢) {
       return lineBegin() + separate(¢) + lineEnd();
     }
 
-    @NotNull public String separate(final Iterable<String> ¢) {
+    public String separate(final Iterable<String> ¢) {
       return separate.these(¢).by(delimiter());
     }
 
-    @NotNull abstract String allBottom();
+    abstract String allBottom();
 
-    @NotNull abstract String allTop();
+    abstract String allTop();
 
-    @NotNull abstract String delimiter();
+    abstract String delimiter();
 
-    @NotNull abstract String headerEnd();
+    abstract String headerEnd();
 
-    @NotNull abstract String lineBegin();
+    abstract String lineBegin();
 
-    @NotNull abstract String lineEnd();
+    abstract String lineEnd();
 
     abstract String makeField(String s);
   }

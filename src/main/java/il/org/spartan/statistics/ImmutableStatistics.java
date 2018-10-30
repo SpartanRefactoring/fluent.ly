@@ -11,8 +11,8 @@ import il.org.spartan.bench.*;
 /** @author Yossi Gil
  * @since 30/04/2011 */
 public abstract class ImmutableStatistics extends Statistics implements java.io.Serializable {
-  /** A field for identifying a streamed version of objects of this class; we
-   * use the values of <code>1L</code> to maintain upward compatibility. */
+  /** A field for identifying a streamed version of objects of this class; we use
+   * the values of <code>1L</code> to maintain upward compatibility. */
   private static final long serialVersionUID = 1;
 
   private static StringBuilder appendValue(@NotNull final StringBuilder b, final String name, final double v, @NotNull final Unit u) {
@@ -25,7 +25,7 @@ public abstract class ImmutableStatistics extends Statistics implements java.io.
 
   protected Unit unit;
   protected int flips;
-  @NotNull protected double[] values = new double[0];
+  protected double @NotNull [] values = new double[0];
 
   /** Generate a copy of the set of all recorded values
    * @return an array containing all recorded values */
@@ -111,7 +111,7 @@ public abstract class ImmutableStatistics extends Statistics implements java.io.
 
   /** Prune the set of values to those in the median +- mad value.
    * @return an array representing these values */
-  @NotNull public double[] prune() {
+  public double @NotNull [] prune() {
     return prune(all());
   }
 

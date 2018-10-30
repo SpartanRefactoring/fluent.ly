@@ -1,13 +1,12 @@
 package il.org.spartan.java;
 
-import fluent.ly.___;
 import static il.org.spartan.strings.StringUtils.*;
 
 import java.io.*;
 
 import org.jetbrains.annotations.*;
 
-import il.org.spartan.utils.*;
+import fluent.ly.*;
 
 public class Tokenizer {
   @NotNull public static Reader reader(@NotNull final File ¢) throws FileNotFoundException {
@@ -48,7 +47,7 @@ public class Tokenizer {
   public void closeReader() {
     try {
       reader.close();
-    } catch (@NotNull final IOException ¢) {
+    } catch (final IOException ¢) {
       ¢.printStackTrace();
     }
   }
@@ -72,7 +71,7 @@ public class Tokenizer {
   @Nullable public Token next() {
     try {
       return inner.next();
-    } catch (@NotNull final IOException ¢) {
+    } catch (final IOException ¢) {
       ¢.printStackTrace();
       ___.unreachable();
       return null;

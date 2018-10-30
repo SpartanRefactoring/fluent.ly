@@ -12,9 +12,9 @@ import il.org.spartan.*;
  * @author Yossi Gil
  * @since 2015-09-23 */
 public class LongestCommonSubsequence {
-  @NotNull private final char[] as;
-  @NotNull private final char[] bs;
-  @NotNull private final int[][] length;
+  private final char @NotNull [] as;
+  private final char @NotNull [] bs;
+  private final int @NotNull [][] length;
 
   public LongestCommonSubsequence(@NotNull final String a, @NotNull final String b) {
     as = tide.clean(a).toCharArray();
@@ -39,8 +39,8 @@ public class LongestCommonSubsequence {
 
   /** Returns the length of the LCS of two prefixes of the current strings,
    * <code>as[0]...as[i]</code>, and <code>as[0]...as[i]</code>, i (respectively
-   * j) must be a valid index of array a (respectively b), or else, the
-   * substring of a (respectively b) are empty.
+   * j) must be a valid index of array a (respectively b), or else, the substring
+   * of a (respectively b) are empty.
    * @param i
    * @param j
    * @return */

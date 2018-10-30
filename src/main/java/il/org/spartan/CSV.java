@@ -26,8 +26,8 @@ public enum CSV {
    * @param cs Input array
    * @return Combined string
    * @see #splitToClasses(String) */
-  @NotNull public static String combine(@NotNull final Class<?>[] cs) {
-    @NotNull final String[] $ = new String[cs.length];
+  public static String combine( final Class<?>[] cs) {
+    @NotNull final String[] $ = new String[cs.lengt                                 `h];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = cs[¢] == null ? null : cs[¢].getName();
     return combine($);
@@ -36,11 +36,11 @@ public enum CSV {
   /** Combine the given array into a comma separated string. Each element is
    * escaped, so commas inside the elements cannot do not collide with the
    * separating commas.
-   * @param <T> type of array elements
+   * @param       <T> type of array elements
    * @param parts Input array
    * @return Combined string
    * @see CSV#escape(String) */
-  @NotNull public static <T> String combine(@NotNull final T[] parts) {
+  public static <T> String combine(@NotNull final T[] parts) {
     nonnull(parts);
     @NotNull final StringBuilder $ = new StringBuilder(10 * parts.length);
     @NotNull final Separator sep = new Separator(",");
@@ -52,11 +52,11 @@ public enum CSV {
   /** Combine the given array of enum values into a comma separated string. Each
    * array element is first converted into a string using its name() method and
    * then is escaped.
-   * @param <T> type of array elements
+   * @param       <T> type of array elements
    * @param parts Input array
    * @return Combined string
    * @see CSV#escape(String) */
-  @NotNull public static <T extends Enum<T>> String combine(@NotNull final T[] parts) {
+  public static <T extends Enum<T>> String combine(@NotNull final T[] parts) {
     @NotNull final String[] $ = new String[parts.length];
     for (int ¢ = 0; ¢ < $.length; ++¢) {
       @NotNull final T t = parts[¢];
@@ -68,7 +68,7 @@ public enum CSV {
   /** Escape the given input
    * @param s Input string
    * @return Escaped form of the input */
-  @NotNull public static String escape(@Nullable final String s) {
+  public static String escape(@Nullable final String s) {
     if (s == null)
       return NULL;
     final int len = s.length();
@@ -82,32 +82,32 @@ public enum CSV {
    * @param ¢ Input file
    * @return A two dimensional array of strings
    * @throws IOException some problem with file 'filename' */
-  public static String[][] load(@NotNull final File ¢) throws IOException {
+  public static String[][] load(final File ¢) throws IOException {
     return load(new FileReader(¢));
   }
 
   /** Read a CSV file from the given Reader object.
    * @param r input reader
    * @return a two dimensional array of strings */
-  public static String[][] load(@NotNull final Reader r) {
+  public static String[][] load(final Reader r) {
     @NotNull final ArrayList<String[]> $ = new ArrayList<>(20);
     for (@NotNull final Scanner ¢ = new Scanner(r); ¢.hasNext();)
       $.add(split(¢.nextLine()));
     return $.toArray(new String[$.size()][]);
   }
 
-  public static void save(@NotNull final File f, @NotNull final String[][] data) throws IOException {
-    @NotNull final PrintWriter pw = new PrintWriter(new FileWriter(f));
-    pw.print(toCsv(data));
-    pw.close();
+  public static void save(final File f, @NotNull final String[][] data) throws IOException {
+    try (final PrintWriter pw = new PrintWriter(new FileWriter(f))) {
+      pw.print(toCsv(data));
+    }
   }
 
   /** Split a comma separated string into an array of enum values.
-   * @param <T> Type of enum class
+   * @param       <T> Type of enum class
    * @param clazz Class object of T
-   * @param s Input string
+   * @param s     Input string
    * @return Array of T */
-  @NotNull public static <T extends Enum<T>> T[] split(@NotNull final Class<T> clazz, @NotNull final String s) {
+  @NotNull public static <T extends Enum<T>> T[] split(final Class<T> clazz, final String s) {
     @NotNull final String[] ss = split(s);
     @NotNull @SuppressWarnings("unchecked") final T[] $ = (T[]) Array.newInstance(clazz, ss.length);
     for (int ¢ = 0; ¢ < $.length; ++¢)
@@ -118,7 +118,7 @@ public enum CSV {
   /** Split a comma separated string into its sub parts
    * @param s input string
    * @return Array of sub parts, in their original order */
-  @NotNull public static String[] split(@NotNull final String s) {
+  @NotNull public static String[] split(final String s) {
     if (s.length() == 0)
       return new String[0];
     @NotNull final List<String> $ = new ArrayList<>();
@@ -136,7 +136,7 @@ public enum CSV {
   /** Split a comma separated string into an array of classes.
    * @param s input string
    * @return Array of T */
-  @NotNull public static Class<?>[] splitToClasses(@NotNull final String s) {
+  @NotNull public static Class<?>[] splitToClasses(final String s) {
     @NotNull final String[] names = split(s);
     @NotNull final Class<?>[] $ = new Class<?>[names.length]; // (T[])
     // Array.newInstance(cls,
@@ -144,13 +144,13 @@ public enum CSV {
     for (int i = 0; i < $.length; ++i)
       try {
         $[i] = names[i] == null ? null : Class.forName(names[i]);
-      } catch (@NotNull final ClassNotFoundException ¢) {
+      } catch (final ClassNotFoundException ¢) {
         throw new RuntimeException("s=" + s, ¢);
       }
     return $;
   }
 
-  @NotNull public static String toCsv(@NotNull final String[][] data) {
+  public static String toCsv(@NotNull final String[][] data) {
     @NotNull final StringWriter $ = new StringWriter();
     @NotNull final PrintWriter pw = new PrintWriter($);
     for (@NotNull final String[] line : data) {
@@ -166,7 +166,7 @@ public enum CSV {
   /** Unescape the given input
    * @param s Input string
    * @return Unescaped string */
-  public static String unescape(@NotNull final String s) {
+  public static String unescape(final String s) {
     if (NULL.equals(s))
       return null;
     boolean esc = false;

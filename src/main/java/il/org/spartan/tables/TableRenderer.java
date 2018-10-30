@@ -2,8 +2,8 @@ package il.org.spartan.tables;
 
 import java.util.*;
 
+import fluent.ly.*;
 import il.org.spartan.*;
-import fluent.ly.separate;
 
 /** TODO Yossi Gil Document Classn
  * @author Yossi Gil
@@ -19,7 +19,7 @@ import fluent.ly.separate;
         return "\\bottomrule" + NL;
       }
 
-      // @formatter:off
+    // @formatter:off
       @Override
        public String arraySeparator() { return ", "; }
       @Override
@@ -101,7 +101,7 @@ import fluent.ly.separate;
         return NL;
       }
 
-      // @formatter:off
+    // @formatter:off
       @Override public String beforeTable() { return NL; }
       @Override
        public String recordBegin() { return "|" ; }
@@ -195,8 +195,9 @@ import fluent.ly.separate;
     final Separator s = new Separator(recordSeparator());
     values.forEach(λ -> $.append(s)
         .append(λ instanceof Object[] ? cellArray((Object[]) λ)
-            : λ instanceof Integer ? cellInt(Long.valueOf(((Integer) λ).intValue())) : λ instanceof Long ? cellInt((Long) λ) //
-                : λ instanceof Double ? cellReal((Double) λ) : λ));
+            : λ instanceof Integer ? cellInt(Long.valueOf(((Integer) λ).intValue()))
+                : λ instanceof Long ? cellInt((Long) λ) //
+                    : λ instanceof Double ? cellReal((Double) λ) : λ));
     return $ + recordEnd();
   }
 

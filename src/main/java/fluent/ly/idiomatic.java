@@ -30,7 +30,7 @@ public interface idiomatic {
   };
 
   /** <code>yield</code>
-   * @param <T> JD
+   * @param   <T> JD
    * @param $ result
    * @return an identical supplier which is also a {@link Holder} */
   static <T> Holder<T> eval(@NotNull final Supplier<@Nullable T> $) {
@@ -48,14 +48,14 @@ public interface idiomatic {
 
   /** A filter, which prints an appropriate log message and returns null in case
    * of {@link Exception} thrown by {@link Producer#λ()}
-   * @param <T> JD
+   * @param   <T> JD
    * @param $ JD
    * @return result of invoking the parameter, or <code><b>null</b></code> if an
    *         exception occurred. */
   static <@Nullable T> T katching(@NotNull final Producer<T> $) {
     try {
       return $.λ();
-    } catch (@NotNull final Exception ¢) {
+    } catch (final Exception ¢) {
       ¢.printStackTrace();
       return null;
     }
@@ -75,7 +75,7 @@ public interface idiomatic {
   }
 
   /** <code>yield</code>
-   * @param <T> JD
+   * @param   <T> JD
    * @param ¢ JD
    * @return Yielder<T> value of method <code>yield</code> */
   @NotNull static <T> Storer<T> take(final T ¢) {
@@ -87,9 +87,9 @@ public interface idiomatic {
     return when(!condition);
   }
 
-  /** @param <T> JD
+  /** @param       <T> JD
    * @param condition when should the action take place
-   * @param t JD
+   * @param t         JD
    * @return non-boolean parameter, in case the boolean parameter is true, or
    *         null, otherwise */
   @Nullable static <T> T unless(final boolean condition, final T t) {
@@ -124,8 +124,8 @@ public interface idiomatic {
   }
 
   /** A class which is just like {@link Supplier} , except that it uses the
-   * shorter name ( {@link #λ()} and that it allows for {@link Exception} s to
-   * be thrown by the getters.
+   * shorter name ( {@link #λ()} and that it allows for {@link Exception} s to be
+   * thrown by the getters.
    * @author Yossi Gil
    * @param <T> JD
    * @since 2016` */

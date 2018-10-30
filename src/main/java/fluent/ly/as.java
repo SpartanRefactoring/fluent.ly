@@ -18,9 +18,9 @@ import il.org.spartan.*;
  * @since Jul 8, 2014 */
 public enum as {
   ;
-  /** Convert an array of {@link Integer}s into an {@link Iterable}. For
-   * example, to print the first Fibonacci numbers multiplied by the first prime
-   * numbers, write:
+  /** Convert an array of {@link Integer}s into an {@link Iterable}. For example,
+   * to print the first Fibonacci numbers multiplied by the first prime numbers,
+   * write:
    *
    * <pre>
    * for (Integer f: asIterable(1,1,2,3,5,8,13)
@@ -29,7 +29,7 @@ public enum as {
    * </pre>
    *
    * @param is what to iterate on (recall that a list of arguments of the same
-   *        type is isomorphic to array parameters in Java
+   *           type is isomorphic to array parameters in Java
    * @return an {@link Iterable} over the array, which can then be used to to
    *         iterate over the parameter(s) */
   public static Iterable<Integer> asIterable(@NotNull final Integer... is) {
@@ -78,12 +78,12 @@ public enum as {
     return ¢ == null ? 0 : 1;
   }
 
-  /** Converts a sequence of <code><b>int</b></code> values into a {@link List}
-   * of non-<code><b>null</b></code> {@link Integer}s.
+  /** Converts a sequence of <code><b>int</b></code> values into a {@link List} of
+   * non-<code><b>null</b></code> {@link Integer}s.
    * @param is what to covert
    * @return parameter, converted to the {@link List} of non-
    *         <code><b>int</b></code> {@link Integer}s form. */
-  @NotNull public static List<Integer> ingeterList(@NotNull final int... is) {
+  @NotNull public static List<Integer> ingeterList(final int... is) {
     @NotNull final List<Integer> $ = new ArrayList<>();
     for (final int ¢ : is)
       $.add(fluent.ly.box.it(¢));
@@ -92,26 +92,26 @@ public enum as {
 
   /** Converts a sequence of integer values into an array.
    * @param $ some sequence of values of the type parameter
-   * @return parameters, organized as an array with entries whose type is the
-   *         type parameter */
+   * @return parameters, organized as an array with entries whose type is the type
+   *         parameter */
   public static int[] intArray(final int... $) {
     return $;
   }
 
-  /** Return a compact representation of a list of {@link Integer}s as an array
-   * of type <code><b>int</b></code>.
+  /** Return a compact representation of a list of {@link Integer}s as an array of
+   * type <code><b>int</b></code>.
    * @param is the list to be converted, none of the elements in it can be
-   *        <code><b>null</b></code>
+   *           <code><b>null</b></code>
    * @return an array of <code><b>int</b></code>. representing the input. */
-  @NotNull public static int[] intArray(@NotNull final List<Integer> is) {
-    @NotNull final int @NotNull [] $ = new int @NotNull [is.size()];
+  public static int @NotNull [] intArray(@NotNull final List<Integer> is) {
+    final int @NotNull [] $ = new int @NotNull [is.size()];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = is.get(¢).intValue();
     return $;
   }
 
   /** Creates an iterable for an array of objects
-   * @param <T> an arbitrary type
+   * @param   <T> an arbitrary type
    * @param ¢ what to iterate on
    * @return an {@link Iterable} over the parameter */
   @SafeVarargs public static <T> Iterator<T> iterator(final T... ¢) {
@@ -121,33 +121,31 @@ public enum as {
   /** Converts a list of <code><b>int</b></code>s into a {@link List} of
    * {@link Integer}s
    * @param ¢ what to convert
-   * @return a {@link List} of of all <code><b>int</b></code>s in the
-   *         parameter */
-  public static List<Integer> list(@NotNull final int... ¢) {
+   * @return a {@link List} of of all <code><b>int</b></code>s in the parameter */
+  public static List<Integer> list(final int... ¢) {
     return as.list(box.it(¢));
   }
 
   /** Converts an {@link Iterable} of a given type into a {@link List} of values
    * of this type.
-   * @param <T> type of items to be converted
+   * @param   <T> type of items to be converted
    * @param $ what to convert
    * @return parameter, converted to the {@link List} of the given type */
   public static <T> List<T> list(@NotNull final Iterable<? extends T> $) {
     return accumulate.to(new ArrayList<T>()).add($).elements();
   }
 
-  /** Converts a sequence of objects of some common type T into a {@link List}
-   * of values
-   * @param <T> type of objects to be converted
+  /** Converts a sequence of objects of some common type T into a {@link List} of
+   * values
+   * @param   <T> type of objects to be converted
    * @param $ what to covert
    * @return result parameter, converted into a {@link List} */
   @SafeVarargs public static <T> List<T> list(final @Nullable T... $) {
     return accumulate.to(new ArrayList<T>()).add($).elements();
   }
 
-  /** Converts a sequence of objects of a given type into a {@link Set} of
-   * values
-   * @param <T> type of objects to be converted
+  /** Converts a sequence of objects of a given type into a {@link Set} of values
+   * @param   <T> type of objects to be converted
    * @param ¢ what to covert
    * @return parameter, converted into a {@link Set} */
   @SafeVarargs public static <T> Set<? extends T> set(final @Nullable T... ¢) {
@@ -162,8 +160,8 @@ public enum as {
     return $ == null ? "null" : as.string($ + "");
   }
 
-  /** Converts a {@link String}, which can be either a <code><b>null</b></code>
-   * or an actual String, into a {@link NotNull} String.
+  /** Converts a {@link String}, which can be either a <code><b>null</b></code> or
+   * an actual String, into a {@link NotNull} String.
    * @param $ some value
    * @return parameter, after bing to a non-null string. */
   @NotNull public static String string(@Nullable final String $) {
@@ -198,10 +196,10 @@ public enum as {
 
   // No values in an 'enum' which serves as a name space for a collection of
   // 'static' functions.
-  /** A static nested class hosting unit tests for the nesting class Unit test
-   * for the containing class. Note the naming convention: a) names of test
-   * methods do not use are not prefixed by "test". This prefix is redundant. b)
-   * test methods begin with the name of the method they check.
+  /** A static nested class hosting unit tests for the nesting class Unit test for
+   * the containing class. Note the naming convention: a) names of test methods do
+   * not use are not prefixed by "test". This prefix is redundant. b) test methods
+   * begin with the name of the method they check.
    * @author Yossi Gil
    * @since 2014-05-31 */
   @SuppressWarnings("static-method") public static class TEST {
@@ -241,10 +239,10 @@ public enum as {
   }
 
   /** Converts a sequence of values into an array.
-   * @param <T> some arbitrary type
+   * @param   <T> some arbitrary type
    * @param $ some sequence of values of the type parameter
-   * @return parameter, organized as an array with entries whose type is the
-   *         type parameter */
+   * @return parameter, organized as an array with entries whose type is the type
+   *         parameter */
   @SafeVarargs public static <T> T[] array(final T... $) {
     return $;
   }

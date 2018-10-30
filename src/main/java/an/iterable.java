@@ -6,7 +6,7 @@ import org.jetbrains.annotations.*;
 
 public interface iterable {
   /** <code>singleton</code>
-   * @param <T> JD
+   * @param   <T> JD
    * @param ¢ JD
    * @return PureIterable.Sized<T> for returned value of method
    *         <code>singleton</code> */
@@ -15,7 +15,7 @@ public interface iterable {
   }
 
   /** Creates an iterable for an array of objects
-   * @param < T > an arbitrary type
+   * @param    < T > an arbitrary type
    * @param ts what to iterate on
    * @return an {@link Iterable} over the parameter */
   @SafeVarargs @NotNull static <T> Iterable<T> over(@NotNull final T... ts) {

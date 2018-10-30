@@ -56,7 +56,7 @@ public class CSVLineWriter extends CSVLine.Ordered {
     return writer.file();
   }
 
-  @NotNull public String fileName() {
+  public String fileName() {
     return writer.fileName();
   }
 
@@ -65,7 +65,7 @@ public class CSVLineWriter extends CSVLine.Ordered {
     ++count;
   }
 
-  @NotNull @SuppressWarnings("static-method") protected String extension() {
+  @SuppressWarnings("static-method") protected String extension() {
     return ".csv";
   }
 }

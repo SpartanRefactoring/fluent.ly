@@ -1,33 +1,32 @@
 package il.org.spartan.statistics;
 
-import fluent.ly.azzert;
-import static fluent.ly.azzert.*;
 import static org.junit.Assert.assertEquals;
+
+import static fluent.ly.azzert.*;
 
 import java.util.*;
 
 import org.jetbrains.annotations.*;
 import org.junit.*;
 
-import fluent.ly.as;
-import il.org.spartan.*;
+import fluent.ly.*;
 
 /** A class to compute statistics, e.g., the minimal and maximal value, the mean
  * and the standard deviation, of a sequence of real numbers.
  * @author Yossi Gil, */
 public class RealStatistics extends ImmutableStatistics {
-  /** A field for identifying a streamed version of objects of this class; we
-   * use the values of <code>1L</code> to maintain upward compatibility. */
+  /** A field for identifying a streamed version of objects of this class; we use
+   * the values of <code>1L</code> to maintain upward compatibility. */
   private static final long serialVersionUID = 1;
 
-  public static double[] increase(@NotNull final double[] ¢) {
+  public static double[] increase(final double @NotNull [] ¢) {
     return Arrays.copyOf(¢, 2 * ¢.length + 1);
   }
 
   /** Make a record of the sequence of elements.
    * @param vs values to be recorded
    * @return the receiver, to be used, e.g., in chaining more such operations */
-  @NotNull public RealStatistics record(@NotNull final double... vs) {
+  @NotNull public RealStatistics record(final double... vs) {
     for (final double v : vs)
       record(v);
     return this;
@@ -41,9 +40,8 @@ public class RealStatistics extends ImmutableStatistics {
     return Double.isNaN(v) || Double.isInfinite(v) ? recordMissing() : recordValue(v);
   }
 
-  /** Make a record of the next element in the sequence;
-   * <code><b>null</b></code> reference, and NaN and infinite values not
-   * recorded as ''missing'' values.
+  /** Make a record of the next element in the sequence; <code><b>null</b></code>
+   * reference, and NaN and infinite values not recorded as ''missing'' values.
    * @param v the value to be recorded
    * @return the receiver, to be used, e.g., in chaining more such operations */
   @NotNull public Statistics record(@Nullable final Double v) {
@@ -85,7 +83,7 @@ public class RealStatistics extends ImmutableStatistics {
     @Test public void all() {
       s11_20_5.median();
       s11_20_5.mad();
-      @NotNull final double[] vs = s11_20_5.all();
+      final double @NotNull [] vs = s11_20_5.all();
       azzert.that(vs.length, is(3));
       assertEquals(11, vs[0], 1E-20);
       assertEquals(20, vs[1], 1E-20);

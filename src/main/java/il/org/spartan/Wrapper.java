@@ -32,7 +32,7 @@ public class Wrapper<T> {
   /** @param ¢ JD
    * @return <code><b>true</b></code> <i>iff</i> method <code>equals</code>
    *         returns <code><b>true</b></code> for the wrapped objects. */
-  public boolean equals(@NotNull final Wrapper<?> ¢) {
+  public boolean equals(final Wrapper<?> ¢) {
     return inner == null ? ¢.inner == null : inner.equals(¢.inner);
   }
 

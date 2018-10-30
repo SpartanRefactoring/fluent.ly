@@ -51,8 +51,7 @@ public interface Proposition extends BooleanSupplier {
   });
   /** a {@link Proposition} which is {@code true} */
   Proposition T = Proposition.that("T", () -> true);
-  /** a {@link Proposition} whose evaluation fails with
-   * {@link AssertionError} */
+  /** a {@link Proposition} whose evaluation fails with {@link AssertionError} */
   Proposition X = Proposition.that("X", () -> {
     throw new AssertionError();
   });

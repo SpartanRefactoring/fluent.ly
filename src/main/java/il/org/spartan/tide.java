@@ -10,7 +10,7 @@ public interface tide {
   /** Remove all non-essential spaces from a string that represents Java code.
    * @param javaCodeFragment JD
    * @return parameter, with all redundant spaces removes from it */
-  static String clean(@NotNull final String javaCodeFragment) {
+  static String clean(final String javaCodeFragment) {
     String $ = javaCodeFragment//
         .replaceAll("(?m)\\s+", " ") // Squeeze whites
         .replaceAll("^\\s", "") // Opening whites

@@ -8,7 +8,6 @@ import static fluent.ly.azzert.*;
 
 import java.util.*;
 
-import org.eclipse.jdt.annotation.*;
 import org.eclipse.jdt.annotation.Nullable;
 import org.jetbrains.annotations.*;
 import org.junit.*;
@@ -29,12 +28,12 @@ import org.junit.*;
 public enum prune {
   ;
   @NotNull private static String[] asArrray(@NotNull final List<String> $) {
-    return cantBeNull($.toArray(new String @NonNull [0]));
+    return cantBeNull($.toArray(new String @NotNull [0]));
   }
 
   /** Prune <code><b>null</b></code> elements from a given collection.
-   * @param <T> JD
-   * @param <C> JD
+   * @param    <T> JD
+   * @param    <C> JD
    * @param ts JD */
   @NotNull public static <T, C extends Collection<T>> C nulls(@NotNull final C $) {
     for (@NotNull final Iterator<T> ¢ = $.iterator(); ¢.hasNext();)
@@ -44,12 +43,12 @@ public enum prune {
   }
 
   /** Prune <code><b>null</b></code> elements from a given collection.
-   * @param <T> type of elements in the collection.
+   * @param    <T> type of elements in the collection.
    * @param ts a collection of values.
-   * @return a new collection, containing only those non-
-   *         <code><b>null</b></code> elements of the parameter, and in the same
-   *         order. No <code><b>null</b></code> elements are present on this
-   *         returned collection. */
+   * @return a new collection, containing only those non- <code><b>null</b></code>
+   *         elements of the parameter, and in the same order. No
+   *         <code><b>null</b></code> elements are present on this returned
+   *         collection. */
   @NotNull public static <T> List<T> nulls(@NotNull final Iterable<T> ts) {
     @NotNull final ArrayList<T> $ = new ArrayList<>();
     for (@Nullable final T ¢ : ts)
@@ -59,12 +58,12 @@ public enum prune {
   }
 
   /** Prune <code><b>null</b></code> elements from a given array.
-   * @param <T> type of elements in the array.
+   * @param    <T> type of elements in the array.
    * @param ts an array of values.
-   * @return a new array, containing precisely those non-
-   *         <code><b>null</b></code> elements of the parameter, and in the same
-   *         order. No <code><b>null</b></code> elements are present on this
-   *         returned collection. */
+   * @return a new array, containing precisely those non- <code><b>null</b></code>
+   *         elements of the parameter, and in the same order. No
+   *         <code><b>null</b></code> elements are present on this returned
+   *         collection. */
   @NotNull public static <T> T[] nulls(@NotNull final T[] ts) {
     @NotNull final List<T> $ = new ArrayList<>();
     for (@Nullable final T ¢ : ts)
@@ -74,7 +73,7 @@ public enum prune {
   }
 
   /** Shrink an array size to zero.
-   * @param <T> type of elements in the input array.
+   * @param   <T> type of elements in the input array.
    * @param ¢ an array of values.
    * @return an array of size 0 of elements of type <code>T</code>. */
   private static <T> T[] shrink(@NotNull final T[] ¢) {
@@ -102,7 +101,7 @@ public enum prune {
       }
     };
 
-    @Test public void nullsNonNullArrayLength() {
+    @Test public void nullsNotNullArrayLength() {
       assertEquals(nonNullArray.length, nulls(nonNullArray).length);
     }
 
@@ -183,13 +182,13 @@ public enum prune {
       sparseCollection.add(null);
     }
 
-    @Test public void testNonNullArrayItems() {
+    @Test public void testNotNullArrayItems() {
       azzert.that(nulls(nonNullArray)[0], is("1"));
       azzert.that(nulls(nonNullArray)[1], is("2"));
       azzert.that(nulls(nonNullArray)[2], is("4"));
     }
 
-    @Test public void testNonNullArrayLength() {
+    @Test public void testNotNullArrayLength() {
       azzert.that(nulls(nonNullArray).length, is(nonNullArray.length));
     }
 

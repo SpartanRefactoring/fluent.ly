@@ -16,8 +16,8 @@ import org.junit.*;
 public enum has {
   ;
   /** Retrieve next item in a list
-   * @param <T> JD
-   * @param i an index of specific item in a list
+   * @param    <T> JD
+   * @param i  an index of specific item in a list
    * @param ts the indexed list
    * @return following item in the list, if such such an item exists, otherwise,
    *         the last node */
@@ -25,8 +25,7 @@ public enum has {
     return !inRange(i + 1, ts) ? the.last(ts) : ts.get(i + 1);
   }
 
-  /** Determine whether a <code><b>null</b></code> occurs in a sequence of
-   * objects
+  /** Determine whether a <code><b>null</b></code> occurs in a sequence of objects
    * @param os JD
    * @return <code><b>null</b></code> <i>iff</i> one of the parameters is
    *         <code><b>null</b></code> */
@@ -37,8 +36,7 @@ public enum has {
     return false;
   }
 
-  /** Determine whether a <code><b>null</b></code> occurs in a sequence of
-   * objects
+  /** Determine whether a <code><b>null</b></code> occurs in a sequence of objects
    * @param os JD
    * @return <code><b>null</b></code> <i>iff</i> one of the parameters is
    *         <code><b>null</b></code> */

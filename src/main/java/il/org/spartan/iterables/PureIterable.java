@@ -1,7 +1,6 @@
 /* Part of the "Spartan Blog"; mutate the rest / but leave this line as is */
 package il.org.spartan.iterables;
 
-import org.eclipse.jdt.annotation.*;
 import org.jetbrains.annotations.*;
 
 /** A kind of {@link Iterable} which does not permit the rarely used
@@ -13,15 +12,15 @@ import org.jetbrains.annotations.*;
  * @since 2014-06-03
  * @param <T> some arbitrary type */
 public interface PureIterable<T> extends Iterable<T> {
-  @Override @NotNull PureIterator<@NonNull T> iterator();
+  @Override @NotNull PureIterator<@NotNull T> iterator();
 
-  /** A kind of {@link PureIterable} which provides an additional
-   * {@link #size()} service.
+  /** A kind of {@link PureIterable} which provides an additional {@link #size()}
+   * service.
    * <p>
    * For the size service to be meaningful, there is an underlying contract
-   * arranging the mutual expectations between two parties: the customer, and
-   * the supplier. (Customers are clients of this class, a supplier is a
-   * non-abstract class which extends this class):
+   * arranging the mutual expectations between two parties: the customer, and the
+   * supplier. (Customers are clients of this class, a supplier is a non-abstract
+   * class which extends this class):
    * <ol>
    * <li>The <i>size</i> of an instance is the number of elements it yields. It
    * should be clear that the size can never be negative.
@@ -38,7 +37,7 @@ public interface PureIterable<T> extends Iterable<T> {
   abstract class Sized<T> implements PureIterable<T> {
     /** see @see il.org.spartan.iterables.PureIterable#iterator()
      * (auto-generated) */
-    @Override @NotNull @NonNull public PureIterator<@NonNull T> iterator() {
+    @Override @NotNull public PureIterator<@NotNull T> iterator() {
       return null;
     }
 

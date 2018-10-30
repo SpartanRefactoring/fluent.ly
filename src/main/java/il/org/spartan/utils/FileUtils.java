@@ -11,8 +11,8 @@ import org.jetbrains.annotations.*;
  * @author Daniel Mittelman <code><mittelmania [at] gmail.com></code>
  * @since 2015/09/19 */
 public class FileUtils {
-  /** Returns a list of all the .java files found recursively within the
-   * provided paths
+  /** Returns a list of all the .java files found recursively within the provided
+   * paths
    * @param paths Directories to scan
    * @return a list of absolute paths to .java files found within the provided
    *         directories. If no files were found, an empty list is returned */
@@ -54,7 +54,7 @@ public class FileUtils {
   }
 
   /** @param fileName where to write
-   * @param text what to write
+   * @param text     what to write
    * @throws FileNotFoundException in case the file could not be found */
   public static void writeToFile(@NotNull final String fileName, @NotNull final String text) throws FileNotFoundException {
     try (@NotNull PrintWriter p = new PrintWriter(fileName)) {

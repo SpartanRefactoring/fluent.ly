@@ -23,7 +23,7 @@ public interface lisp {
   }
 
   /** Retrieve next item in a list
-   * @param i an index of specific item in a list
+   * @param i  an index of specific item in a list
    * @param ts the indexed list
    * @return following item in the list, if such such an item exists, otherwise,
    *         the last node */
@@ -32,7 +32,7 @@ public interface lisp {
   }
 
   /** Retrieve previous item in a list
-   * @param i an index of specific item in a list
+   * @param i  an index of specific item in a list
    * @param ts the indexed list
    * @return previous item in the list, if such an item exists, otherwise, the
    *         last node */
@@ -41,9 +41,9 @@ public interface lisp {
   }
 
   /** Replace the element of a specific index in a list
-   * @param ts the indexed list
+   * @param ts      the indexed list
    * @param element the element to be added to the list
-   * @param index the index that should be replaced
+   * @param index   the index that should be replaced
    * @return the list after the replacement */
   @Contract("null, _, _ -> null") @Nullable static <T> List<T> replace(@Nullable final List<T> ts, final T element, final int index) {
     if (ts == null || index < 0 || index >= ts.size())
@@ -54,7 +54,7 @@ public interface lisp {
   }
 
   /** Replace the first element of a in a list
-   * @param ts the indexed list
+   * @param ts      the indexed list
    * @param element the element to be added to the list
    * @return the list after the replacement */
   @Contract("null, _ -> null") @Nullable static <T> List<T> replaceFirst(final List<T> ts, final T element) {
@@ -62,7 +62,7 @@ public interface lisp {
   }
 
   /** Replace the last element of a in a list
-   * @param ts the indexed list
+   * @param ts      the indexed list
    * @param element the element to be added to the list
    * @return the list after the replacement */
   @Contract("null, _ -> null") @Nullable static <T> List<T> replaceLast(@NotNull final List<T> ts, final T element) {

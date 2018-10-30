@@ -12,7 +12,7 @@ import org.jetbrains.annotations.*;
  * @since 2016 */
 public interface accumulate<T, C extends Collection<T>> {
   /** @param <T> JD
-   * @param <C> JD
+   * @param   <C> JD
    * @param c JD */
   @Nullable static <T, C extends Collection<T>> accumulate<T, C> to(@NotNull final C c) {
     return new accumulate<T, C>() {

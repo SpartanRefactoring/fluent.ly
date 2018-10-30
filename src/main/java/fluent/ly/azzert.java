@@ -4,7 +4,6 @@ import static il.org.spartan.Utils.*;
 
 import java.util.*;
 
-import org.eclipse.jdt.annotation.*;
 import org.eclipse.jdt.annotation.Nullable;
 import org.hamcrest.*;
 import org.hamcrest.core.*;
@@ -482,7 +481,7 @@ public class azzert extends org.junit.Assert {
   }
 
   /** @param message what to print
-   * @param o what to examine */
+   * @param o       what to examine */
   @Contract("_, !null -> fail") public static void isNull(final String message, @Nullable final Object o) {
     azzert.assertNull(message, o);
   }
@@ -559,7 +558,7 @@ public class azzert extends org.junit.Assert {
     return nay("", claim);
   }
 
-  @NotNull @NonNull public static Asserter nay(final String reason, final boolean claim) {
+  @NotNull public static Asserter nay(final String reason, final boolean claim) {
     return new Asserter().andNay(reason, claim);
   }
 
@@ -758,7 +757,7 @@ public class azzert extends org.junit.Assert {
   }
 
   public static class Asserter {
-    @NotNull @NonNull public Asserter andAye(final boolean claim) {
+    @NotNull public Asserter andAye(final boolean claim) {
       return andAye("", claim);
     }
 

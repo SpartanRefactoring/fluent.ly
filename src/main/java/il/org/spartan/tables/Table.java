@@ -1,20 +1,12 @@
 package il.org.spartan.tables;
 
-import java.io.Closeable;
-import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
 import an.*;
-import fluent.ly.as;
-import fluent.ly.box;
-import il.org.spartan.statistics.RealStatistics;
-import il.org.spartan.utils.Int;
-import il.org.spartan.utils.system;
-import fluent.ly.cCamelCase;
-import fluent.ly.separate;
-import fluent.ly.the;
+import fluent.ly.*;
+import il.org.spartan.statistics.*;
+import il.org.spartan.utils.*;
 
 /** A relation is just another name for a table that contains elements of __
  * {@link Record}. This class provides fluent API for generating tables,
@@ -38,8 +30,8 @@ public class Table extends Row<Table> implements Closeable {
   }
 
   /** @param name output file name
-   * @param rs {@code TableRenderer}'s to use when writing to files (e.g. CSV,
-   *        TEX, TXT).
+   * @param rs   {@code TableRenderer}'s to use when writing to files (e.g. CSV,
+   *             TEX, TXT).
    * @author oran1248
    * @since 2017-04-21 */
   @SuppressWarnings("resource") public Table(final String name, final TableRenderer... rs) {

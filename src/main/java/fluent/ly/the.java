@@ -117,10 +117,10 @@ public interface the {
   }
 
   /** Computes the maximum of two or more integers.
-   * @param a some integer
+   * @param a  some integer
    * @param is additional integers
    * @return largest of the parameters */
-  static int max(final int a, @NotNull final int... is) {
+  static int max(final int a, final int... is) {
     int $ = a;
     for (final int ¢ : is)
       $ = Math.max($, ¢);
@@ -128,10 +128,10 @@ public interface the {
   }
 
   /** Computes the minimum of two or more integers
-   * @param a some integer
+   * @param a  some integer
    * @param is additional
    * @return smallest of the parameters */
-  static int min(final int a, @NotNull final int... is) {
+  static int min(final int a, final int... is) {
     int $ = a;
     for (final int ¢ : is)
       $ = Math.min($, ¢);
@@ -166,7 +166,7 @@ public interface the {
     return ¢.substring(1);
   }
 
-  static<T> T[] tailOf(T[] ts) {
-    return Arrays.copyOfRange(ts,1, ts.length);
+  static <T> T[] tailOf(T[] ts) {
+    return Arrays.copyOfRange(ts, 1, ts.length);
   }
 }

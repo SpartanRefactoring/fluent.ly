@@ -6,8 +6,7 @@ import java.util.*;
 import org.eclipse.jdt.annotation.Nullable;
 import org.jetbrains.annotations.*;
 
-import fluent.ly.as;
-import il.org.spartan.*;
+import fluent.ly.*;
 
 /** Provides, employing fluent API, a {@link Iterable} interface for iteration
  * over files in the file system.
@@ -46,7 +45,7 @@ public class FilesGenerator {
   }
 
   /** @param directory should be a directory, but we still need to account for
-   *        weird creatures such as "System Volume Information" */
+   *                  weird creatures such as "System Volume Information" */
   @Nullable static Iterator<File> directoryIterator(@Nullable final File directory) {
     if (directory == null || !directory.isDirectory() || directory.list() == null)
       return null;
@@ -72,7 +71,7 @@ public class FilesGenerator {
     };
   }
 
-  @NotNull private static Iterable<File> asFiles(@NotNull final Iterable<String> fileNames) {
+  private static Iterable<File> asFiles(final Iterable<String> fileNames) {
     @NotNull final List<File> $ = new ArrayList<>();
     for (@NotNull final String fileName : fileNames)
       $.add(new File(fileName));
@@ -80,42 +79,43 @@ public class FilesGenerator {
   }
 
   /** Which extensions we search for */
-  @NotNull final Iterable<String> extensions;
+  final Iterable<String> extensions;
 
-  /** Instantiates this class. This instantiation makes the first step in the
-   * call chain that makes the fluent API. The second (and last) such step is
-   * provided by function {@link #from(String...)}.
+  /** Instantiates this class. This instantiation makes the first step in the call
+   * chain that makes the fluent API. The second (and last) such step is provided
+   * by function {@link #from(String...)}.
    * @param extensions an array of non-<code><b>null</b></code> {@link String}s
-   *        specifying the allowed extensions for files that the iterator should
-   *        yield, e.g., ".java", ".class", ".doc", etc. If this parameter is
-   *        <code><b>null</b></code>, or of length 0, or contains a
-   *        {@link String} of length 0, then the iterator yields all files found
-   *        in the scanned locations.
+   *                   specifying the allowed extensions for files that the
+   *                   iterator should yield, e.g., ".java", ".class", ".doc",
+   *                   etc. If this parameter is <code><b>null</b></code>, or of
+   *                   length 0, or contains a {@link String} of length 0, then
+   *                   the iterator yields all files found in the scanned
+   *                   locations.
    * @see FilesGenerator#from */
   public FilesGenerator(final String... extensions) {
     this.extensions = as.list(extensions);
   }
 
-  /** @param from an array of names of directories from which the traversal
-   *        should begin
+  /** @param from an array of names of directories from which the traversal should
+   *             begin
    * @return an instance of an internal (yet <code><b>public</b></code>)
    *         <code><b>class</b></code> which <code><b>implements</b></code> the
    *         {@link Iterable} <code><b>interface</b></code> */
-  @NotNull public From from(@NotNull final Iterable<String> from) {
+  public From from(final Iterable<String> from) {
     return new From(asFiles(from));
   }
 
-  /** @param from an array of names of directories from which the traversal
-   *        should begin
+  /** @param from an array of names of directories from which the traversal should
+   *             begin
    * @return an instance of an internal (yet <code><b>public</b></code>)
    *         <code><b>class</b></code> which <code><b>implements</b></code> the
    *         {@link Iterable} <code><b>interface</b></code> */
-  @NotNull public From from(final String... from) {
+  public From from(final String... from) {
     return from(as.list(from));
   }
 
-  /** An internal (yet <code><b>public</b></code>) <code><b>class</b></code>
-   * which <code><b>implements</b></code> the {@link Iterable}
+  /** An internal (yet <code><b>public</b></code>) <code><b>class</b></code> which
+   * <code><b>implements</b></code> the {@link Iterable}
    * <code><b>interface</b></code>.
    * @author Yossi Gil
    * @since 2015-09-23. */

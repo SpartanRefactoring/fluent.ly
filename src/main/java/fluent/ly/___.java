@@ -24,15 +24,15 @@ public abstract class ___ {
   /** A do nothing method to document the fact that a <code><b>long</b></code>
    * parameter, along with a optional list of {@link Object}s are not used by a
    * function, and to suppress the warning.
-   * @param __ the unused parameter
+   * @param __   the unused parameter
    * @param ____ more unused parameters */
   public static void ______unused(final long __, final Object... ____) {
     // empty
   }
 
   /** A do nothing method to document the fact that some <code>Object</code>(s)
-   * parameter(s) (or local variable(s)) are not used by a function. Calling
-   * this method saves the caller the trouble of suppressing a "variable unused"
+   * parameter(s) (or local variable(s)) are not used by a function. Calling this
+   * method saves the caller the trouble of suppressing a "variable unused"
    * warnings on the argument(s).
    * @param ____ the unused parameters */
   public static void ______unused(final Object... ____) {
@@ -48,19 +48,19 @@ public abstract class ___ {
   /** A possibly non-returning method to be used for checking postconditions.
    * @param condition if <code><b>false</b></code>, program will halt.
    * @throws Postcondition A {@link RuntimeException} to be thrown in the case
-   *         <code>condition</code> was <code><b>false</b></code> */
+   *                       <code>condition</code> was <code><b>false</b></code> */
   public static void ensure(final boolean condition) throws Postcondition {
     ensure(condition, "");
   }
 
   /** A possibly non-returning method to be used for checking postconditions. If
-   * the postcondition fails, then a user supplied message is associated with
-   * the thrown exception.
+   * the postcondition fails, then a user supplied message is associated with the
+   * thrown exception.
    * @param condition if <code><b>false</b></code>, program will halt.
-   * @param message text to be associated with the exception thrown in the case
-   *        of an error.
+   * @param message   text to be associated with the exception thrown in the case
+   *                  of an error.
    * @throws Postcondition A {@link RuntimeException} to be thrown in the case
-   *         <code>condition</code> was <code><b>false</b></code> */
+   *                       <code>condition</code> was <code><b>false</b></code> */
   public static void ensure(final boolean condition, final String message) throws Postcondition {
     ensure(condition, message, "");
   }
@@ -70,104 +70,104 @@ public abstract class ___ {
    * from <code>printf</code> like arguments) is associated with the thrown
    * exception.
    * @param condition if <code><b>false</b></code>, program will halt.
-   * @param format format string to be associated with the exception thrown in
-   *        the case of an error.
-   * @param args <code>printf</code>-like arguments to be used with the format
-   *        string.
+   * @param format    format string to be associated with the exception thrown in
+   *                  the case of an error.
+   * @param args      <code>printf</code>-like arguments to be used with the
+   *                  format string.
    * @throws Postcondition A {@link RuntimeException} to be thrown in the case
-   *         <code>condition</code> was <code><b>false</b></code> */
+   *                       <code>condition</code> was <code><b>false</b></code> */
   public static void ensure(final boolean condition, final String format, final Object... args) throws Postcondition {
     if (!condition)
       throw new Postcondition(nprintf(format, args));
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be negative.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be negative.
    * @param¢ a value which must be negative
    * @throws Negative in case <code>d</code> was nonnegative */
   public static void negative(final double ¢) throws Negative {
     negative(¢, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be negative.
-   * @param d a value which must be negative
-   * @param message text to be associated with the exception thrown in the case
-   *        of an error.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be negative.
+   * @param d       a value which must be negative
+   * @param message text to be associated with the exception thrown in the case of
+   *                an error.
    * @throws Negative in case <code>d</code> was nonnegative */
   public static void negative(final double d, final String message) throws Negative {
     negative(d, message, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be negative.
-   * @param d a value which must be negative
-   * @param format format string to be associated with the exception thrown in
-   *        the case of an error.
-   * @param args <code>printf</code>-like arguments to be used with the format
-   *        string.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be negative.
+   * @param d      a value which must be negative
+   * @param format format string to be associated with the exception thrown in the
+   *               case of an error.
+   * @param args   <code>printf</code>-like arguments to be used with the format
+   *               string.
    * @throws Negative in case <code>d</code> was nonnegative */
   public static void negative(final double d, final String format, final Object... args) throws Negative {
     if (d >= 0)
       throw new Negative(d, format, args);
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be negative.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be negative.
    * @param n a value which must be negative
    * @throws Negative in case <code>n</code> was nonnegative */
   public static void negative(final int ¢) throws Negative {
     negative(¢, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be negative.
-   * @param i a value which must be negative
-   * @param message text to be associated with the exception thrown in the case
-   *        of an error.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be negative.
+   * @param i       a value which must be negative
+   * @param message text to be associated with the exception thrown in the case of
+   *                an error.
    * @throws Negative in case <code>n</code> was nonnegative */
   public static void negative(final int i, final String message) throws Negative {
     negative(i, message, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be negative.
-   * @param i a value which must be negative
-   * @param format format string to be associated with the exception thrown in
-   *        the case of an error.
-   * @param args <code>printf</code>-like arguments to be used with the format
-   *        string.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be negative.
+   * @param i      a value which must be negative
+   * @param format format string to be associated with the exception thrown in the
+   *               case of an error.
+   * @param args   <code>printf</code>-like arguments to be used with the format
+   *               string.
    * @throws Negative in case <code>n</code> was nonnegative */
   public static void negative(final int i, final String format, final Object... args) throws Negative {
     if (i >= 0)
       throw new Negative(i, format, args);
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be non-NaN.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be non-NaN.
    * @param d a value which must be not be NaN
    * @throws NonNan in case <code>d</code> was NaN */
   public static void nonNaN(final double ¢) throws NonNan {
     nonNaN(¢, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be non-NaN.
-   * @param d a value which must be nonnegative
-   * @param message text to be associated with the exception thrown in the case
-   *        of an error.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be non-NaN.
+   * @param d       a value which must be nonnegative
+   * @param message text to be associated with the exception thrown in the case of
+   *                an error.
    * @throws NonNan in case <code>d</code> was NaN */
   public static void nonNaN(final double d, final String message) throws NonNan {
     nonNaN(d, message, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be non-NaN.
-   * @param d a value which must be nonnegative
-   * @param format format string to be associated with the exception thrown in
-   *        the case of an error.
-   * @param args <code>printf</code>-like arguments to be used with the format
-   *        string.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be non-NaN.
+   * @param d      a value which must be nonnegative
+   * @param format format string to be associated with the exception thrown in the
+   *               case of an error.
+   * @param args   <code>printf</code>-like arguments to be used with the format
+   *               string.
    * @throws NonNan in case <code>d</code> was NaN */
   public static void nonNaN(final double d, final String format, final Object... args) throws NonNan {
     if (Double.isNaN(d))
@@ -183,39 +183,39 @@ public abstract class ___ {
       nonNaN(¢);
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be nonnegative.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be nonnegative.
    * @param ¢ a value which must be nonnegative
    * @throws NonNegative in case <code>n</code> was negative */
   public static void nonnegativ(final int ¢) throws NonNegative {
     nonnegative(¢, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be nonnegative.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be nonnegative.
    * @param d a value which must be nonnegative
    * @throws NonNegative in case <code>d</code> was negative */
   public static void nonnegative(final double ¢) throws NonNegative {
     nonnegative(¢, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be nonnegative.
-   * @param d a value which must be nonnegative
-   * @param message text to be associated with the exception thrown in the case
-   *        of an error.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be nonnegative.
+   * @param d       a value which must be nonnegative
+   * @param message text to be associated with the exception thrown in the case of
+   *                an error.
    * @throws NonNegative in case <code>n</code> was negative */
   public static void nonnegative(final double d, final String message) throws NonNegative {
     nonnegative(d, message, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be nonnegative.
-   * @param d a value which must be nonnegative
-   * @param format format string to be associated with the exception thrown in
-   *        the case of an error.
-   * @param args <code>printf</code>-like arguments to be used with the format
-   *        string.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be nonnegative.
+   * @param d      a value which must be nonnegative
+   * @param format format string to be associated with the exception thrown in the
+   *               case of an error.
+   * @param args   <code>printf</code>-like arguments to be used with the format
+   *               string.
    * @throws NonNegative in case <code>d</code> was negative */
   public static void nonnegative(final double d, final String format, final Object... args) throws NonNegative {
     if (d < 0)
@@ -231,21 +231,21 @@ public abstract class ___ {
       nonnegative(¢);
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be nonnegative.
-   * @param i a value which must be nonnegative
-   * @param format format string to be associated with the exception thrown in
-   *        the case of an error.
-   * @param args <code>printf</code>-like arguments to be used with the format
-   *        string.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be nonnegative.
+   * @param i      a value which must be nonnegative
+   * @param format format string to be associated with the exception thrown in the
+   *               case of an error.
+   * @param args   <code>printf</code>-like arguments to be used with the format
+   *               string.
    * @throws NonNegative in case <code>n</code> was negative */
   public static void nonnegative(final int i, final String format, final Object... args) throws NonNegative {
     if (i < 0)
       throw new NonNegative(i, format, args);
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be nonnegative.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be nonnegative.
    * @param is a array which must be nonnegative
    * @throws NonNegative in case <code>n</code> was negative */
   public static void nonnegative(final int[] is) throws NonNegative {
@@ -253,92 +253,92 @@ public abstract class ___ {
       nonnegative(¢);
   }
 
-  /** A possibly non-returning method to be used for checking objects that
-   * should never be <code><b>null</b></code>.
+  /** A possibly non-returning method to be used for checking objects that should
+   * never be <code><b>null</b></code>.
    * @param o if <code><b>null</b></code>, program will halt.
-   * @throws NonNull in case <code>o</code> was <code><b>null</b></code> */
-  public static void nonnull(final Object ¢) throws NonNull {
+   * @throws NotNull in case <code>o</code> was <code><b>null</b></code> */
+  public static void nonnull(final Object ¢) throws NotNull {
     nonnull(¢, "");
   }
 
-  /** A possibly non-returning method to be used for checking objects that
-   * should never be <code><b>null</b></code>.
-   * @param o if <code><b>null</b></code>, program will halt.
+  /** A possibly non-returning method to be used for checking objects that should
+   * never be <code><b>null</b></code>.
+   * @param o       if <code><b>null</b></code>, program will halt.
    * @param message an error message to be associated with the failure
-   * @throws NonNull in case <code>o</code> was <code><b>null</b></code> */
-  public static void nonnull(final Object o, final String message) throws NonNull {
+   * @throws NotNull in case <code>o</code> was <code><b>null</b></code> */
+  public static void nonnull(final Object o, final String message) throws NotNull {
     nonnull(o, message, "");
   }
 
-  /** A possibly non-returning method to be used for checking objects that
-   * should never be <code><b>null</b></code>.
-   * @param o if <code><b>null</b></code>, program will halt.
-   * @param format format string to be associated with the exception thrown in
-   *        the case of an error.
-   * @param args <code>printf</code>-like arguments to be used with the format
-   *        string.
-   * @throws NonNull in case <code>o</code> was <code><b>null</b></code> */
-  public static void nonnull(final Object o, final String format, final Object... args) throws NonNull {
+  /** A possibly non-returning method to be used for checking objects that should
+   * never be <code><b>null</b></code>.
+   * @param o      if <code><b>null</b></code>, program will halt.
+   * @param format format string to be associated with the exception thrown in the
+   *               case of an error.
+   * @param args   <code>printf</code>-like arguments to be used with the format
+   *               string.
+   * @throws NotNull in case <code>o</code> was <code><b>null</b></code> */
+  public static void nonnull(final Object o, final String format, final Object... args) throws NotNull {
     if (o == null)
-      throw new NonNull(format, args);
+      throw new NotNull(format, args);
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be nonpositive.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be nonpositive.
    * @param d a value which must be nonpositive
    * @throws NonPositive in case <code>d</code> was positive */
   public static void nonpositive(final double ¢) throws NonPositive {
     nonpositive(¢, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be nonpositive.
-   * @param d a value which must be nonpositive
-   * @param message text to be associated with the exception thrown in the case
-   *        of an error.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be nonpositive.
+   * @param d       a value which must be nonpositive
+   * @param message text to be associated with the exception thrown in the case of
+   *                an error.
    * @throws NonPositive in case <code>d</code> was positive */
   public static void nonpositive(final double d, final String message) throws NonPositive {
     nonpositive(d, message, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be nonpositive.
-   * @param d a value which must be nonpositive
-   * @param format format string to be associated with the exception thrown in
-   *        the case of an error.
-   * @param args <code>printf</code>-like arguments to be used with the format
-   *        string.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be nonpositive.
+   * @param d      a value which must be nonpositive
+   * @param format format string to be associated with the exception thrown in the
+   *               case of an error.
+   * @param args   <code>printf</code>-like arguments to be used with the format
+   *               string.
    * @throws NonPositive in case <code>d</code> was positive */
   public static void nonpositive(final double d, final String format, final Object... args) throws NonPositive {
     if (d > 0)
       throw new NonPositive(d, format, args);
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be nonpositive.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be nonpositive.
    * @param n a value which must be positive
    * @throws NonPositive in case <code>n</code> was positive. */
   public static void nonpositive(final int ¢) throws NonPositive {
     nonpositive(¢, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be nonpositive.
-   * @param i a value which must be nonpositive
-   * @param message text to be associated with the exception thrown in the case
-   *        of an error.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be nonpositive.
+   * @param i       a value which must be nonpositive
+   * @param message text to be associated with the exception thrown in the case of
+   *                an error.
    * @throws NonPositive in case <code>n</code> was positive */
   public static void nonpositive(final int i, final String message) throws NonPositive {
     nonpositive(i, message, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be nonpositive.
-   * @param i a value which must be nonpositive
-   * @param format format string to be associated with the exception thrown in
-   *        the case of an error.
-   * @param args <code>printf</code>-like arguments to be used with the format
-   *        string.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be nonpositive.
+   * @param i      a value which must be nonpositive
+   * @param format format string to be associated with the exception thrown in the
+   *               case of an error.
+   * @param args   <code>printf</code>-like arguments to be used with the format
+   *               string.
    * @throws NonPositive in case <code>n</code> was positive */
   public static void nonpositive(final int i, final String format, final Object... args) throws NonPositive {
     if (i > 0)
@@ -375,54 +375,54 @@ public abstract class ___ {
     positive(¢, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be positive.
-   * @param d a value which must be positive
-   * @param message text to be associated with the exception thrown in the case
-   *        of an error.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be positive.
+   * @param d       a value which must be positive
+   * @param message text to be associated with the exception thrown in the case of
+   *                an error.
    * @throws Positive in case <code>n</code> was nonpositive */
   public static void positive(final double d, final String message) throws Positive {
     positive(d, message, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be positive.
-   * @param d a value which must be positive
-   * @param format format string to be associated with the exception thrown in
-   *        the case of an error.
-   * @param args <code>printf</code>-like arguments to be used with the format
-   *        string.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be positive.
+   * @param d      a value which must be positive
+   * @param format format string to be associated with the exception thrown in the
+   *               case of an error.
+   * @param args   <code>printf</code>-like arguments to be used with the format
+   *               string.
    * @throws Positive in case <code>d</code> was not positive */
   public static void positive(final double d, final String format, final Object... args) throws Positive {
     if (d <= 0)
       throw new Positive(d, format, args);
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be positive.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be positive.
    * @param n a value which must be positive
    * @throws Positive in case <code>n</code> was nonpositive */
   public static void positive(final int ¢) throws Positive {
     positive(¢, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be positive.
-   * @param i if negative program will halt.
-   * @param message text to be associated with the exception thrown in the case
-   *        of an error.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be positive.
+   * @param i       if negative program will halt.
+   * @param message text to be associated with the exception thrown in the case of
+   *                an error.
    * @throws Positive in case <code>n</code> was nonpositive */
   public static void positive(final int i, final String message) throws Positive {
     positive(i, message, "");
   }
 
-  /** A possibly non-returning method to be used for checking integers which
-   * must be positive.
-   * @param i a value which must be positive
-   * @param format format string to be associated with the exception thrown in
-   *        the case of an error.
-   * @param args <code>printf</code>-like arguments to be used with the format
-   *        string.
+  /** A possibly non-returning method to be used for checking integers which must
+   * be positive.
+   * @param i      a value which must be positive
+   * @param format format string to be associated with the exception thrown in the
+   *               case of an error.
+   * @param args   <code>printf</code>-like arguments to be used with the format
+   *               string.
    * @throws Positive in case <code>d</code> was nonpositive */
   public static void positive(final int i, final String format, final Object... args) throws Positive {
     if (i <= 0)
@@ -432,7 +432,7 @@ public abstract class ___ {
   /** A possibly non-returning method to be used for checking preconditions.
    * @param condition if <code><b>false</b></code>, program will halt.
    * @throws Precondition A {@link RuntimeException} to be thrown in the case
-   *         <code>condition</code> was <code><b>false</b></code> */
+   *                      <code>condition</code> was <code><b>false</b></code> */
   public static void require(final boolean condition) throws Precondition {
     require(condition, "");
   }
@@ -441,10 +441,10 @@ public abstract class ___ {
    * the precondition fails, then a user supplied message is associated with the
    * thrown exception.
    * @param condition if <code><b>false</b></code>, program will halt.
-   * @param message text to be associated with the exception thrown in the case
-   *        of an error.
+   * @param message   text to be associated with the exception thrown in the case
+   *                  of an error.
    * @throws Precondition A {@link RuntimeException} to be thrown in the case
-   *         <code>condition</code> was <code><b>false</b></code> */
+   *                      <code>condition</code> was <code><b>false</b></code> */
   public static void require(final boolean condition, final String message) throws Precondition {
     ___.require(condition, message, "");
   }
@@ -454,12 +454,12 @@ public abstract class ___ {
    * from <code>printf</code> like arguments) is associated with the thrown
    * exception.
    * @param condition if <code><b>false</b></code>, program will halt.
-   * @param format format string to be associated with the exception thrown in
-   *        the case of an error.
-   * @param args <code>printf</code>-like arguments to be used with the format
-   *        string.
+   * @param format    format string to be associated with the exception thrown in
+   *                  the case of an error.
+   * @param args      <code>printf</code>-like arguments to be used with the
+   *                  format string.
    * @throws Precondition A {@link RuntimeException} to be thrown in the case
-   *         <code>condition</code> was <code><b>false</b></code> */
+   *                      <code>condition</code> was <code><b>false</b></code> */
   public static void require(final boolean condition, final String format, final Object... args) throws Precondition {
     if (!condition)
       throw new Precondition(nprintf(format, args));
@@ -468,7 +468,7 @@ public abstract class ___ {
   /** A possibly non-returning method to be used for checking assertions.
    * @param condition if <code><b>false</b></code>, program will halt.
    * @throws Invariant A {@link RuntimeException} to be thrown in the case
-   *         <code>condition</code> was <code><b>false</b></code> */
+   *                   <code>condition</code> was <code><b>false</b></code> */
   public static void sure(final boolean condition) throws Invariant {
     sure(condition, "");
   }
@@ -477,46 +477,45 @@ public abstract class ___ {
    * postcondition fails, then a user supplied message is associated with the
    * thrown exception.
    * @param condition if <code><b>false</b></code>, program will halt.
-   * @param message text to be associated with the exception thrown in the case
-   *        of an error.
+   * @param message   text to be associated with the exception thrown in the case
+   *                  of an error.
    * @throws Invariant A {@link RuntimeException} to be thrown in the case
-   *         <code>condition</code> was <code><b>false</b></code> */
+   *                   <code>condition</code> was <code><b>false</b></code> */
   public static void sure(final boolean condition, final String message) throws Invariant {
     sure(condition, message, "");
   }
 
   /** A possibly non-returning method to be used for checking assertions. If the
    * postcondition fails, then a user supplied formatted message (generated from
-   * <code>printf</code> like arguments) is associated with the thrown
-   * exception.
+   * <code>printf</code> like arguments) is associated with the thrown exception.
    * @param condition if <code><b>false</b></code>, program will halt.
-   * @param format format string to be associated with the exception thrown in
-   *        the case of an error.
-   * @param args <code>printf</code>-like arguments to be used with the format
-   *        string.
+   * @param format    format string to be associated with the exception thrown in
+   *                  the case of an error.
+   * @param args      <code>printf</code>-like arguments to be used with the
+   *                  format string.
    * @throws Invariant A {@link RuntimeException} to be thrown in the case
-   *         <code>condition</code> was <code><b>false</b></code> */
+   *                   <code>condition</code> was <code><b>false</b></code> */
   public static void sure(final boolean condition, final String format, final Object... args) throws Invariant {
     if (!condition)
       throw new Invariant(nprintf(format, args));
   }
 
   /** A never-returning method indicating code sites with missing functionality
-   * @param args a list of strings in a <code>printf</code> like format
-   *        describing the task to be done. */
+   * @param args a list of strings in a <code>printf</code> like format describing
+   *             the task to be done. */
   public static void todo(final String... args) {
     note.bug("Feature unsupported. ", args);
   }
 
-  /** A never-returning method to be used in points of code which should never
-   * be reached.
+  /** A never-returning method to be used in points of code which should never be
+   * reached.
    * @throws Reachability will always be thrown */
   public static void unreachable() throws Reachability {
     unreachable("");
   }
 
-  /** A never-returning method to be used in points of code which should never
-   * be reached.
+  /** A never-returning method to be used in points of code which should never be
+   * reached.
    * @param message a string describing the violation
    * @throws Reachability will always be thrown */
   public static void unreachable(final String message) throws Reachability {
@@ -534,7 +533,7 @@ public abstract class ___ {
   /** A do nothing method to document the fact that a <code><b>double</b></code>
    * parameter, along with a optional list of {@link Object}s are not used by a
    * function, and to suppress the warning.
-   * @param __ the unused parameter
+   * @param __   the unused parameter
    * @param ____ more unused parameters */
   @SuppressWarnings("unused") public static void unused(final double __, final double... ____) {
     // empty
@@ -547,7 +546,7 @@ public abstract class ___ {
   /** A do nothing method to document the fact that a <code><b>long</b></code>
    * parameter, along with a optional list of {@link Object}s are not used by a
    * function, and to suppress the warning.
-   * @param __ the unused parameter
+   * @param __   the unused parameter
    * @param ____ more unused parameters */
   @SuppressWarnings("unused") public static void unused(final int __, final int... ____) {
     // empty
@@ -556,15 +555,15 @@ public abstract class ___ {
   /** A do nothing method to document the fact that a <code><b>long</b></code>
    * parameter, along with a optional list of {@link Object}s are not used by a
    * function, and to suppress the warning.
-   * @param __ the unused parameter
+   * @param __   the unused parameter
    * @param ____ more unused parameters */
   @SuppressWarnings("unused") public static void unused(final long __, final long... ____) {
     // empty
   }
 
   /** A do nothing method to document the fact that some <code>Object</code>(s)
-   * parameter(s) (or local variable(s)) are not used by a function. Calling
-   * this method saves the caller the trouble of suppressing a "variable unused"
+   * parameter(s) (or local variable(s)) are not used by a function. Calling this
+   * method saves the caller the trouble of suppressing a "variable unused"
    * warnings on the argument(s).
    * @param ____ the unused parameters */
   public static void unused(final Object... ____) {
@@ -574,9 +573,9 @@ public abstract class ___ {
   /** The base of all exception classes thrown as a result of violations of
    * contracts, assertions, and the such. This class derives from
    * {@link RuntimeException} since errors of this sort are programming-, not
-   * runtime- errors. Programming errors cannot be corrected at runtime, and
-   * hence all errors of this class and its descendants should not be caught by
-   * ordinary applications.
+   * runtime- errors. Programming errors cannot be corrected at runtime, and hence
+   * all errors of this class and its descendants should not be caught by ordinary
+   * applications.
    * @author Yossi Gil, the Technion.
    * @since 04/08/2008 */
   public abstract static class Bug extends RuntimeException {
@@ -633,8 +632,8 @@ public abstract class ___ {
         }
       }
 
-      /** Abstract base class of all exceptions thrown in case a value violated
-       * a condition placed on it.
+      /** Abstract base class of all exceptions thrown in case a value violated a
+       * condition placed on it.
        * @author Yossi Gil, the Technion.
        * @since 04/08/2008 */
       public abstract static class Value extends Assertion {
@@ -655,30 +654,30 @@ public abstract class ___ {
           super(nprintf(format, args));
         }
 
-        /** Thrown in case a value was <code><b>null</b></code>, when it was
-         * expected to be non-code><b>null</b></code>.
+        /** Thrown in case a value was <code><b>null</b></code>, when it was expected to
+         * be non-code><b>null</b></code>.
          * @author Yossi Gil
          * @since 18/01/2008 */
-        public static final class NonNull extends Value {
+        public static final class NotNull extends Value {
           private static final long serialVersionUID = -0x5D86AA1C39A3BBD1L;
 
           /** instantiate this class with no textual description */
-          public NonNull() {
+          public NotNull() {
           }
 
           /** instantiate this class with a given textual description
            * @param message a description of the exceptional situation */
-          public NonNull(final String message) {
+          public NotNull(final String message) {
             super(message);
           }
 
-          public NonNull(final String format, final Object... args) {
+          public NotNull(final String format, final Object... args) {
             super(format, args);
           }
         }
 
-        /** Abstract base class of exceptions thrown when a numerical value did
-         * not satisfy conditions assumed on it.
+        /** Abstract base class of exceptions thrown when a numerical value did not
+         * satisfy conditions assumed on it.
          * @author Yossi Gil, the Technion.
          * @since 04/08/2008 */
         public abstract static class Numerical extends Value {
@@ -724,8 +723,7 @@ public abstract class ___ {
             }
           }
 
-          /** Thrown when a numerical value assumed to be non-NaN, but it was
-           * not
+          /** Thrown when a numerical value assumed to be non-NaN, but it was not
            * @author Yossi Gil
            * @since 23/01/2008 */
           public static final class NonNan extends Numerical {
@@ -877,8 +875,8 @@ public abstract class ___ {
           }
         }
 
-        /** Thrown if an iteration of a certain loop failed to decrease this
-         * loop's variant.
+        /** Thrown if an iteration of a certain loop failed to decrease this loop's
+         * variant.
          * @author Yossi Gil, the Technion.
          * @since 04/08/2008 */
         public static final class Nondecreasing extends Variant {
@@ -889,8 +887,8 @@ public abstract class ___ {
           }
         }
 
-        /** Thrown if an iteration of a certain loop tried to make this loop's
-         * variant negative.
+        /** Thrown if an iteration of a certain loop tried to make this loop's variant
+         * negative.
          * @author Yossi Gil, the Technion.
          * @since 04/08/2008 */
         public static final class Underflow extends Variant {
@@ -946,9 +944,9 @@ public abstract class ___ {
    * @author Yossi Gil
    * @since 11/04/2006 */
   public interface Invariantable {
-    /** This function represents the invariant of the implementing class. It
-     * returns nothing. However, if the invariant is violated, a runtime
-     * exception aborts execution. */
+    /** This function represents the invariant of the implementing class. It returns
+     * nothing. However, if the invariant is violated, a runtime exception aborts
+     * execution. */
     void check();
   }
 
@@ -1020,17 +1018,17 @@ public abstract class ___ {
       ___.nonnull(new Object());
       try {
         ___.nonnull(null);
-      } catch (final NonNull e) {
+      } catch (final NotNull e) {
         assertEquals("", e.getMessage());
       }
       try {
         ___.nonnull(null, "nonnull");
-      } catch (final NonNull e) {
+      } catch (final NotNull e) {
         assertEquals("nonnull", e.getMessage());
       }
       try {
         ___.nonnull(null, "nonnull %s message %s", "this", "now");
-      } catch (final NonNull e) {
+      } catch (final NotNull e) {
         assertEquals("nonnull this message now", e.getMessage());
       }
     }
@@ -1178,8 +1176,8 @@ public abstract class ___ {
   }
 
   /** A class to emulate Eiffel's <code>variant</code> construct. To use, create
-   * an object of this type, initializing it with the variant's first value ,
-   * and then call function {@link #check(int)} successively.
+   * an object of this type, initializing it with the variant's first value , and
+   * then call function {@link #check(int)} successively.
    * @author Yossi Gil
    * @since 05/06/2007 */
   public static final class Variant {
@@ -1187,8 +1185,7 @@ public abstract class ___ {
 
     /** Initialize a variant, with a specified value
      * @param value a non-negative value
-     * @throws Bug.Assertion.Variant.Initial in case initial value is
-     *         negative */
+     * @throws Bug.Assertion.Variant.Initial in case initial value is negative */
     public Variant(final int value) throws Bug.Assertion.Variant.Initial {
       if (value < 0)
         throw new Assertion.Variant.Initial(value);
@@ -1199,7 +1196,7 @@ public abstract class ___ {
      * value is negative or no lesser than the previous value.
      * @param newValue the next value of this variant.
      * @throws Nondecreasing in case the variant's value did not decrease
-     * @throws Underflow in case the variant's value went negative */
+     * @throws Underflow     in case the variant's value went negative */
     public void check(final int newValue) throws Nondecreasing, Underflow {
       if (newValue >= value)
         throw new Nondecreasing(newValue, value);
@@ -1209,8 +1206,7 @@ public abstract class ___ {
     }
 
     /** inspect the variant's value.
-     * @return a non-negative integer which is the current value of this
-     *         object */
+     * @return a non-negative integer which is the current value of this object */
     public int value() {
       return value;
     }
