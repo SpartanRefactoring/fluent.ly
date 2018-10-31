@@ -9,26 +9,6 @@ import org.jetbrains.annotations.*;
 /** @author Yossi Gil <tt>yogi@cs.technion.ac.il</tt>
  * @since 2017-04-23 */
 public interface is {
-  /** Determine if an item can be found in a list of values
-   * @param           < T > JD
-   * @param candidate what to search for
-   * @param ts        where to search
-   * @return true if the the item is found in the list */
-  @SafeVarargs static <T> boolean in(final T candidate, final T... ts) {
-    return Stream.of(ts).anyMatch(λ -> λ != null && λ.equals(candidate));
-  }
-
-  /** Determine if an integer can be found in a list of values
-   * @param candidate what to search for
-   * @param is        where to search
-   * @return true if the the item is found in the list */
-  @SafeVarargs @Contract(pure = true) static boolean intIsIn(final int candidate, final int... is) {
-    for (final int ¢ : is)
-      if (¢ == candidate)
-        return true;
-    return false;
-  }
-
   interface not {
     /** the candidate is not in ts */
     @SafeVarargs static <T> boolean in(final T candidate, final T... ts) {
@@ -36,13 +16,12 @@ public interface is {
     }
   }
 
-  /** Determine if an item is not included in a list of values
-   * @param           <T> JD
-   * @param candidate what to search for
-   * @param ts        where to search
-   * @return true if the the item is not found in the list */
-  @SafeVarargs static <T> boolean out(final T candidate, final T... ts) {
-    return !in(candidate, ts);
+  static <T> boolean empty(final Collection<T> ¢) {
+    return ¢ == null || ¢.isEmpty();
+  }
+
+  static <T> boolean empty(final Iterable<T> ¢) {
+    return ¢ == null || !¢.iterator().hasNext();
   }
 
   static boolean empty(final @Nullable String ¢) {
@@ -53,11 +32,29 @@ public interface is {
     return ¢ == null || ¢.length == 0;
   }
 
-  static <T> boolean empty(final Iterable<T> ¢) {
-    return ¢ == null || !¢.iterator().hasNext();
+  /** Determine if an item can be found in a list of values
+   * @param           < T > JD
+   * @param candidate what to search for
+   * @param ts        where to search
+   * @return true if the item is found in the list */
+  @SafeVarargs static <T> boolean in(final T candidate, final T... ts) {
+    return Stream.of(ts).anyMatch(λ -> is.equal(λ, candidate));
   }
 
-  static <T> boolean empty(final Collection<T> ¢) {
-    return ¢ == null || ¢.isEmpty();
+  public static <T> boolean equal(@Nullable T t1, @Nullable T t2) {
+    if (t1 == null)
+      return t2 == null;
+    if (t1 == t2)
+      return true;
+    return t1.equals(t2);
+  }
+
+  /** Determine if an item is not included in a list of values
+   * @param           <T> JD
+   * @param candidate what to search for
+   * @param ts        where to search
+   * @return true if the the item is not found in the list */
+  @SafeVarargs static <T> boolean out(final T candidate, final T... ts) {
+    return !in(candidate, ts);
   }
 }
