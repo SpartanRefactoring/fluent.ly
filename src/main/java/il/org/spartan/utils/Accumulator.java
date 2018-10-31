@@ -10,7 +10,7 @@ import fluent.ly.*;
 public abstract class Accumulator {
   protected int value;
   public int weight = 1;
-  protected final @NotNull String name;
+  @NotNull protected final String name;
 
   public Accumulator() {
     this("");
@@ -71,7 +71,7 @@ public abstract class Accumulator {
       return value();
     }
 
-    @Override public @NotNull String toString() {
+    @Override @NotNull public String toString() {
       return value + "";
     }
 

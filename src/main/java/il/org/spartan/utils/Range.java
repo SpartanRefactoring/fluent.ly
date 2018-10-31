@@ -37,13 +37,8 @@ public class Range {
     return ¢ instanceof Range && from == ((Range) ¢).from && to == ((Range) ¢).to;
   }
 
-  /** Find an including range
-   * @param ¢ some arbitrary {@link Range} objects
-   * @return first {@link Range} object in the parameters that contains this
-   *         instance, or <code><b>null</b></code> if not such value can be
-   *         found. */
-  public @Nullable Range findIncludedIn( final @NotNull Iterable<? extends Range> ¢) {
-    for ( final @NotNull Range $ : ¢)
+  @Nullable public Range findIncludedIn(final @NotNull Iterable<? extends Range> ¢) {
+    for (final @NotNull Range $ : ¢)
       if (includedIn($))
         return $;
     return null;
@@ -65,10 +60,7 @@ public class Range {
     return size() <= 0;
   }
 
-  /** Merge with another record
-   * @param ¢ JD
-   * @return A newly created range representing the merge. */
-  public @NotNull Range merge( final @NotNull Range ¢) {
+  @NotNull public Range merge(final @NotNull Range ¢) {
     return new Range(Math.min(from, ¢.from), Math.max(to, ¢.to));
   }
 
@@ -82,7 +74,7 @@ public class Range {
 
   /** Prune all ranges in a given list that include this object.
    * @param rs JD */
-  public void pruneIncluders( final @NotNull List<? extends Range> rs) {
+  public void pruneIncluders( final @NotNull List<Range> rs) {
     for (;;) {
       final @Nullable  Range r = findIncludedIn(rs);
       if (r == null)

@@ -50,7 +50,7 @@ public class Wrapper<@Nullable T> {
     this.inner = inner;
   }
 
-  @Override public @NotNull String toString() {
+  @Override @NotNull public String toString() {
     return inner == null ? "null" : Utils.cantBeNull(inner + "");
   }
 }

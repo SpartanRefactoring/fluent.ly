@@ -28,11 +28,11 @@ import fluent.ly.*;
  *
  * @author Adrian Kuhn
  * @since August 4th, 2008 */
+@SuppressWarnings("null")
 public class Tab {
   /** What to add before each indented line of text? */
   private String indentation = "";
-  /** Indentation is increased by steps of this {@link String}. */
-  public final @NotNull String tab;
+  @NotNull public final String tab;
 
   /** Instantiate this class with the default <code>'\t'</code> tabulation
    * character. */
@@ -110,7 +110,7 @@ public class Tab {
    * @author Yossi Gil, the Technion.
    * @since 05/08/2008 */
   @SuppressWarnings("static-method") public static class TEST {
-    private static  @NotNull String cat(final @NotNull String s1, final @NotNull String s2) {
+    @NotNull private static String cat(final @NotNull String s1, final @NotNull String s2) {
       return "[[" + s1 + "]][[" + s2 + "]]";
     }
 

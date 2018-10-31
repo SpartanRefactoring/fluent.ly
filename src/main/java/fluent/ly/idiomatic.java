@@ -18,13 +18,13 @@ public interface idiomatic {
   String QUOTE = "'";
   /** an evaluating trigger */
   Trigger eval = new Trigger() {
-    @Override public <@Nullable T> T eval( final @NotNull Supplier<T> ¢) {
+    @Override public <@Nullable T> T eval( final @NotNull Supplier<@Nullable T> ¢) {
       return ¢.get();
     }
   };
   /** an ignoring trigger */
   @Nullable Trigger ignore = new Trigger() {
-    @Override public @Nullable <@Nullable T> T eval(final Supplier<T> ____) {
+    @Override @Nullable public <@Nullable T> T eval(final Supplier<T> ____) {
       return null;
     }
   };
@@ -37,12 +37,7 @@ public interface idiomatic {
     return () -> $.get();
   }
 
-  /** @param <T> JD
-   * @param t the main value
-   * @condition the condition to use prior to taking this value;
-   * @return the parameter if condition holds, otherwise, null
-   *         <code>incase</code> */
-  static @Nullable <@Nullable T> @Nullable T incase(final boolean condition, final T t) {
+  @Nullable static <@Nullable T> @Nullable T incase(final boolean condition, final T t) {
     return condition ? t : null;
   }
 
@@ -87,17 +82,11 @@ public interface idiomatic {
     return when(!condition);
   }
 
-  /** @param       <T> JD
-   * @param condition when should the action take place
-   * @param t         JD
-   * @return non-boolean parameter, in case the boolean parameter is true, or
-   *         null, otherwise */
-  static @Nullable <T> T unless(final boolean condition, final T t) {
+  @Nullable static <T> T unless(final boolean condition, final T t) {
     return incase(!condition, t);
   }
 
-  /** @param condition JD */
-  static @Nullable Trigger when(final boolean condition) {
+  @Nullable static Trigger when(final boolean condition) {
     return condition ? eval : ignore;
   }
 

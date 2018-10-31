@@ -7,18 +7,18 @@ import java.io.*;
 import org.jetbrains.annotations.*;
 
 import fluent.ly.*;
-
+@SuppressWarnings("null") 
 public class Tokenizer {
-  public static @NotNull  Reader reader( final @NotNull File ¢) throws FileNotFoundException {
+  @NotNull public static Reader reader(final @NotNull File ¢) throws FileNotFoundException {
     return new FileReader(¢);
   }
 
-  public static @NotNull  Reader reader(final @Nullable  String fileName) throws FileNotFoundException {
+  @NotNull public static Reader reader(final @Nullable String fileName) throws FileNotFoundException {
     return fileName != null ? reader(new File(fileName)) : new InputStreamReader(System.in);
   }
 
   @NotNull private final RawTokenizer inner;
-  private final @NotNull String streamName;
+  @NotNull private final String streamName;
   private final Reader reader;
 
   /** Instantiate {@link Tokenizer}.
@@ -56,7 +56,7 @@ public class Tokenizer {
     return inner.column();
   }
 
-  public @NotNull String description( final @NotNull Token ¢) {
+  @NotNull public String description(final @NotNull Token ¢) {
     return location() + ¢ + " / " + ¢.kind + "<" + esc(text()) + "> S=" + state();
   }
 
@@ -64,11 +64,11 @@ public class Tokenizer {
     return inner.line();
   }
 
-  public @NotNull String location() {
+  @NotNull public String location() {
     return inner.location();
   }
 
-  public @Nullable Token next() {
+  @Nullable public Token next() {
     try {
       return inner.next();
     } catch (final IOException ¢) {
@@ -82,7 +82,7 @@ public class Tokenizer {
     return streamName;
   }
 
-  public @NotNull String text() {
+  @NotNull public String text() {
     return inner.text();
   }
 

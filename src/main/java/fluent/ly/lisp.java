@@ -10,7 +10,7 @@ import org.jetbrains.annotations.*;
 
 /** @noinspection unused */
 public interface lisp {
-  static @Nullable <T> List<T> chop( final @NotNull List<T> ¢) {
+  @Nullable static <T> List<T> chop(final @NotNull List<T> ¢) {
     if (¢.isEmpty())
       return null;
     ¢.remove(0);
@@ -22,12 +22,7 @@ public interface lisp {
     return rest;
   }
 
-  /** Retrieve next item in a list
-   * @param i  an index of specific item in a list
-   * @param ts the indexed list
-   * @return following item in the list, if such such an item exists, otherwise,
-   *         the last node */
-  static @Nullable <T> T next(final int i,  final @NotNull List<T> ts) {
+  @Nullable static <T> T next(final int i, final @NotNull List<T> ts) {
     return inRange(i + 1, ts) ? ts.get(i + 1) : the.lastOf(ts);
   }
 
@@ -40,12 +35,7 @@ public interface lisp {
     return ts.get(i < 1 ? 0 : i - 1);
   }
 
-  /** Replace the element of a specific index in a list
-   * @param ts      the indexed list
-   * @param element the element to be added to the list
-   * @param index   the index that should be replaced
-   * @return the list after the replacement */
-  @Contract("null, _, _ -> null") static @Nullable <T> List<T> replace(final @Nullable  List<T> ts, final T element, final int index) {
+  @Contract("null, _, _ -> null") @Nullable static <T> List<T> replace(final @Nullable List<T> ts, final T element, final int index) {
     if (ts == null || index < 0 || index >= ts.size())
       return ts;
     ts.remove(index);
@@ -53,19 +43,11 @@ public interface lisp {
     return ts;
   }
 
-  /** Replace the first element of a in a list
-   * @param ts      the indexed list
-   * @param element the element to be added to the list
-   * @return the list after the replacement */
-  @Contract("null, _ -> null") static @Nullable <T> List<T> replaceFirst(final List<T> ts, final T element) {
+  @Contract("null, _ -> null") @Nullable static <T> List<T> replaceFirst(final List<T> ts, final T element) {
     return replace(ts, element, 0);
   }
 
-  /** Replace the last element of a in a list
-   * @param ts      the indexed list
-   * @param element the element to be added to the list
-   * @return the list after the replacement */
-  @Contract("null, _ -> null") static @Nullable <T> List<T> replaceLast( final @NotNull List<T> ts, final T element) {
+  @Contract("null, _ -> null") @Nullable static <T> List<T> replaceLast(final @NotNull List<T> ts, final T element) {
     return replace(ts, element, ts.size() - 1);
   }
 

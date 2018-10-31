@@ -8,7 +8,7 @@ import org.jetbrains.annotations.*;
 import fluent.ly.*;
 
 /** @author Yossi Gil
- * @since Apr 8, 2012 */
+ * @since Apr 8, 2012 */  @SuppressWarnings("null") 
 public abstract class AbstractStringProperties {
   final Renderer renderer;
 
@@ -20,7 +20,7 @@ public abstract class AbstractStringProperties {
     this.renderer = renderer;
   }
 
-  @Override public @Nullable AbstractStringProperties clone() {
+  @Override @Nullable public AbstractStringProperties clone() {
     try {
       return (AbstractStringProperties) super.clone();
     } catch (final CloneNotSupportedException ¢) {
@@ -29,7 +29,7 @@ public abstract class AbstractStringProperties {
     }
   }
 
-  public @Nullable abstract String get(String key);
+  @Nullable public abstract String get(String key);
 
   /** A total inspector
    * @return the header of the CSV line */
@@ -39,9 +39,7 @@ public abstract class AbstractStringProperties {
 
   public abstract Iterable<String> keys();
 
-  /** A total inspector
-   * @return the content of the CSV line as per all recorded values. */
-  public final @NotNull String line() {
+  @NotNull public final String line() {
     return makeLine(values());
   }
 
@@ -56,19 +54,19 @@ public abstract class AbstractStringProperties {
   }
 
   public static class ListProperties extends AbstractStringProperties {
-    private final @NotNull List<String> keys = new ArrayList<>();
-    private final@NotNull List<String> values = new ArrayList<>();
+    @NotNull private final List<String> keys = new ArrayList<>();
+    @NotNull private final List<String> values = new ArrayList<>();
 
-    @Override public @Nullable String get(final @NotNull String key) {
+    @Override @Nullable public String get(final @NotNull String key) {
       final int $ = keys.lastIndexOf(key);
       return $ < 0 ? null : values.get($);
     }
 
-    @Override public @NotNull Iterable<String> keys() {
+    @Override @NotNull public Iterable<String> keys() {
       return keys;
     }
 
-    @Override public @NotNull ListProperties put(final @NotNull String key, final @NotNull String value) {
+    @Override @NotNull public ListProperties put(final @NotNull String key, final @NotNull String value) {
       keys.add(key);
       values.add(value);
       return this;
@@ -81,23 +79,21 @@ public abstract class AbstractStringProperties {
       return keys.size();
     }
 
-    @Override public @NotNull Iterable<String> values() {
+    @Override @NotNull public Iterable<String> values() {
       return values;
     }
   }
 
   public enum Renderer {
     CSV {
-      /** Wraps values in a CSV line. Occurrences of this character in field content
-       * are escaped by typing it twice. */
-      static final @NotNull String QUOTE = '"' + "";
-      static final @NotNull String DELIMETER = ",";
+      @NotNull static final String QUOTE = '"' + "";
+      @NotNull static final String DELIMETER = ",";
 
-      @Override public @NotNull String headerEnd() {
+      @Override @NotNull public String headerEnd() {
         return "";
       }
 
-      @Override public @NotNull String makeField(final @Nullable  String ¢) {
+      @Override @NotNull public String makeField(final @Nullable String ¢) {
         return ¢ == null ? "" : !¢.contains(QUOTE) && !¢.contains(delimiter()) ? ¢ : QUOTE + ¢.replaceAll(QUOTE, QUOTE + QUOTE) + QUOTE;
       }
 
@@ -122,7 +118,7 @@ public abstract class AbstractStringProperties {
       }
     },
     MATRIX {
-      static final @NotNull String DELIMETER = " ";
+      @NotNull static final String DELIMETER = " ";
       static final int WIDTH = 3;
 
       @Override @NotNull String allBottom() {

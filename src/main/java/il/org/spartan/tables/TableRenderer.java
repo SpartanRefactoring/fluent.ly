@@ -7,10 +7,7 @@ import org.jetbrains.annotations.*;
 import fluent.ly.*;
 import il.org.spartan.*;
 
-/** TODO Yossi Gil Document Classn
- * @author Yossi Gil
- * @since 2016-12-25 */
-@FunctionalInterface public interface TableRenderer {
+@FunctionalInterface @SuppressWarnings("null") public interface TableRenderer {
   enum builtin implements TableRenderer {
     TXT, TEX {
       @Override public String afterHeader() {
@@ -21,12 +18,14 @@ import il.org.spartan.*;
         return "\\bottomrule" + NL;
       }
 
-    // @formatter:off
-      @Override
-       public String arraySeparator() { return ", "; }
-      @Override
-       public String beforeFooter() { return "\\midrule" + NL; }
-    // @formatter:on
+      @Override public String arraySeparator() {
+        return ", ";
+      }
+
+      @Override public String beforeFooter() {
+        return "\\midrule" + NL;
+      }
+
       @Override public String beforeTable() {
         return "\\toprule" + NL;
       }
@@ -66,12 +65,14 @@ import il.org.spartan.*;
         return "\\hline" + NL;
       }
 
-    // @formatter:off
-    @Override
-     public String arraySeparator() { return ", "; }
-    @Override
-     public String beforeFooter() { return "\\hline" + NL; }
-  // @formatter:on
+      @Override public String arraySeparator() {
+        return ", ";
+      }
+
+      @Override public String beforeFooter() {
+        return "\\hline" + NL;
+      }
+
       @Override public String beforeTable() {
         return "\\hline" + NL;
       }
@@ -85,11 +86,13 @@ import il.org.spartan.*;
       }
     },
     CSV {
-    // @formatter:off
-    @Override public String footerEnd() { return NL; }
-    @Override
-     public String recordSeparator() { return ","; }
-    // @formatter:on
+      @Override public String footerEnd() {
+        return NL;
+      }
+
+      @Override public String recordSeparator() {
+        return ",";
+      }
     },
     MARKDOWN {
       @Override public String afterHeader() {
@@ -103,15 +106,21 @@ import il.org.spartan.*;
         return NL;
       }
 
-    // @formatter:off
-      @Override public String beforeTable() { return NL; }
-      @Override
-       public String recordBegin() { return "|" ; }
-      @Override
-       public String recordEnd() { return " |" + NL; }
-      @Override
-       public String recordSeparator() { return " | "; }
-    // @formatter:on
+      @Override public String beforeTable() {
+        return NL;
+      }
+
+      @Override public String recordBegin() {
+        return "|";
+      }
+
+      @Override public String recordEnd() {
+        return " |" + NL;
+      }
+
+      @Override public String recordSeparator() {
+        return " | ";
+      }
     };
     static int lastSize;
 
@@ -146,36 +155,62 @@ import il.org.spartan.*;
     return empty();
   }
 
-  // @formatter:off
+  @NotNull default String arraySeparator() {
+    return "; ";
+  }
 
-  default @NotNull String arraySeparator() { return "; "; }
+  default String beforeFooter() {
+    return empty();
+  }
 
-  default String beforeFooter() { return empty(); }
+  default String beforeHeader() {
+    return empty();
+  }
 
-  default String beforeHeader() { return empty(); }
-  default String beforeTable() { return empty(); }
+  default String beforeTable() {
+    return empty();
+  }
+
   default String cellArray(final Object[] ¢) {
     return separate.these(¢).by(arraySeparator());
   }
 
-  default String cellInt(final Long ¢) { return ¢ + ""; }
+  default String cellInt(final Long ¢) {
+    return ¢ + "";
+  }
 
   default String extension() {
     return toString().toLowerCase();
   }
 
-  default String footerBegin() { return recordBegin();}
-  default String footerEnd() { return recordEnd();}
+  default String footerBegin() {
+    return recordBegin();
+  }
 
-  default String footerSeparator() { return recordSeparator(); }
+  default String footerEnd() {
+    return recordEnd();
+  }
 
-  default String headerLineBegin() { return recordBegin(); }
-  default String headerLineEnd() { return recordEnd(); }
+  default String footerSeparator() {
+    return recordSeparator();
+  }
 
-  default String headerSeparator() { return recordSeparator(); }
+  default String headerLineBegin() {
+    return recordBegin();
+  }
 
-  default String nil() { return "Nº"; }
-  // @formatter:on
+  default String headerLineEnd() {
+    return recordEnd();
+  }
+
+  default String headerSeparator() {
+    return recordSeparator();
+  }
+
+  default String nil() {
+    return "Nº";
+  }
+
   default String recordBegin() {
     return empty();
   }
@@ -198,8 +233,7 @@ import il.org.spartan.*;
     values.forEach(λ -> $.append(s)
         .append(λ instanceof Object[] ? cellArray((Object[]) λ)
             : λ instanceof Integer ? cellInt(Long.valueOf(((Integer) λ).intValue()))
-                : λ instanceof Long ? cellInt((Long) λ) //
-                    : λ instanceof Double ? cellReal((Double) λ) : λ));
+                : λ instanceof Long ? cellInt((Long) λ) : λ instanceof Double ? cellReal((Double) λ) : λ));
     return $ + recordEnd();
   }
 

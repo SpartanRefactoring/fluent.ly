@@ -14,7 +14,7 @@ import il.org.spatan.iteration.*;
  * @since 30/04/2011 */
 public abstract class Statistics {
   protected static final int MOMENTS = 4;
-  protected static final @NotNull String EMPTY_SEQUENCE = "No elements yet in sequene.";
+  @NotNull protected static final String EMPTY_SEQUENCE = "No elements yet in sequene.";
 
   public static double mad(final double @NotNull [] ds) {
     final int n = ds.length;

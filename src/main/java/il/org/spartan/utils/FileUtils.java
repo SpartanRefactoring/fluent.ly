@@ -10,17 +10,12 @@ import org.jetbrains.annotations.*;
 /** A class for utility methods when working with files and directories
  * @author Daniel Mittelman <code><mittelmania [at] gmail.com></code>
  * @since 2015/09/19 */
-public class FileUtils {
-  /** Returns a list of all the .java files found recursively within the provided
-   * paths
-   * @param paths Directories to scan
-   * @return a list of absolute paths to .java files found within the provided
-   *         directories. If no files were found, an empty list is returned */
-  public static @NotNull List<String> findAllJavaFiles(final @NotNull String... paths) {
-    final @NotNull List<@NotNull String> $ = new ArrayList<>();
+@SuppressWarnings("null") public class FileUtils {
+  @NotNull public static List<String> findAllJavaFiles(final String... paths) {
+    final @NotNull List<String> $ = new ArrayList<>();
     if (paths == null || paths.length == 0)
       return $;
-    for (final @Nullable String s : paths) {
+    for (final String s : paths) {
       if (s == null)
         continue;
       final @Nullable File f = new File(s);
@@ -30,11 +25,7 @@ public class FileUtils {
     return $;
   }
 
-  /** Converts the entire contents of a file into a {@link String}
-   * @param f JD
-   * @return a string representing the contents of a file.
-   * @throws IOException in case of error */
-  public static @NotNull String read(final @NotNull File f) throws IOException {
+  @NotNull public static String read(final @NotNull File f) throws IOException {
     final @NotNull String ls = System.getProperty("line.separator");
     System.err.println(ls.compareTo("\n"));
     final @NotNull StringBuilder $ = new StringBuilder();
@@ -45,11 +36,7 @@ public class FileUtils {
     return $ + "";
   }
 
-  /** Returns the contents of a source file
-   * @param fileName The source file's path
-   * @return source file's contents, or an empty string in case of an error
-   * @throws IOException in case of error */
-  public static @NotNull String readFromFile(final @NotNull String fileName) throws IOException {
+  @NotNull public static String readFromFile(final @NotNull String fileName) throws IOException {
     return read(Paths.get(fileName));
   }
 
@@ -73,7 +60,7 @@ public class FileUtils {
       }
   }
 
-  private static @NotNull String read(final @NotNull Path ¢) throws IOException {
+  @NotNull private static String read(final @NotNull Path ¢) throws IOException {
     return new String(Files.readAllBytes(¢), StandardCharsets.UTF_8);
   }
 }

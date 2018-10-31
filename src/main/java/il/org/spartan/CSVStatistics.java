@@ -16,13 +16,13 @@ import il.org.spartan.statistics.*;
  * @author Yossi Gil
  * @since Dec 25, 2009 */
 public class CSVStatistics extends CSVLine.Ordered {
-  private static final @NotNull String SUMMARY_EXTENSION = ".summary";
+  @NotNull private static final String SUMMARY_EXTENSION = ".summary";
 
   private static String removeExtension( final @NotNull String baseName) {
     return baseName.replaceFirst("\\.csv$", "");
   }
 
-  private final @NotNull String keysHeader;
+  @NotNull private final String keysHeader;
   final Map<String, RealStatistics> stats = new LinkedHashMap<>();
   final CSVWriter inner;
   final CSVWriter summarizer;
@@ -48,7 +48,7 @@ public class CSVStatistics extends CSVLine.Ordered {
     for (final @NotNull String key : stats.keySet()) {
        final @NotNull CSVLine l = new CSVLine.Ordered.Separated("%");
       l.put(keysHeader, key);
-      @SuppressWarnings("null") final ImmutableStatistics s = stats.get(key);
+      final ImmutableStatistics s = stats.get(key);
       l//
           .put("$N$", s.n()) //
           .put("\\emph{n/a}", s.missing())//

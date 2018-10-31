@@ -21,14 +21,15 @@ import fluent.ly.___.Bug.Contract.*;
  * <code><b>static import</b></code>.
  * @author Yossi Gil (
  * @since 11/01/2006) */
-public abstract class ___ {
+@SuppressWarnings("null") public abstract class ___ {
   /** A do nothing method to document the fact that a <code><b>long</b></code>
    * parameter, along with a optional list of {@link Object}s are not used by a
    * function, and to suppress the warning.
    * @param __   the unused parameter
    * @param ____ more unused parameters */
-  public static void ______unused(final long __, final Object... ____) {
-    unused(____);    
+  public static void ______unused(final long l, final Object... os) {
+    forget.it(l);
+    forget.all(os);
   }
 
   /** A do nothing method to document the fact that some <code>Object</code>(s)
@@ -364,7 +365,7 @@ public abstract class ___ {
     return sprintf(format, box(i), o);
   }
 
-  public static String nprintf(final @NotNull String format, final Object... args) {
+  public static String nprintf(final String format, final Object... args) {
     return format == null ? "" : args == null ? format : sprintf(format, args);
   }
 
@@ -697,7 +698,7 @@ public abstract class ___ {
            * @since 23/01/2008 */
           public static final class Negative extends Numerical {
             private static final long serialVersionUID = 0x3F251E6CFC5B0106L;
-            static final @NotNull String expected = "negative";
+            @NotNull static final String expected = "negative";
 
             public Negative(final double d) {
               this(d, "");
@@ -729,7 +730,7 @@ public abstract class ___ {
            * @since 23/01/2008 */
           public static final class NonNan extends Numerical {
             private static final long serialVersionUID = -0x49B8350294AF1EFBL;
-            static final @NotNull String expected = "NonNan";
+            @NotNull static final String expected = "NonNan";
 
             public NonNan(final double d) {
               this(d, "");
@@ -761,7 +762,7 @@ public abstract class ___ {
            * @since 23/01/2008 */
           public static final class NonNegative extends Numerical {
             private static final long serialVersionUID = 1;
-            static final @NotNull String expected = "nonnegative";
+            @NotNull static final String expected = "nonnegative";
 
             public NonNegative(final double d) {
               this(d, "");
@@ -792,7 +793,7 @@ public abstract class ___ {
            * @since 23/01/2008 */
           public static final class NonPositive extends Numerical {
             private static final long serialVersionUID = -0x7A57F2BC061EDE6BL;
-            static final @NotNull String expected = "nonpositive";
+            @NotNull static final String expected = "nonpositive";
 
             public NonPositive(final double d) {
               this(d, "");
@@ -824,7 +825,7 @@ public abstract class ___ {
            * @since 23/01/2008 */
           public static final class Positive extends Numerical {
             private static final long serialVersionUID = -0x49B8350294AF1EFBL;
-            static final @NotNull String expected = "positive";
+            @NotNull static final String expected = "positive";
 
             public Positive(final double d) {
               this(d, "");
@@ -1019,18 +1020,18 @@ public abstract class ___ {
       ___.nonnull(new Object());
       try {
         ___.nonnull(null);
-      } catch (final Exception e) {
-        assertEquals("", e.getMessage());
+      } catch (final Exception ¢) {
+        assertEquals("", ¢.getMessage());
       }
       try {
         ___.nonnull(null, "nonnull");
-      } catch (final Exception e) {
-        assertEquals("nonnull", e.getMessage());
+      } catch (final Exception ¢) {
+        assertEquals("nonnull", ¢.getMessage());
       }
       try {
         ___.nonnull(null, "nonnull %s message %s", "this", "now");
-      } catch (final Exception e) {
-        assertEquals("nonnull this message now", e.getMessage());
+      } catch (final Exception ¢) {
+        assertEquals("nonnull this message now", ¢.getMessage());
       }
     }
 

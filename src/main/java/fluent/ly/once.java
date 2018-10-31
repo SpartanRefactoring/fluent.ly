@@ -16,8 +16,8 @@ public class once {
     this.value = defaults.to(value, "");
   }
 
-  @Override public @Nullable String toString() {
-    final @Nullable  String $ = value;
+  @Override @Nullable public String toString() {
+    final @Nullable String $ = value;
     value = null;
     return $;
   }

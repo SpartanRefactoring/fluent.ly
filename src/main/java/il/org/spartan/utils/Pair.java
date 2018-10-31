@@ -8,11 +8,11 @@ public class Pair<First, Second> {
     return new Pair[¢];
   }
 
-  public static @NotNull  <First, Second> Pair<First, Second>[] makePairs(final int i, final int m) {
+  @NotNull public static <First, Second> Pair<First, Second>[] makePairs(final int i, final int m) {
     return makePairs(i * m);
   }
 
-  public static @NotNull  <A, B> Pair<A, B> newPair(final A a, final B b) {
+  @NotNull public static <A, B> Pair<A, B> newPair(final A a, final B b) {
     return new Pair<>(a, b);
   }
 
@@ -36,7 +36,7 @@ public class Pair<First, Second> {
     return second.hashCode() ^ first.hashCode() >>> 1;
   }
 
-  @Override public @NotNull String toString() {
+  @Override @NotNull public String toString() {
     return "<" + first + "," + second + ">";
   }
 }

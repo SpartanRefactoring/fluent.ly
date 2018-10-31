@@ -8,11 +8,11 @@ import org.junit.*;
  * @param <T> JD
  * @since @{year}-@{month}-@{day} */
 public class maybe<@Nullable T> {
-  public static @NotNull  <@Nullable T> maybe<T> no() {
+  @NotNull public static <@Nullable T> maybe<T> no() {
     return new maybe<>();
   }
 
-  public static @NotNull  <@Nullable T> maybe<T> yes(final T ¢) {
+  @NotNull public static <@Nullable T> maybe<T> yes(final T ¢) {
     return new maybe<>(¢);
   }
 
@@ -28,12 +28,12 @@ public class maybe<@Nullable T> {
     inner = null;
   }
 
-  public @NotNull maybe<@Nullable T> clear() {
+  @NotNull public maybe<@Nullable T> clear() {
     inner = null;
     return this;
   }
 
-  public @Nullable T get() {
+  @Nullable public T get() {
     return inner;
   }
 
@@ -45,8 +45,7 @@ public class maybe<@Nullable T> {
     return inner != null;
   }
 
-  /** @param inner TODO document this parameter */
-  public @NotNull maybe<@Nullable T> set(final T inner) {
+  @NotNull public maybe<@Nullable T> set(final T inner) {
     this.inner = inner;
     return this;
   }

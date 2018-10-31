@@ -16,7 +16,7 @@ public interface tide {
         .replaceAll("^\\s", "") // Opening whites
         .replaceAll("\\s$", "") // Closing whites
     ;
-    for ( final @NotNull String operator : new String[] { ":", "/", "%", ",", "\\{", "\\}", "=", ":", "\\?", ";", "\\+", ">", ">=", "!=", "==", "<",
+    for ( final @NotNull String operator : new @NotNull String[] { ":", "/", "%", ",", "\\{", "\\}", "=", ":", "\\?", ";", "\\+", ">", ">=", "!=", "==", "<",
         "<=", "-", "\\*", "\\|", "\\&", "%", "\\(", "\\)", "[\\^]" })
       $ = $ //
           .replaceAll(tide.WHITES + operator, operator) // Preceding whites

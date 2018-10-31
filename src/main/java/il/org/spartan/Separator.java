@@ -92,7 +92,7 @@ public final class Separator {
   }
 
   private boolean first = true;
-  private final @NotNull String s;
+  @NotNull private final String s;
 
   /** Instantiates this class.
    * @param c JD */

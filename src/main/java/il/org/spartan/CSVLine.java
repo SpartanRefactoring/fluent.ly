@@ -24,9 +24,9 @@ import il.org.spartan.utils.Separate.*;
  * /** Create a line in an "Comma Separated Values" format from a sequence of
  * named values.
  * @author Yossi Gil */
+@SuppressWarnings("null") 
 @Instantiable public abstract class CSVLine extends AbstractStringProperties implements Cloneable {
-  /** Separator of multi-values, i.e., array elements stored in a single field */
-  public static final @NotNull String ARRAY_SEPARATOR = ";";
+  @NotNull public static final String ARRAY_SEPARATOR = ";";
   final Map<String, String> map;
   protected final Aggregator aggregator = new Aggregator();
 
@@ -52,7 +52,7 @@ import il.org.spartan.utils.Separate.*;
     return aggregator.aggregations();
   }
 
-  public final @NotNull String asKeyValuePairs() {
+  @NotNull public final String asKeyValuePairs() {
     return Separate.by((F<@NotNull Entry<@NotNull String, @NotNull String>>) λ -> λ.getKey() + "=" + λ.getValue(), entries(), ", ");
   }
 
@@ -74,7 +74,7 @@ import il.org.spartan.utils.Separate.*;
     return map.get(key);
   }
 
-  @Override public @NotNull Collection<String> keys() {
+  @Override @NotNull public Collection<String> keys() {
     return map.keySet();
   }
 
@@ -230,11 +230,7 @@ import il.org.spartan.utils.Separate.*;
     return put(key, value + "");
   }
 
-  /** A mutator to add a key and a general {@link String} value to this instance
-   * @param key   The key to be added; must not be <code><b>null</b></code>
-   * @param value The value associated with the key
-   * @return this */
-  @Override public @NotNull final CSVLine put(final @NotNull String key, final @NotNull String value) {
+  @Override @NotNull public final CSVLine put(final @NotNull String key, final @NotNull String value) {
     map.put(key, value);
     return this;
   }
@@ -252,7 +248,7 @@ import il.org.spartan.utils.Separate.*;
     return map.size();
   }
 
-  @Override public @NotNull Collection<String> values() {
+  @Override @NotNull public Collection<String> values() {
     return map.values();
   }
 
@@ -270,7 +266,7 @@ import il.org.spartan.utils.Separate.*;
     }
 
     public class Separated extends CSVLine.Ordered {
-      final @NotNull String separator;
+      @NotNull final String separator;
 
       public Separated(final @NotNull String separator) {
         this.separator = separator;

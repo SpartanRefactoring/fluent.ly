@@ -15,12 +15,13 @@ import fluent.ly.*;
  * </ol>
  * @author Yossi Gil
  * @since 2017-03-06 */
+@SuppressWarnings("null")
 public interface Proposition extends BooleanSupplier {
   static Proposition AND(final BooleanSupplier s1, final BooleanSupplier s2, final BooleanSupplier... ss) {
     return AND(null, s1, s2, ss);
   }
 
-  static Proposition AND(final @NotNull String toString, final BooleanSupplier s1, final BooleanSupplier s2, final BooleanSupplier... ss) {
+  static Proposition AND(final @Nullable String toString, final BooleanSupplier s1, final BooleanSupplier s2, final BooleanSupplier... ss) {
     return new And(toString, s1, s2, ss);
   }
 
@@ -86,7 +87,7 @@ public interface Proposition extends BooleanSupplier {
       this.toString = toString;
     }
 
-    @Override public final @NotNull String toString() {
+    @Override @NotNull public final String toString() {
       return toString != null ? toString : inner instanceof Aggregate ? inner + "" : super.toString();
     }
 

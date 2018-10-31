@@ -19,7 +19,7 @@ import il.org.spartan.Utils.FoundHandleForT.*;
  * static</code> utility functions of reasonably wide use.
  * @author Yossi Gil <code><yossi.gil [at] gmail.com></code>
  * @since 2013/07/01 */
-public interface Utils {
+@SuppressWarnings("null") public interface Utils {
   String QUOTE = "'";
   String WHITES = "(?m)\\s+";
 
@@ -66,7 +66,7 @@ public interface Utils {
    * @param t  an element
    * @return newly created array */
   @NotNull static <T> T[] append(final @NotNull T[] ts, final T t) {
-    @SuppressWarnings("null") final T @NotNull [] $ = Arrays.copyOf(ts, 1 + ts.length);
+    final T @NotNull [] $ = Arrays.copyOf(ts, 1 + ts.length);
     $[ts.length] = t;
     return $;
   }
@@ -78,33 +78,7 @@ public interface Utils {
     return new Applicator<>(¢);
   }
 
-  /** Removes the @Nullable annotation present on the type of a value. This
-   * function is mainly used to make <code><b>null</b></code<]> checkers happy.
-   * <p>
-   * The parameter is an instance of an arbitrary type, T. The hidden assumption
-   * is that a @Nullable annotation is present on T. Thus, the parameter may be
-   * either <code><b>null</b></code<]>, or an actual instance of T.
-   * <p>
-   * The function returns the same instance it received as a parameter, except
-   * that this instance is returned as an instance of the type T <i>without</i>
-   * the @Nullable annotation. Execution is aborted with an {@link AssertionError}
-   * if the parameter is null.
-   * <p>
-   * as it turns out, this function is a (slow) logical no-op, but still
-   * applicable to arguments of type T, where T does not have the @Nullable
-   * annotation present on it.
-   * <p>
-   * For reasons related to the way non-nullability is managed in Java, the
-   * compiler will not warn you from doing applying this function to a
-   * {@link NotNull} type. However, there is absolutely no point in removing
-   * a @Nullable annotation if the type that does not have it. Doing so a is plain
-   * clutter. Since the compiler cannot assist you, you will have to be on the
-   * guard.
-   * @param $ result
-   * @param   <T> JD
-   * @return parameter, but guaranteed to be {@link NotNull}
-   * @see #mustBeNull(Object) */
-  static @Nullable <T> T canBeNull(final T $) {
+  @Nullable static <T> T canBeNull(final T $) {
     return $;
   }
 
@@ -158,8 +132,8 @@ public interface Utils {
    * @return parameter, with all redundant spaces removed from it */
   static String compressSpaces(final @NotNull String javaCodeFragment) {
     String $ = javaCodeFragment.replaceAll("(?m)\\s+", " ").replaceAll("^\\s", "").replaceAll("\\s$", "");
-    for (final @NotNull String operator : new String @NotNull [] { ":", "/", "%", ",", "\\{", "\\}", "=", ":", "\\?", ";", "\\+", ">", ">=", "!=", "==", "<",
-        "<=", "-", "\\*", "\\|", "\\&", "%", "\\(", "\\)", "[\\^]" })
+    for (final @NotNull String operator : new String @NotNull [] { ":", "/", "%", ",", "\\{", "\\}", "=", ":", "\\?", ";", "\\+", ">", ">=", "!=",
+        "==", "<", "<=", "-", "\\*", "\\|", "\\&", "%", "\\(", "\\)", "[\\^]" })
       $ = $.replaceAll(WHITES + operator, operator).replaceAll(operator + WHITES, operator);
     return cantBeNull($);
   }
@@ -502,7 +476,7 @@ public interface Utils {
    * @author Yossi Gil
    * @since 2014-05-31 */
   @SuppressWarnings("static-method") class TEST {
-    public static @NotNull Integer[] intToIntegers(final int... is) {
+    @NotNull public static Integer[] intToIntegers(final int... is) {
       final Integer @NotNull [] $ = new Integer @NotNull [is.length];
       for (int ¢ = 0; ¢ < is.length; ++¢)
         $[¢] = fluent.ly.box.it(is[¢]);
@@ -534,7 +508,8 @@ public interface Utils {
       try {
         cantBeNull(null);
         azzert.fail("AssertionError expected prior to this line.");
-      } catch (final AssertionError e) {
+      } catch (final AssertionError ¢) {
+        forget.it(¢);
         azzert.aye("", true);
       }
     }
@@ -547,7 +522,8 @@ public interface Utils {
       try {
         isNull(mustBeNull(null));
         azzert.fail("AssertionError expected prior to this line.");
-      } catch (final AssertionError e) {
+      } catch (final AssertionError ¢) {
+        forget.it(¢);
         azzert.aye("", true);
       }
     }
@@ -556,7 +532,8 @@ public interface Utils {
       try {
         mustBeNull(new Object());
         azzert.fail("AssertionError expected prior to this line.");
-      } catch (final AssertionError e) {
+      } catch (final AssertionError ¢) {
+        forget.it(¢);
         azzert.aye("", true);
       }
     }

@@ -120,5 +120,5 @@ public abstract class Row<Self extends Row<?>> extends LinkedHashMap<String, Obj
 
   protected abstract Self self();
 
-  public static final @NotNull String ARRAY_SEPARATOR = "; ";
+  @NotNull public static final String ARRAY_SEPARATOR = "; ";
 }

@@ -20,7 +20,7 @@ public interface iterable {
    * @return an {@link Iterable} over the parameter */
   @SafeVarargs @NotNull static <T> Iterable<T> over( final  T... ts) {
     return new Iterable<T>() {
-      @Override public @NotNull Iterator<T> iterator() {
+      @Override @NotNull public Iterator<T> iterator() {
         return new Iterator<T>() {
           int current;
 

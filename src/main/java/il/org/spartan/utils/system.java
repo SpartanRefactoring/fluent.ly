@@ -46,8 +46,9 @@ public interface system {
     return $;
   }
 
-  static Extension ephemeral(final @NotNull String stem) {
-    return λ -> new File(system.tmp + stem + new SimpleDateFormat("-yyyy-MM-dd-HH-mm-ss").format(new Date()) + "." + λ);
+  static Extension ephemeral(final @Nullable String stem) {
+    return (stem == null) ? ephemeral(new Random() + "")
+        : λ -> new File(system.tmp + stem + new SimpleDateFormat("-yyyy-MM-dd-HH-mm-ss").format(new Date()) + "." + λ);
   }
 
   /** @author Yossi Gil
@@ -181,7 +182,7 @@ public interface system {
    * are separated by at least one whitespace.
    * @param $ the string its words are being counted
    * @return the number of words the given string contains */
-  static int wc(final @NotNull String $) {
+  static int wc(final @Nullable String $) {
     return $ == null || $.trim().isEmpty() ? 0 : $.trim().split("\\s+").length;
   }
 
@@ -189,7 +190,7 @@ public interface system {
     return System.getProperty("os.name").contains("indows");
   }
 
-  String tmp = System.getProperty("java.io.tmpdir", "/tmp") + System.getProperty("file.separator", "/");
+  String tmp = System.getProperty("java.io.tmpdir", "/tmp") + "" + System.getProperty("file.separator", "/");
   String UTF_8 = "utf-8";
 
   interface Extension {

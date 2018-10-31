@@ -37,6 +37,7 @@ import fluent.ly.*;
  * <code>/home</code> directories.
  * @author Yossi Gil
  * @since 2015-09-23. */
+@SuppressWarnings("null")
 public class FilesGenerator {
   /** @param ____ ignored */
   public static void main(final @NotNull String[] ____) {
@@ -44,12 +45,10 @@ public class FilesGenerator {
       System.out.println(¢);
   }
 
-  /** @param directory should be a directory, but we still need to account for
-   *                  weird creatures such as "System Volume Information" */
-  static @Nullable Iterator<File> directoryIterator(final @Nullable  File directory) {
+  @Nullable static Iterator<File> directoryIterator(final @Nullable File directory) {
     if (directory == null || !directory.isDirectory() || directory.list() == null)
       return null;
-     final @NotNull Iterator<String> $ = as.list(directory.list()).iterator();
+    final @NotNull Iterator<String> $ = as.list(directory.list()).iterator();
     return new Iterator<File>() {
       @Nullable File next;
 
@@ -65,7 +64,7 @@ public class FilesGenerator {
         }
       }
 
-      @Override public @Nullable File next() {
+      @Override @Nullable public File next() {
         return next;
       }
     };
@@ -78,8 +77,7 @@ public class FilesGenerator {
     return $;
   }
 
-  /** Which extensions we search for */
-  final @NotNull Iterable<String> extensions;
+  @NotNull final Iterable<String> extensions;
 
   /** Instantiates this class. This instantiation makes the first step in the call
    * chain that makes the fluent API. The second (and last) such step is provided
@@ -126,7 +124,7 @@ public class FilesGenerator {
       this.from = from;
     }
 
-    @Override public @NotNull Iterator<File> iterator() {
+    @Override @NotNull public Iterator<File> iterator() {
       return new FilesIterator(from.iterator());
     }
 
@@ -138,7 +136,7 @@ public class FilesGenerator {
         stack.push(i);
       }
 
-      @Override @SuppressWarnings("null") public boolean hasNext() {
+      @Override public boolean hasNext() {
         for (;;) {
           if (stack.isEmpty())
             return false;

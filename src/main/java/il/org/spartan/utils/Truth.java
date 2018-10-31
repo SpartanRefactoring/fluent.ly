@@ -16,17 +16,17 @@ public enum Truth {
   public static Truth truthOf(final BooleanSupplier $) {
     try {
       return $.getAsBoolean() ? T : F;
-    } catch (final NullPointerException e) {
-      forget.it(e);
+    } catch (final NullPointerException ¢) {
+      forget.it(¢);
       return N;
-    } catch (final AssertionError e) {
-      forget.it(e);
+    } catch (final AssertionError ¢) {
+      forget.it(¢);
       return X;
-    } catch (final RuntimeException e) {
-      forget.it(e);
+    } catch (final RuntimeException ¢) {
+      forget.it(¢);
       return R;
-    } catch (final Throwable e) {
-      forget.it(e);
+    } catch (final Throwable ¢) {
+      forget.it(¢);
       return Ħ;
     }
   }
@@ -49,7 +49,7 @@ public enum Truth {
     return truthOf(¢) + "";
   }
 
-  public final @NotNull String description;
+  @NotNull public final String description;
 
   Truth(final @NotNull String description) {
     this.description = description;

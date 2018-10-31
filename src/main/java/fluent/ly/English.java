@@ -38,8 +38,8 @@ public interface English {
     String getIng();
   }
 
-  @NotNull   String DOUBLE_FORMAT = "0.00";
-  @NotNull String  SEPARATOR = ", ";
+  @NotNull String DOUBLE_FORMAT = "0.00";
+  @NotNull String SEPARATOR = ", ";
   String TRIM_SUFFIX = "...";
   int TRIM_THRESHOLD = 50;
   /** Error string, replacing null/error value. */
@@ -203,10 +203,10 @@ public interface English {
   /** Cut string's suffix to maximal length for every row.
    * @param s JD
    * @return cut string */
-  static String trim(final @NotNull String s) {
+  static String trim(final @Nullable String s) {
     if (s == null)
       return null;
-    final @NotNull String[] $ = s.split("\n");
+    @SuppressWarnings("null") final @NotNull String @NotNull [] $ = s.split("\n");
     IntStream.range(0, $.length).forEach(λ -> $[λ] = trimAbsolute($[λ], TRIM_THRESHOLD, TRIM_SUFFIX));
     return String.join("\n", $);
   }
@@ -217,8 +217,7 @@ public interface English {
    * @param x replacement suffix string
    * @return cut string */
   static String trimAbsolute(final @NotNull String s, final int l, final @NotNull String x) {
-    assert l - x.length() >= 0;
-    return s == null || s.length() <= l ? s : s.substring(0, l - x.length()) + x;
+    return s.length() <= l ? s : s.substring(0, l - x.length()) + x;
   }
 
   /** @param ¢ something

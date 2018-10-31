@@ -23,34 +23,21 @@ public class RealStatistics extends ImmutableStatistics {
     return Arrays.copyOf(¢, 2 * ¢.length + 1);
   }
 
-  /** Make a record of the sequence of elements.
-   * @param vs values to be recorded
-   * @return the receiver, to be used, e.g., in chaining more such operations */
-  public @NotNull RealStatistics record(final double... vs) {
+  @NotNull public RealStatistics record(final double... vs) {
     for (final double v : vs)
       record(v);
     return this;
   }
 
-  /** Make a record of the next element in the sequence. NaN and infinite values
-   * are not recorded.
-   * @param v the value to be recorded
-   * @return the receiver, to be used, e.g., in chaining more such operations */
-  public @NotNull RealStatistics record(final double v) {
+  @NotNull public RealStatistics record(final double v) {
     return Double.isNaN(v) || Double.isInfinite(v) ? recordMissing() : recordValue(v);
   }
 
-  /** Make a record of the next element in the sequence; <code><b>null</b></code>
-   * reference, and NaN and infinite values not recorded as ''missing'' values.
-   * @param v the value to be recorded
-   * @return the receiver, to be used, e.g., in chaining more such operations */
-  public @NotNull Statistics record(final @Nullable  Double v) {
+  @NotNull public Statistics record(final @Nullable Double v) {
     return v == null ? recordMissing() : record(v.doubleValue());
   }
 
-  /** Add a ''missing'' value to the sequence.
-   * @return the receiver, to be used, e.g., in chaining more such operations */
-  public @NotNull RealStatistics recordMissing() {
+  @NotNull public RealStatistics recordMissing() {
     ++missing;
     return this;
   }

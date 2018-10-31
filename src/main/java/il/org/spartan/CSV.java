@@ -6,8 +6,9 @@ import java.io.*;
 import java.lang.reflect.*;
 import java.util.*;
 
-
 import org.jetbrains.annotations.*;
+
+import fluent.ly.*;
 
 /** This class realize the CSV specification, by comprising methods for
  * manipulating CSV files. e.g. 1, 2, 3 4, 5, 6 The class supports string arrays
@@ -17,9 +18,10 @@ import org.jetbrains.annotations.*;
  * single line. Within are some other useful auxiliary functions for string
  * manipulations.
  * @author Oren Rubin */
+@SuppressWarnings("null") 
 public enum CSV {
   ;
-  private static final @NotNull String NULL = "\\0";
+  @NotNull private static final String NULL = "\\0";
 
   /** Combine the given array of Class objects values into a comma separated
    * string.
@@ -27,7 +29,7 @@ public enum CSV {
    * @return Combined string
    * @see #splitToClasses(String) */
   public static String combine(final Class<?>[] cs) {
-    final  String@NotNull[] $ = new String[cs.length];
+    final String @NotNull [] $ = new String[cs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = cs[¢] == null ? null : Utils.cantBeNull(cs[¢].getName());
     return combine($);
@@ -40,12 +42,12 @@ public enum CSV {
    * @param parts Input array
    * @return Combined string
    * @see CSV#escape(String) */
-  public static <T> String combine(final @NotNull T[] parts) {
+  public static <T> String combine(final @NotNull T @NotNull [] parts) {
     nonnull(parts);
     final @NotNull StringBuilder $ = new StringBuilder(10 * parts.length);
     final @NotNull Separator sep = new Separator(",");
-    for (final @Nullable T ¢ : parts)
-      $.append(sep + escape(¢ == null ? null : ¢ + ""));
+    for (final T ¢ : parts)
+      $.append(sep + escape(¢ + ""));
     return $ + "";
   }
 
@@ -56,12 +58,10 @@ public enum CSV {
    * @param parts Input array
    * @return Combined string
    * @see CSV#escape(String) */
-  public static <T extends Enum<T>> String combine(final @NotNull T[] parts) {
-    final @NotNull String @NotNull [] $ = new String[parts.length];
-    for (int ¢ = 0; ¢ < $.length; ++¢) {
-      final @NotNull T t = parts[¢];
-      $[¢] = t == null ? null : t.name();
-    }
+  public static <T extends Enum<T>> String combine(final T @NotNull [] parts) {
+    final String @NotNull [] $ = new String[parts.length];
+    for (int ¢ = 0; ¢ < $.length; ++¢)
+      $[¢] = parts[¢] == null ? null : parts[¢].name();
     return combine($);
   }
 
@@ -71,10 +71,9 @@ public enum CSV {
   public static String escape(final @Nullable String s) {
     if (s == null)
       return NULL;
-    final int len = s.length();
-    final @NotNull StringBuilder $ = new StringBuilder(len);
+    final @NotNull StringBuilder $ = new StringBuilder(s.length());
     for (final char ¢ : s.toCharArray())
-      $.append(¢ == '\\' ? "\\\\" : ¢ == '\n' ? "\\n" : ¢ == '\r' ? "\\r" : ¢ == '\t' ? "\\t" : ¢ == ',' ? "\\." : ¢);
+      $.append(¢ == '\\' ? "\\\\" : ¢ == '\n' ? "\\n" : ¢ == '\r' ? "\\r" : ¢ == '\t' ? "\\t" : ¢ == ',' ? "\\." : as.string(¢));
     return $ + "";
   }
 
@@ -97,28 +96,20 @@ public enum CSV {
   }
 
   public static void save(final File f, final @NotNull String[][] data) throws IOException {
-    try (final PrintWriter pw = new PrintWriter(new FileWriter(f))) {
+    try (PrintWriter pw = new PrintWriter(new FileWriter(f))) {
       pw.print(toCsv(data));
     }
   }
 
-  /** Split a comma separated string into an array of enum values.
-   * @param       <T> Type of enum class
-   * @param clazz Class object of T
-   * @param s     Input string
-   * @return Array of T */
-  public static @NotNull <T extends Enum<T>> T[] split(final Class<T> clazz, final @NotNull String s) {
-    final @NotNull String[] ss = split(s);
+  @NotNull public static <T extends Enum<T>> T[] split(final Class<T> clazz, final @NotNull String s) {
+    final String @NotNull [] ss = split(s);
     final T @NotNull [] $ = (T[]) Array.newInstance(clazz, ss.length);
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = ss[¢] == null ? null : Enum.valueOf(clazz, ss[¢]);
     return $;
   }
 
-  /** Split a comma separated string into its sub parts
-   * @param s input string
-   * @return Array of sub parts, in their original order */
-  public static @NotNull String[] split(final @NotNull String s) {
+  public static String @NotNull [] split(final @NotNull String s) {
     if (s.length() == 0)
       return new String[0];
     final @NotNull List<String> $ = new ArrayList<>();
@@ -133,14 +124,9 @@ public enum CSV {
     }
   }
 
-  /** Split a comma separated string into an array of classes.
-   * @param s input string
-   * @return Array of T */
-  public static @NotNull Class<?>[] splitToClasses(final @NotNull String s) {
-    final @NotNull String @NotNull [] names = split(s);
-    final Class<?> @NotNull [] $ = new Class<?>[names.length]; // (T[])
-    // Array.newInstance(cls,
-    // arr.length);
+  @NotNull public static Class<?>[] splitToClasses(final @NotNull String s) {
+    final String @NotNull [] names = split(s);
+    final Class<?> @NotNull [] $ = new Class<?>[names.length];
     for (int i = 0; i < $.length; ++i)
       try {
         $[i] = names[i] == null ? null : Class.forName(names[i]);

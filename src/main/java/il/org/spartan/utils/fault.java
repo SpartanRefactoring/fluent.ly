@@ -10,36 +10,33 @@ import org.jetbrains.annotations.*;
  * @author Yossi Gil
  * @since 2016 */
 public interface fault {
-  static @NotNull String done() {
+  @NotNull static String done() {
     return done(stackCapture());
   }
 
-  static @NotNull String done(final Throwable ¢) {
-    return "\n   Stack trace: [[[.................\n\n" + //
-        trace(¢) + //
-        "\n   END stack trace: .................]]]" + //
-        "\n-----this is all I know.";
+  @NotNull static String done(final Throwable ¢) {
+    return "\n   Stack trace: [[[.................\n\n" + trace(¢) + "\n   END stack trace: .................]]]\n-----this is all I know.";
   }
 
   static Throwable stackCapture() {
     return new AssertionError();
   }
 
-  static @NotNull String trace() {
+  @NotNull static String trace() {
     return trace(stackCapture());
   }
 
-  static @NotNull String trace(final Throwable ¢) {
+  @NotNull static String trace(final Throwable ¢) {
     final ByteArrayOutputStream $ = new ByteArrayOutputStream();
     ¢.printStackTrace(new PrintStream($));
     return new String($.toByteArray(), StandardCharsets.UTF_8);
   }
 
-  static @NotNull String dump() {
+  @NotNull static String dump() {
     return dump("");
   }
 
-  static @NotNull String dump(final @NotNull String specfically) {
+  @NotNull static String dump(final @NotNull String specfically) {
     return "\n FAULT: this should not have happened!" + specfically + "\n-----To help you fix the code, here is some info";
   }
 
@@ -47,11 +44,11 @@ public interface fault {
     return false;
   }
 
-  static @NotNull String specifically(final @NotNull String explanation, final Object... os) {
+  @NotNull static String specifically(final @NotNull String explanation, final Object... os) {
     return dump("\n " + explanation) + Stream.of(os).map(λ -> dump(λ.getClass().getSimpleName(), λ)).reduce((x, y) -> x + y).get() + done();
   }
 
-  static @NotNull String dump(final @NotNull String name, final Object value) {
+  @NotNull static String dump(final @NotNull String name, final Object value) {
     return "\n " + name + "=[" + value + "]";
   }
 
