@@ -88,31 +88,6 @@ public interface system {
     ;
   }
 
-  @SuppressWarnings("boxing") static boolean isBalanced(final @NotNull String s) {
-    final Stack<Character> $ = new Stack<>();
-    for (final char ¢ : s.toCharArray())
-      switch (¢) {
-        case '(':
-        case '[':
-        case '{':
-          $.push(¢);
-          continue;
-        case ')':
-          if ($.isEmpty() || $.pop() != '(')
-            return false;
-          continue;
-        case ']':
-          if ($.isEmpty() || $.pop() != '[')
-            return false;
-          continue;
-        case '}':
-          if ($.isEmpty() || $.pop() != '{')
-            return false;
-          continue;
-      }
-    return $.isEmpty();
-  }
-
   /** @return if called from a (potentially static) method m in class A, gives the
    *         full name of the class B != A, such that a method in B, made a
    *         sequence of calls through methods in A, which ended in the call to

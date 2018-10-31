@@ -1,8 +1,6 @@
 package il.org.spartan.utils;
 
 import java.io.*;
-import java.nio.charset.*;
-import java.nio.file.*;
 import java.util.*;
 
 import org.jetbrains.annotations.*;
@@ -18,26 +16,11 @@ import org.jetbrains.annotations.*;
     for (final String s : paths) {
       if (s == null)
         continue;
-      final @Nullable File f = new File(s);
+      final File f = new File(s);
       if (f.exists() && f.isDirectory())
         iterateFiles(new File(s), $);
     }
     return $;
-  }
-
-  @NotNull public static String read(final @NotNull File f) throws IOException {
-    final @NotNull String ls = System.getProperty("line.separator");
-    System.err.println(ls.compareTo("\n"));
-    final @NotNull StringBuilder $ = new StringBuilder();
-    try (@NotNull BufferedReader reader = new BufferedReader(new FileReader(f))) {
-      for (String line = reader.readLine(); line != null; line = reader.readLine())
-        $.append(line).append(ls);
-    }
-    return $ + "";
-  }
-
-  @NotNull public static String readFromFile(final @NotNull String fileName) throws IOException {
-    return read(Paths.get(fileName));
   }
 
   /** @param fileName where to write
@@ -58,9 +41,5 @@ import org.jetbrains.annotations.*;
         if (¢.isFile() && ¢.getName().endsWith(".java"))
           files.add(¢.getAbsolutePath());
       }
-  }
-
-  @NotNull private static String read(final @NotNull Path ¢) throws IOException {
-    return new String(Files.readAllBytes(¢), StandardCharsets.UTF_8);
   }
 }

@@ -344,4 +344,29 @@ public enum string {
   @NotNull private static String toup(final int ¢) {
     return ¢ == 0 ? "" : toup(¢ / 26) + (char) (¢ % 26 + 'A');
   }
+
+  @SuppressWarnings("boxing") public static boolean isBalanced(final @NotNull String s) {
+    final Stack<Character> $ = new Stack<>();
+    for (final char ¢ : s.toCharArray())
+      switch (¢) {
+        case '(':
+        case '[':
+        case '{':
+          $.push(¢);
+          continue;
+        case ')':
+          if ($.isEmpty() || $.pop() != '(')
+            return false;
+          continue;
+        case ']':
+          if ($.isEmpty() || $.pop() != '[')
+            return false;
+          continue;
+        case '}':
+          if ($.isEmpty() || $.pop() != '{')
+            return false;
+          continue;
+      }
+    return $.isEmpty();
+  }
 }
