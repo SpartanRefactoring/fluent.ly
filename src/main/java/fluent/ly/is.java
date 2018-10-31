@@ -41,7 +41,7 @@ public interface is {
     return Stream.of(ts).anyMatch(λ -> is.equal(λ, candidate));
   }
 
-  public static <T> boolean equal(@Nullable T t1, @Nullable T t2) {
+  static <T> boolean equal(@Nullable T t1, @Nullable T t2) {
     if (t1 == null)
       return t2 == null;
     if (t1 == t2)

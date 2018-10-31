@@ -54,7 +54,7 @@ public enum file {
     return new String(Files.readAllBytes(¢), StandardCharsets.UTF_8);
   }
 
-  @SuppressWarnings("null") @NotNull public static String read(final @NotNull String fileName) throws IOException {
+  @NotNull @SuppressWarnings("null") public static String read(final @NotNull String fileName) throws IOException {
     return read(Paths.get(fileName));
   }
 }
