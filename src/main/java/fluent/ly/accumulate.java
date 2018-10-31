@@ -64,7 +64,7 @@ public interface accumulate<T, C extends Collection<T>> {
 
   /** @param tss JD
    * @return <code><b>this</b></code> */
-  @NotNull default accumulate<T, C> addAll( final @NotNull Iterable<? extends T>... tss) {
+  @NotNull default accumulate<T, C> addAll( @SuppressWarnings("unchecked") final @NotNull Iterable<? extends T>... tss) {
     for (final Iterable<? extends T> ¢ : tss)
       addAll(¢);
     return this;

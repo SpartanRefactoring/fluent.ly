@@ -16,7 +16,7 @@ import il.org.spartan.*;
  * aggregate type to another.
  * @author Yossi Gil
  * @since Jul 8, 2014 */
-public enum as {
+@SuppressWarnings("null") public enum as {
   ;
   /** Convert an array of {@link Integer}s into an {@link Iterable}. For example,
    * to print the first Fibonacci numbers multiplied by the first prime numbers,
@@ -126,8 +126,8 @@ public enum as {
    * @param   <T> type of items to be converted
    * @param $ what to convert
    * @return parameter, converted to the {@link List} of the given type */
-  public static <T> @NotNull List<T> list(final @NotNull Iterable<? extends T> $) {
-    return accumulate.to(new ArrayList<T>()).add($).elements();
+  public static <T> @NotNull List<T> list(final @Nullable Iterable<? extends T> $) {
+    return $ == null ? an.empty.list() : accumulate.to(new ArrayList<T>()).add($).elements();
   }
 
   /** Converts a sequence of objects of some common type T into a {@link List} of
@@ -135,7 +135,7 @@ public enum as {
    * @param   <T> type of objects to be converted
    * @param $ what to covert
    * @return result parameter, converted into a {@link List} */
-  @SafeVarargs public static <T> @NotNull List<@Nullable T> list(final T... $) {
+  @SafeVarargs public static <T> @NotNull List<T> list(final T... $) {
     return accumulate.to(new ArrayList<@Nullable T>()).add($).elements();
   }
 

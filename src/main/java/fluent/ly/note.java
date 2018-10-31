@@ -29,8 +29,8 @@ public interface note {
     }
   }
 
-  String FILE_SEPARATOR = "\n**\n";
-  String FILE_SUB_SEPARATOR = "\n********\n";
+  @NotNull String FILE_SEPARATOR = "\n**\n";
+  @NotNull String FILE_SUB_SEPARATOR = "\n********\n";
   /** @formatter:off */
   Stack<Level> levels = new Stack<>();
 

@@ -118,7 +118,7 @@ public class dump {
         }
         if ($ instanceof Object[])
           out.out(name, (Object[]) $);
-        out.out(name, !($ instanceof Collection) ? $ : (Collection<Object>) $);
+        out.out(name, !($ instanceof Collection) ? $ : (Collection<?>) $);
       } catch (final Throwable ¢) {
         // For some reason, a reflection call to method
         // getContent() in URL objects throws this exception.

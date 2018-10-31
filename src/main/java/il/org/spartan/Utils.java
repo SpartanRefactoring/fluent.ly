@@ -157,7 +157,7 @@ import il.org.spartan.Utils.FoundHandleForT.*;
    * @param i  position of element to be deleted
    * @return newly created array */
   @NotNull static <T> T[] delete(final @NotNull T[] ts, final int i) {
-    @SuppressWarnings("null") final T @NotNull [] $ = Arrays.copyOf(ts, ts.length - 1);
+    final T @NotNull [] $ = Arrays.copyOf(ts, ts.length - 1);
     System.arraycopy(ts, i + 1, $, i, $.length - i);
     return $;
   }

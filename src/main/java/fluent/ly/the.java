@@ -45,7 +45,7 @@ public interface the {
     return $ < 1 ? null : ts.get($ - 1);
   }
 
-  static <@Nullable T> List<T> tailOf(final @Nullable List<T> ¢) {
+  static <@Nullable T> @NotNull List<T> tailOf(final @Nullable List<T> ¢) {
     final @NotNull List<T> $ = as.list(¢);
     $.remove(the.headOf($));
     return $;

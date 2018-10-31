@@ -29,7 +29,7 @@ public class Range {
 
   /** Instantiates using values found in another intance
    * @param other other */
-  public Range( final @NotNull Range other) {
+  public Range(final @NotNull Range other) {
     this(other.from, other.to);
   }
 
@@ -37,10 +37,12 @@ public class Range {
     return ¢ instanceof Range && from == ((Range) ¢).from && to == ((Range) ¢).to;
   }
 
-  @Nullable public Range findIncludedIn(final @NotNull Iterable<? extends Range> ¢) {
-    for (final @NotNull Range $ : ¢)
-      if (includedIn($))
-        return $;
+  @Nullable public Range findIncludedIn(final @Nullable Iterable<? extends Range> ¢) {
+    if (¢ != null)
+      for (final @Nullable Range $ : ¢)
+        if ($ != null)
+          if (includedIn($))
+            return $;
     return null;
   }
 
@@ -52,7 +54,7 @@ public class Range {
   /** @param ¢ arbitrary
    * @return <code><b>true</b></code> <i>iff</i> <code><b>this</b></code> is
    *         included in the parameter. */
-  public boolean includedIn( final @NotNull Range ¢) {
+  public boolean includedIn(final @NotNull Range ¢) {
     return from >= ¢.from && to <= ¢.to;
   }
 
@@ -68,15 +70,15 @@ public class Range {
    * @param ¢ arbitrary
    * @return <code><b>true</b></code> <i>iff</i> <code><b>this</b></code> overlaps
    *         the parameter. */
-  public boolean overlapping( final @NotNull Range ¢) {
+  public boolean overlapping(final @NotNull Range ¢) {
     return from >= ¢.from || to <= ¢.to;
   }
 
   /** Prune all ranges in a given list that include this object.
    * @param rs JD */
-  public void pruneIncluders( final @NotNull List<Range> rs) {
+  public void pruneIncluders(final @NotNull List<Range> rs) {
     for (;;) {
-      final @Nullable  Range r = findIncludedIn(rs);
+      final @Nullable Range r = findIncludedIn(rs);
       if (r == null)
         return;
       rs.remove(r);

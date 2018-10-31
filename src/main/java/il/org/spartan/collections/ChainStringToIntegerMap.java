@@ -20,7 +20,7 @@ public class ChainStringToIntegerMap {
     return inner.entrySet();
   }
 
-  public int get(final Object key) {
+  public int get(final String key) {
     return inner.get(key).intValue();
   }
 

@@ -303,7 +303,7 @@ public enum string {
   @NotNull public static List<String> toLines(final @NotNull String s) throws IOException {
     final @NotNull List<String> $ = new ArrayList<>();
     for (final @NotNull BufferedReader br = new BufferedReader(new StringReader(s));;) {
-      final @NotNull String line = br.readLine();
+      final @Nullable String line = br.readLine();
       if (line == null)
         return $;
       $.add(line);

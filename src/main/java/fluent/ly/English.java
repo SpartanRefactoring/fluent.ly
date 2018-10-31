@@ -49,7 +49,7 @@ public interface English {
     return indefinite(English.name(¢));
   }
 
-  static String indefinite(final @NotNull String className) {
+  @NotNull static String indefinite(final @NotNull String className) {
     final @NotNull String $ = cCamelCase.components(className)[0];
     final char openingLetter = the.characterOf($);
     return isAcronym($) ? indefinite(pronounce(openingLetter)) : //
@@ -63,21 +63,21 @@ public interface English {
   /** Constructs linguistic list of items: [i1, i2, i3] --> "i1, i2 and i3"
    * @param ¢ list of items
    * @return a linguistic list of the items */
-  static String list(final List<String> ¢) {
+  @NotNull static String list(final List<String> ¢) {
     return ¢ == null || ¢.isEmpty() ? "nothing"
         : ¢.size() == 1 ? the.headOf(¢) : separate.these(¢.subList(0, ¢.size() - 1)).by(SEPARATOR) + " and " + the.lastOf(¢);
   }
 
-  static String lowerFirstLetter(final @NotNull String input) {
+  @NotNull static String lowerFirstLetter(final @NotNull String input) {
     return input.isEmpty() ? "genererated" + new Random().nextInt(100) : input.substring(0, 1).toLowerCase() + input.substring(1);
   }
 
-  static String name(final Class<?> ¢) {
+  @NotNull static String name(final Class<?> ¢) {
     return ¢.getEnclosingClass() == null ? English.selfName(¢) : English.selfName(¢) + "." + name(¢.getEnclosingClass());
   }
 
-  static String name(final Object ¢) {
-    return English.name(¢.getClass());
+  @NotNull static String name(final @Nullable Object ¢) {
+    return ¢ == null ? English.name("null") : English.name(¢.getClass());
   }
 
   /** Get the plural form of the word if needed, by adding an 'es' to its end.
@@ -192,8 +192,9 @@ public interface English {
   }
 
   static String selfName(final Class<?> ¢) {
-    return ¢.isAnonymousClass() ? "{}"
-        : ¢.isAnnotation() ? "@" + ¢.getSimpleName() : !¢.getSimpleName().isEmpty() ? ¢.getSimpleName() : ¢.getCanonicalName();
+    return ¢ == null ? English.name(¢)
+        : ¢.isAnonymousClass() ? "{}"
+            : ¢.isAnnotation() ? "@" + ¢.getSimpleName() : !¢.getSimpleName().isEmpty() ? ¢.getSimpleName() : ¢.getCanonicalName();
   }
 
   static String time(final long $) {

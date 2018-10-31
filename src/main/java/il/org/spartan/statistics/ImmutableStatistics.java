@@ -29,7 +29,7 @@ public abstract class ImmutableStatistics extends Statistics implements java.io.
 
   /** Generate a copy of the set of all recorded values
    * @return an array containing all recorded values */
-  public final double @NotNull [] all() {
+  @SuppressWarnings("null") public final double @NotNull [] all() {
     return Arrays.copyOf(values, n);
   }
 

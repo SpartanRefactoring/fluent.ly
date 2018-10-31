@@ -194,7 +194,7 @@ import il.org.spartan.*;
   }
 
   @NotNull public static Float[] it(final float fs[]) {
-    @SuppressWarnings("null") final @NotNull Float @NotNull [] $ = new Float @NotNull [fs.length];
+    final @NotNull Float @NotNull [] $ = new Float @NotNull [fs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = it(fs[¢]);
     return $;
@@ -218,7 +218,7 @@ import il.org.spartan.*;
   }
 
   @NotNull public static Long @NotNull [] it(final long ls[]) {
-    @SuppressWarnings("null") final @NotNull Long @NotNull [] $ = new Long[ls.length];
+    final @NotNull Long @NotNull [] $ = new Long[ls.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = it(ls[¢]);
     return $;
@@ -228,8 +228,8 @@ import il.org.spartan.*;
     return cantBeNull(Short.valueOf(¢));
   }
 
-  @NotNull public static Short[] it(final short ss[]) {
-    @SuppressWarnings("null") final @NotNull Short @NotNull [] $ = new Short @NotNull [ss.length];
+  @NotNull public static Short @NotNull [] it(final short ss[]) {
+    final @NotNull Short @NotNull [] $ = new Short @NotNull [ss.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = it(ss[¢]);
     return $;
