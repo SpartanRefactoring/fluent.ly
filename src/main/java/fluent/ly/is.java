@@ -57,4 +57,13 @@ public interface is {
   @SafeVarargs static <T> boolean out(final T candidate, final T... ts) {
     return !in(candidate, ts);
   }
+
+  /** Determine whether an {@link Object} is the last in a {@link List} .
+   * @param o  JD
+   * @param os JD
+   * @return <code><b>true</b></code> <i>iff</i> the {@link Object} parameter is
+   *         the same as the last element of the {@link List} parameter */
+  static boolean lastIn(final Object o, final List<?> os) {
+    return the.last(os) == o;
+  }
 }

@@ -14,6 +14,7 @@ import org.junit.*;
 
 import fluent.ly.*;
 import il.org.spartan.Utils.FoundHandleForT.*;
+import il.org.spartan.utils.*;
 
 /** An empty <code><b>interface</b></code> with a variety of <code>public
  * static</code> utility functions of reasonably wide use.
@@ -51,6 +52,7 @@ import il.org.spartan.Utils.FoundHandleForT.*;
       return $;
     }
   }
+
   /** @author Yossi Gil <Yossi.Gil@GMail.COM>
    * @param <T> JD
    * @since 2016 */
@@ -179,25 +181,24 @@ import il.org.spartan.Utils.FoundHandleForT.*;
 
     @Test public void swapDegenerate() {
       final @NotNull String @NotNull [] ss = as.array("A", "B", "C", "D");
-      swap(ss, 1, 1);
+      array.swap(ss, 1, 1);
       assertArrayEquals(as.array("A", "B", "C", "D"), ss);
     }
 
     @Test public void swapTypical() {
       final @NotNull String @NotNull [] ss = as.array("A", "B", "C", "D");
-      swap(ss, 1, 2);
+      array.swap(ss, 1, 2);
       assertArrayEquals(as.array("A", "C", "B", "D"), ss);
     }
 
     @Test public void swapTypicalCase() {
       final Integer @NotNull [] $ = intToIntegers(29, 1, 60);
-      swap($, 0, 1);
+      array.swap($, 0, 1);
       assertArrayEquals(intToIntegers(1, 29, 60), $);
     }
   }
 
   String QUOTE = "'";
-
   String WHITES = "(?m)\\s+";
 
   @NotNull static <T, C extends Collection<T>> C add(final @NotNull C $, final Iterable<? extends T> ts) {
@@ -233,18 +234,6 @@ import il.org.spartan.Utils.FoundHandleForT.*;
       for (final T ¢ : ts)
         if (¢ != null)
           add($, ¢);
-    return $;
-  }
-
-  /** Appends an element to an array, by reallocating an array whose size is
-   * greater by one and placing the element at the last position.
-   * @param    <T> JD
-   * @param ts an arbitrary array
-   * @param t  an element
-   * @return newly created array */
-  @NotNull static <T> T[] append(final @NotNull T[] ts, final T t) {
-    final T @NotNull [] $ = Arrays.copyOf(ts, 1 + ts.length);
-    $[ts.length] = t;
     return $;
   }
 
@@ -327,18 +316,6 @@ import il.org.spartan.Utils.FoundHandleForT.*;
     return false;
   }
 
-  /** Deletes a specified element from an array, by reallocating an array whose
-   * size is smaller by one and shifting the other elements down.
-   * @param    <T> JD
-   * @param ts an arbitrary array
-   * @param i  position of element to be deleted
-   * @return newly created array */
-  @NotNull static <T> T[] delete(final @NotNull T[] ts, final int i) {
-    final T @NotNull [] $ = Arrays.copyOf(ts, ts.length - 1);
-    System.arraycopy(ts, i + 1, $, i, $.length - i);
-    return $;
-  }
-
   /** @param ¢ JD */
   static FoundHandleForInt found(final int ¢) {
     return new FoundHandleForInt(¢);
@@ -386,15 +363,6 @@ import il.org.spartan.Utils.FoundHandleForT.*;
     return false;
   }
 
-  /** Determine whether an {@link Object} is the last in a {@link List} .
-   * @param o  JD
-   * @param os JD
-   * @return <code><b>true</b></code> <i>iff</i> the {@link Object} parameter is
-   *         the same as the last element of the {@link List} parameter */
-  static boolean lastIn(final Object o, final List<?> os) {
-    return the.last(os) == o;
-  }
-
   /** Aborts in case a given value is <code><b>null</b></code>.
    * <p>
    * This function is the lesser used dual of {@link #cantBeNull(Object)} .
@@ -405,12 +373,6 @@ import il.org.spartan.Utils.FoundHandleForT.*;
   static <@Nullable T> @Nullable Void mustBeNull(final @Nullable T $) {
     assert $ == null;
     return null;
-  }
-
-  /** @param ¢ JD
-   * @return name of the parameter, which must not be <code><b>null</b></code> */
-  static String name(final File ¢) {
-    return cantBeNull(¢.getName());
   }
 
   /** @param <T> JD
@@ -493,14 +455,6 @@ import il.org.spartan.Utils.FoundHandleForT.*;
     return cantBeNull(¢.replaceAll("\\s+", ""));
   }
 
-  /** Sorts an array
-   * @param ¢ what to sort
-   * @return given array with elements in sorted order */
-  static int @NotNull [] sort(final int @NotNull [] ¢) {
-    Arrays.sort(¢);
-    return ¢;
-  }
-
   /** Computes the square of a given double
    * @param ¢ some number
    * @return square of the parameter */
@@ -514,7 +468,7 @@ import il.org.spartan.Utils.FoundHandleForT.*;
    * @return <code><b>true</b></code> <em>iff</em>the file name ends with any one
    *         of the supplied extensions. */
   static boolean suffixedBy(final File f, final Iterable<String> suffixes) {
-    return suffixedBy(name(f), suffixes);
+    return suffixedBy(file.name(f), suffixes);
   }
 
   /** Determine whether a file name ends with any one of the supplied extensions.
@@ -523,7 +477,7 @@ import il.org.spartan.Utils.FoundHandleForT.*;
    * @return <code><b>true</b></code> <em>iff</em>the file name ends with any one
    *         of the supplied extensions. */
   static boolean suffixedBy(final File f, final @NotNull String @NotNull... suffixes) {
-    return suffixedBy(name(f), suffixes);
+    return suffixedBy(file.name(f), suffixes);
   }
 
   /** Determine whether a string ends with any one of the supplied suffixes.
@@ -548,16 +502,5 @@ import il.org.spartan.Utils.FoundHandleForT.*;
       if (s.endsWith(end))
         return true;
     return false;
-  }
-
-  /** Swap the contents of two cells in a given array
-   * @param    <T> type of array elements
-   * @param ts the given array
-   * @param i  index of one cell
-   * @param j  index of another cell */
-  static <T> void swap(final T[] ts, final int i, final int j) {
-    final T t = ts[i];
-    ts[i] = ts[j];
-    ts[j] = t;
   }
 }

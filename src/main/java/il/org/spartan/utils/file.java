@@ -7,6 +7,7 @@ import java.nio.file.*;
 import org.jetbrains.annotations.*;
 
 import fluent.ly.*;
+import il.org.spartan.*;
 
 /** File utils
  * @author Ori Marcovitch
@@ -56,5 +57,11 @@ public enum file {
 
   @NotNull @SuppressWarnings("null") public static String read(final @NotNull String fileName) throws IOException {
     return read(Paths.get(fileName));
+  }
+
+  /** @param ¢ JD
+   * @return name of the parameter, which must not be <code><b>null</b></code> */
+  public static String name(final File ¢) {
+    return Utils.cantBeNull(¢.getName());
   }
 }
