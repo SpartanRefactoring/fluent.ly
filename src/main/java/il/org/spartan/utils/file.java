@@ -15,11 +15,10 @@ public enum file {
   ;
   private static void delete(final @Nullable String path) {
     if (path != null && file.exists(path))
-        new File(path).delete();
+      new File(path).delete();
   }
 
   private static void rename(final @NotNull String from, final @NotNull String to) {
-    
     file.delete(to);
     final Path source = Paths.get(from);
     try {
