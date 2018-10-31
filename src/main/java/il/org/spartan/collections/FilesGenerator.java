@@ -39,14 +39,14 @@ import fluent.ly.*;
  * @since 2015-09-23. */
 public class FilesGenerator {
   /** @param ____ ignored */
-  public static void main(final String[] ____) {
+  public static void main(final @NotNull String[] ____) {
     for (final File ¢ : new FilesGenerator(".java").from("."))
       System.out.println(¢);
   }
 
   /** @param directory should be a directory, but we still need to account for
    *                  weird creatures such as "System Volume Information" */
-  @Nullable static Iterator<File> directoryIterator(final @Nullable  File directory) {
+  static @Nullable Iterator<File> directoryIterator(final @Nullable  File directory) {
     if (directory == null || !directory.isDirectory() || directory.list() == null)
       return null;
      final @NotNull Iterator<String> $ = as.list(directory.list()).iterator();
@@ -79,7 +79,7 @@ public class FilesGenerator {
   }
 
   /** Which extensions we search for */
-  final Iterable<String> extensions;
+  final @NotNull Iterable<String> extensions;
 
   /** Instantiates this class. This instantiation makes the first step in the call
    * chain that makes the fluent API. The second (and last) such step is provided
@@ -92,7 +92,7 @@ public class FilesGenerator {
    *                   the iterator yields all files found in the scanned
    *                   locations.
    * @see FilesGenerator#from */
-  public FilesGenerator(final String... extensions) {
+  public FilesGenerator(final @NotNull String @NotNull... extensions) {
     this.extensions = as.list(extensions);
   }
 
@@ -110,7 +110,7 @@ public class FilesGenerator {
    * @return an instance of an internal (yet <code><b>public</b></code>)
    *         <code><b>class</b></code> which <code><b>implements</b></code> the
    *         {@link Iterable} <code><b>interface</b></code> */
-  public From from(final String... from) {
+  public From from(final @NotNull String... from) {
     return from(as.list(from));
   }
 

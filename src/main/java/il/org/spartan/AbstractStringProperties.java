@@ -41,7 +41,7 @@ public abstract class AbstractStringProperties {
 
   /** A total inspector
    * @return the content of the CSV line as per all recorded values. */
-  public final String line() {
+  public final @NotNull String line() {
     return makeLine(values());
   }
 
@@ -59,7 +59,7 @@ public abstract class AbstractStringProperties {
     private final @NotNull List<String> keys = new ArrayList<>();
     private final@NotNull List<String> values = new ArrayList<>();
 
-    @Override public @Nullable String get(final String key) {
+    @Override public @Nullable String get(final @NotNull String key) {
       final int $ = keys.lastIndexOf(key);
       return $ < 0 ? null : values.get($);
     }
@@ -68,7 +68,7 @@ public abstract class AbstractStringProperties {
       return keys;
     }
 
-    @Override public @NotNull ListProperties put(final String key, final String value) {
+    @Override public @NotNull ListProperties put(final @NotNull String key, final @NotNull String value) {
       keys.add(key);
       values.add(value);
       return this;
@@ -90,8 +90,8 @@ public abstract class AbstractStringProperties {
     CSV {
       /** Wraps values in a CSV line. Occurrences of this character in field content
        * are escaped by typing it twice. */
-      static final String QUOTE = '"' + "";
-      static final String DELIMETER = ",";
+      static final @NotNull String QUOTE = '"' + "";
+      static final @NotNull String DELIMETER = ",";
 
       @Override public @NotNull String headerEnd() {
         return "";
@@ -149,7 +149,7 @@ public abstract class AbstractStringProperties {
         return "";
       }
 
-      @Override String makeField(final String ¢) {
+      @Override String makeField(final @NotNull String ¢) {
         return String.format("%" + WIDTH + "s", ¢);
       }
     },

@@ -10,13 +10,13 @@ import fluent.ly.*;
 public abstract class Accumulator {
   protected int value;
   public int weight = 1;
-  protected final String name;
+  protected final @NotNull String name;
 
   public Accumulator() {
     this("");
   }
 
-  public Accumulator(final String name) {
+  public Accumulator(final @NotNull String name) {
     this.name = name;
   }
 
@@ -28,7 +28,7 @@ public abstract class Accumulator {
     value += weight * transform(v);
   }
 
-  public final void add(final String ¢) {
+  public final void add(final @NotNull String ¢) {
     add(as.bit(¢));
   }
 
@@ -58,7 +58,7 @@ public abstract class Accumulator {
     public Counter() {
     }
 
-    public Counter(final String name) {
+    public Counter(final @NotNull String name) {
       super(name);
     }
 
@@ -111,7 +111,7 @@ public abstract class Accumulator {
 
     /** Instantiate {@link Last}.
      * @param name JD */
-    public Last(final String name) {
+    public Last(final @NotNull String name) {
       super(name);
     }
 
@@ -165,7 +165,7 @@ public abstract class Accumulator {
 
     /** Instantiate {@link Summer}.
      * @param name name of this instance */
-    public Summer(final String name) {
+    public Summer(final @NotNull String name) {
       super(name);
     }
 

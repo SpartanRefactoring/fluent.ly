@@ -42,7 +42,7 @@ public interface idiomatic {
    * @condition the condition to use prior to taking this value;
    * @return the parameter if condition holds, otherwise, null
    *         <code>incase</code> */
-  @Nullable static <@Nullable T> @Nullable T incase(final boolean condition, final T t) {
+  static @Nullable <@Nullable T> @Nullable T incase(final boolean condition, final T t) {
     return condition ? t : null;
   }
 
@@ -83,7 +83,7 @@ public interface idiomatic {
   }
 
   /** @param condition JD */
-  @Nullable static Trigger unless(final boolean condition) {
+  static  Trigger unless(final boolean condition) {
     return when(!condition);
   }
 
@@ -92,12 +92,12 @@ public interface idiomatic {
    * @param t         JD
    * @return non-boolean parameter, in case the boolean parameter is true, or
    *         null, otherwise */
-  @Nullable static <T> T unless(final boolean condition, final T t) {
+  static @Nullable <T> T unless(final boolean condition, final T t) {
     return incase(!condition, t);
   }
 
   /** @param condition JD */
-  @Nullable static Trigger when(final boolean condition) {
+  static @Nullable Trigger when(final boolean condition) {
     return condition ? eval : ignore;
   }
 

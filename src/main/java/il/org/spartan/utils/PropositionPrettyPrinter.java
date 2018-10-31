@@ -2,6 +2,8 @@ package il.org.spartan.utils;
 
 import java.util.function.*;
 
+import org.jetbrains.annotations.*;
+
 import fluent.ly.*;
 import il.org.spartan.utils.Proposition.*;
 
@@ -113,7 +115,7 @@ public class PropositionPrettyPrinter {
     }
 
     @Override public void in(final BooleanSupplier ¢) {
-      final StringBuilder sb = new StringBuilder(aligner + "");
+      final @NotNull StringBuilder sb = new StringBuilder(aligner + "");
       if (¢ instanceof Some || ¢ instanceof Not)
         sb.append("(" + English.selfName(¢.getClass()) + ")");
       if (!(¢ + "").contains(¢.getClass().getName()))
@@ -145,7 +147,7 @@ public class PropositionPrettyPrinter {
     traversal.topDown(¢);
   }
 
-  public static void main(final String[] args) {
+  public static void main(final  String[] args) {
     final PropositionPrettyPrinter p = new PropositionPrettyPrinter();
     // example 1
     p.present( //

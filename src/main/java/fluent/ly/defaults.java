@@ -7,7 +7,7 @@ import org.jetbrains.annotations.*;
  * Writing
  *
  * <pre>
- * final String guess = Defaults.to(answer,&quot;A&quot;)
+ * final @NotNull String guess = Defaults.to(answer,&quot;A&quot;)
  * </pre>
  *
  * will assign the {@link String} <code>"A"</code> to variable
@@ -45,7 +45,7 @@ public enum defaults {
    *                     <code><b>null</b></code>
    * @return <code>v</code> if it is not <code><b>null</b></code>, otherwise
    *         <code>defaultValue</code> */
-  public @Nullable static <T> T to(final @Nullable  T v, final T defaultValue) {
+  public static @Nullable <T> T to(final @Nullable  T v, final T defaultValue) {
     return v != null ? v : defaultValue;
   }
 }

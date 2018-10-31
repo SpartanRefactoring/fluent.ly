@@ -140,7 +140,7 @@ public enum as {
    * @param   <T> type of objects to be converted
    * @param $ what to covert
    * @return result parameter, converted into a {@link List} */
-  @SafeVarargs public static <T> @NotNull List<@Nullable T> list(final @Nullable T... $) {
+  @SafeVarargs public static <T> @NotNull List<@Nullable T> list(final  T... $) {
     return accumulate.to(new ArrayList<@Nullable T>()).add($).elements();
   }
 
@@ -172,7 +172,7 @@ public enum as {
    * @param os what to covert
    * @return an array of the parameter values, each converted to i
    *         {@link String} */
-  public static String[] strings( final @NotNull Iterable<? extends @Nullable Object> os) {
+  public static String @NotNull [] strings( final @NotNull Iterable<? extends @Nullable Object> os) {
      final @NotNull List<@NotNull String> $ = new ArrayList<>();
     for (final @Nullable Object ¢ : os)
       if (¢ != null)

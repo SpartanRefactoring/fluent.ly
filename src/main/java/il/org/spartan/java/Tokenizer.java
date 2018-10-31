@@ -18,7 +18,7 @@ public class Tokenizer {
   }
 
   @NotNull private final RawTokenizer inner;
-  private final String streamName;
+  private final @NotNull String streamName;
   private final Reader reader;
 
   /** Instantiate {@link Tokenizer}.
@@ -35,11 +35,11 @@ public class Tokenizer {
   /** Instantiate {@link Tokenizer}.
    * @param streamName read input from this file
    * @throws FileNotFoundException */
-  public Tokenizer(final String streamName) throws FileNotFoundException {
+  public Tokenizer(final @NotNull String streamName) throws FileNotFoundException {
     this(streamName, reader(streamName));
   }
 
-  public Tokenizer(final String streamName, final Reader reader) {
+  public Tokenizer(final @NotNull String streamName, final Reader reader) {
     inner = new RawTokenizer(this.reader = reader);
     this.streamName = streamName;
   }

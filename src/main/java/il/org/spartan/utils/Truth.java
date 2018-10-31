@@ -2,6 +2,10 @@ package il.org.spartan.utils;
 
 import java.util.function.*;
 
+import org.jetbrains.annotations.*;
+
+import fluent.ly.*;
+
 public enum Truth {
   T("true"), //
   F("false"), //
@@ -12,13 +16,17 @@ public enum Truth {
   public static Truth truthOf(final BooleanSupplier $) {
     try {
       return $.getAsBoolean() ? T : F;
-    } catch (final NullPointerException __) {
+    } catch (final NullPointerException e) {
+      forget.it(e);
       return N;
-    } catch (final AssertionError __) {
+    } catch (final AssertionError e) {
+      forget.it(e);
       return X;
-    } catch (final RuntimeException __) {
+    } catch (final RuntimeException e) {
+      forget.it(e);
       return R;
-    } catch (final Throwable __) {
+    } catch (final Throwable e) {
+      forget.it(e);
       return Ħ;
     }
   }
@@ -41,9 +49,9 @@ public enum Truth {
     return truthOf(¢) + "";
   }
 
-  public String description;
+  public final @NotNull String description;
 
-  Truth(final String description) {
+  Truth(final @NotNull String description) {
     this.description = description;
   }
 

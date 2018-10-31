@@ -20,10 +20,10 @@ public class Pair<First, Second> {
     return a == null ? o == null : a.equals(o);
   }
 
-  public final First first;
-  public final Second second;
+  public final  First first;
+  public final  Second second;
 
-  public Pair(final First first, final Second second) {
+  public Pair(final @NotNull First first, final @NotNull Second second) {
     this.first = first;
     this.second = second;
   }

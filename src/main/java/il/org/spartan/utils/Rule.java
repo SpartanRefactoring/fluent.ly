@@ -67,7 +67,7 @@ public interface Rule<T, R> extends Function<T, R>, Recursive<Rule<T, R>> {
    * @return a lambda of type {@link OnApplicator}
    * @author Yossi Gil
    * @since 2017-03-10 */
-  static <@Nullable T, R> @Nullable OnApplicator<T, R> on(final Predicate<T> p) {
+  static <@Nullable T, @Nullable R> @Nullable OnApplicator<T, R> on(final Predicate<T> p) {
     return c -> new Rule.Stateful<T, R>() {
       @Override public R fire() {
         c.accept(current());
@@ -203,7 +203,7 @@ public interface Rule<T, R> extends Function<T, R>, Recursive<Rule<T, R>> {
       super(inner);
     }
 
-    @Override public Void before(final String key, final Object... arguments) {
+    @Override public Void before(final @NotNull String key, final Object... arguments) {
       count.putIfAbsent(key, Integer.valueOf(0));
       count.put(key, box.it(count.get(key).intValue() + 1));
       return super.before(key, arguments);
@@ -220,7 +220,7 @@ public interface Rule<T, R> extends Function<T, R>, Recursive<Rule<T, R>> {
       this.inner = inner;
     }
 
-    @SuppressWarnings({ "static-method", "unused" }) public Void before(final String key, final Object... arguments) {
+    @SuppressWarnings({ "static-method", "unused" }) public Void before(final @NotNull String key, final Object... arguments) {
       return null;
     }
 
@@ -274,8 +274,8 @@ public interface Rule<T, R> extends Function<T, R>, Recursive<Rule<T, R>> {
    * @param <R> {@see Rule}
    * @author Yossi Gil
    * @since 2017-03-13 */
-  abstract class Stateful<T, R> implements Rule<T, R> {
-    public @Nullable T current;
+  abstract class Stateful<@Nullable T, R> implements Rule<T, R> {
+    public  T current;
 
     @Override public final R apply(final T ¢) {
       if (!ready())
@@ -294,7 +294,7 @@ public interface Rule<T, R> extends Function<T, R>, Recursive<Rule<T, R>> {
       return $;
     }
 
-    private R badTypeState(final String reason, final Object... os) {
+    private R badTypeState(final @NotNull String reason, final Object... os) {
       return note.bug(this, new IllegalStateException(//
           format(//
               "Invalid order of method calls on a %s (dynamic __ %):\n", //

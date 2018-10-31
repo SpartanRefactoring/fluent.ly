@@ -17,7 +17,7 @@ class A {
 public enum ReflectionAnalyzer {
   ;
   /** @param args command line arguments */
-  public static void main(final String[] args) {
+  public static void main(final  String[] args) {
     class LocalClass {
       // Nothing here.
     }

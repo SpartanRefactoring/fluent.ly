@@ -14,7 +14,7 @@ public interface accumulate<T, C extends Collection<T>> {
   /** @param <T> JD
    * @param   <C> JD
    * @param c JD */
-  @Nullable static <T, C extends Collection<T>> accumulate<T, C> to( final @NotNull C c) {
+  static  <T, C extends Collection<T>> @NotNull accumulate<T, C> to( final @NotNull C c) {
     return new accumulate<T, C>() {
       @Override public @NotNull accumulate<T, C> add(final @Nullable T ¢) {
         if (¢ == null)
@@ -44,7 +44,7 @@ public interface accumulate<T, C extends Collection<T>> {
 
   /** @param ts JD
    * @return <code><b>this</b></code> */
-  @NotNull default accumulate<T, C> add( @SuppressWarnings("unchecked") final @Nullable T @Nullable... ts) {
+  @NotNull default accumulate<T, C> add( @SuppressWarnings("unchecked") final  T ... ts) {
     if (ts != null)
       for (final @Nullable  T ¢ : ts)
         if (¢ != null)

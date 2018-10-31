@@ -12,7 +12,7 @@ import org.jetbrains.annotations.*;
 public class once {
   @Nullable private String value;
 
-  public once(final String value) {
+  public once(final @NotNull String value) {
     this.value = defaults.to(value, "");
   }
 

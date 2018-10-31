@@ -3,6 +3,8 @@ package il.org.spartan.tables;
 import java.io.*;
 import java.util.*;
 
+import org.jetbrains.annotations.*;
+
 import an.*;
 import fluent.ly.*;
 import il.org.spartan.statistics.*;
@@ -25,7 +27,7 @@ public class Table extends Row<Table> implements Closeable {
     this(classToNormalizedFileName(c));
   }
 
-  public Table(final String name) {
+  public Table(final @NotNull String name) {
     this(name, TableRenderer.builtin.values());
   }
 
@@ -34,7 +36,7 @@ public class Table extends Row<Table> implements Closeable {
    *             TEX, TXT).
    * @author oran1248
    * @since 2017-04-21 */
-  @SuppressWarnings("resource") public Table(final String name, final TableRenderer... rs) {
+  @SuppressWarnings("resource") public Table(final @NotNull String name, final TableRenderer... rs) {
     this.name = name.toLowerCase();
     as.list(rs).forEach(r -> {
       try {
@@ -46,7 +48,7 @@ public class Table extends Row<Table> implements Closeable {
     });
   }
 
-  @SuppressWarnings("resource") public Table(final String name, final String outputFolder) {
+  @SuppressWarnings("resource") public Table(final @NotNull String name, final @NotNull String outputFolder) {
     this.name = name.toLowerCase();
     path = outputFolder.lastIndexOf('/') == outputFolder.length() ? outputFolder : outputFolder + System.getProperty("file.separator", "/");
     as.list(TableRenderer.builtin.values()).forEach(r -> {
@@ -59,12 +61,12 @@ public class Table extends Row<Table> implements Closeable {
     });
   }
 
-  public Table(final Class<?> c, final String outputFolder) {
+  public Table(final Class<?> c, final @NotNull String outputFolder) {
     this(classToNormalizedFileName(c), outputFolder);
   }
 
   private int length;
-  public final String name;
+  public final @NotNull String name;
   Statistic[] statisics = Statistic.values();
   final Map<String, RealStatistics> stats = new LinkedHashMap<>();
   private final List<RecordWriter> writers = an.empty.list();
@@ -79,11 +81,11 @@ public class Table extends Row<Table> implements Closeable {
   @Override public void close() {
     if (!stats.isEmpty())
       for (final Statistic s : statisics) {
-        for (final String key : keySet()) {
+        for (final @NotNull String key : keySet()) {
           final RealStatistics r = getRealStatistics(key);
           put(key, r == null || r.n() == 0 ? "" : box.it(s.of(r)));
         }
-        final String key = lastEmptyColumn();
+        final @NotNull String key = lastEmptyColumn();
         for (final RecordWriter ¢ : writers) {
           put(key, ¢.renderer.render(s));
           ¢.writeFooter(this);
@@ -94,7 +96,7 @@ public class Table extends Row<Table> implements Closeable {
 
   private String lastEmptyColumn() {
     String $ = null;
-    for (final String key : keySet()) {
+    for (final @NotNull String key : keySet()) {
       final RealStatistics r = getRealStatistics(key);
       if (r != null && r.n() != 0)
         break;
@@ -103,17 +105,17 @@ public class Table extends Row<Table> implements Closeable {
     return $;
   }
 
-  @Override public Table col(final String key, final double value) {
+  @Override public Table col(final @NotNull String key, final double value) {
     getRealStatistics(key).record(value);
     return super.col(key, value);
   }
 
-  @Override public Table col(final String key, final int value) {
+  @Override public Table col(final @NotNull String key, final int value) {
     getRealStatistics(key).record(value);
     return super.col(key, value);
   }
 
-  @Override public Table col(final String key, final long value) {
+  @Override public Table col(final @NotNull String key, final long value) {
     getRealStatistics(key).record(value);
     super.col(key, value);
     return this;
@@ -129,7 +131,7 @@ public class Table extends Row<Table> implements Closeable {
     return $ + writers.stream().map(λ -> "\t " + ++n.inner + ". " + λ.fileName + "\n").reduce((x, y) -> x + y).get();
   }
 
-  RealStatistics getRealStatistics(final String key) {
+  RealStatistics getRealStatistics(final @NotNull String key) {
     stats.computeIfAbsent(key, λ -> new RealStatistics());
     return stats.get(key);
   }
@@ -187,7 +189,7 @@ public class Table extends Row<Table> implements Closeable {
     return classToNormalizedFileName(¢.getSimpleName());
   }
 
-  static String classToNormalizedFileName(final String className) {
+  static String classToNormalizedFileName(final @NotNull String className) {
     return separate.these(the.lastOf(iterable.over(cCamelCase.components(className)))).by('-').toLowerCase();
   }
 }

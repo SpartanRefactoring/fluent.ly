@@ -23,18 +23,18 @@ import il.org.spartan.*;
 public enum separate {
   ;
   /** The comma character */
-  public static final String COMMA = ",";
+  public static final @NotNull String COMMA = ",";
   /** The dot character */
-  public static final String DOT = ".";
+  public static final @NotNull String DOT = ".";
   /** The Unix line separator character */
-  public static final String NL = "\n";
+  public static final @NotNull String NL = "\n";
   /** The space character */
-  public static final String SPACE = " ";
+  public static final @NotNull String SPACE = " ";
 
   /** Separates a sequence of strings by {@link #SPACE} characters
    * @param $ what needs to be separated
    * @return parameters, separated by {@link #SPACE} */
-  public static @NotNull  String bySpaces(final String... $) {
+  public static @NotNull  String bySpaces(final @NotNull String... $) {
     return separateBySpaces(as.list($));
   }
 
@@ -42,7 +42,7 @@ public enum separate {
    * comma separated list of its arguments, where special characters in each
    * argument are escaped prior to printing.
    * @param args list of the command line arguments. */
-  public static void main(final String[] args) {
+  public static void main(final @NotNull String[] args) {
     System.out.println("Arguments are: " + separate.these(args).by(", "));
   }
 
@@ -168,7 +168,7 @@ public enum separate {
     return new SeparationSubject(¢);
   }
 
-  static <T> void assertEquals(final String reason, final T t1, final T t2) {
+  static <T> void assertEquals(final @NotNull String reason, final T t1, final T t2) {
     azzert.that(reason, t2, is(t1));
   }
 
@@ -180,7 +180,7 @@ public enum separate {
     azzert.nay(¢);
   }
 
-  static void assertFalse(final String reason, final boolean b) {
+  static void assertFalse(final @NotNull String reason, final boolean b) {
     azzert.nay(reason, b);
   }
 
@@ -192,7 +192,7 @@ public enum separate {
     azzert.aye(¢);
   }
 
-  static void assertTrue(final String reason, final boolean b) {
+  static void assertTrue(final @NotNull String reason, final boolean b) {
     azzert.aye(reason, b);
   }
 
@@ -219,7 +219,7 @@ public enum separate {
      * @return a {{@link String}} obtained by concatenating the textual
      *         representation of the elements in <code>ts</code> separated by
      *         <code>between</code> */
-    @NotNull static <T> String by( final @NotNull Iterable<? extends T> ts, final String between) {
+    @NotNull static <T> String by( final @NotNull Iterable<? extends T> ts, final @NotNull String between) {
        final @NotNull Separator s = new Separator(between);
        final @NotNull StringBuffer $ = new StringBuffer();
       for (final T ¢ : ts)
@@ -233,7 +233,7 @@ public enum separate {
      * @return a {{@link String}} obtained by concatenating the textual
      *         representation of the elements in <code>ts</code> separated by
      *         <code>between</code> */
-    @NotNull static String separateBy( final @NotNull Iterable<?> os, final String between) {
+    @NotNull static String separateBy( final @NotNull Iterable<?> os, final @NotNull String between) {
        final @NotNull Separator s = new Separator(between);
        final @NotNull StringBuffer $ = new StringBuffer();
       for (final Object ¢ : os)
@@ -241,7 +241,7 @@ public enum separate {
       return as.string($);
     }
 
-    private static  @NotNull String separateBy( final @NotNull Object[] os, final String between) {
+    private static  @NotNull String separateBy( final @NotNull Object[] os, final @NotNull String between) {
        final @NotNull Separator s = new Separator(between);
        final @NotNull StringBuffer $ = new StringBuffer();
       for (final Object ¢ : os)
@@ -275,7 +275,7 @@ public enum separate {
      * @return a {{@link String}} obtained by concatenating the textual
      *         representation of the elements in <code>bs</code> separated by
      *         <code>between</code> */
-    public @NotNull String by(final String between) {
+    public @NotNull String by(final @NotNull String between) {
       return separateBy(os, between);
     }
 
@@ -318,7 +318,7 @@ public enum separate {
   public static class TEST {
     private static final Function<String, String> quote = λ -> "'" + λ + "'";
 
-    static <T> void assertEquals(final String reason, final T t1, final T t2) {
+    static <T> void assertEquals(final @NotNull String reason, final T t1, final T t2) {
       azzert.that(reason, t2, is(t1));
     }
 

@@ -10,6 +10,8 @@ import java.util.*;
 import java.util.logging.*;
 import java.util.stream.*;
 
+import org.jetbrains.annotations.*;
+
 import il.org.spartan.utils.*;
 
 /** Our way of dealing with logs, exceptions, NPE, Eclipse bugs, and other
@@ -63,7 +65,7 @@ public interface note {
     ));
   }
 
-  static <T> T bug(final String format, final Object... os) {
+  static <T> T bug(final @NotNull String format, final Object... os) {
     return nulling.ly(() -> logger.info(format(//
         "A bug was detected in the vicinty of %s; trace =%s\n",
         __.trace(),//
@@ -120,7 +122,7 @@ public interface note {
             "\n o = " + o + "'");
   }
 
-  static <T> T info(final String message) {
+  static <T> T info(final @NotNull String message) {
     return nulling.ly(() -> logger.info(message));
   }
 
@@ -132,7 +134,7 @@ public interface note {
     ));
   }
 
-  static <T> T io(final Exception x, final String message) {
+  static <T> T io(final Exception x, final @NotNull String message) {
     return nulling.ly(() -> logger.info(//
         "   Got an exception of __ : " + English.name(x) + //
             "\n      (probably I/O exception)" + //
@@ -152,7 +154,7 @@ public interface note {
   /** logs an error in the plugin into an external file
    * @param tipper an error */
   static <T> T logToFile(final Throwable t, final Object... os) {
-    final StringWriter w = new StringWriter();
+    final @NotNull StringWriter w = new StringWriter();
     t.printStackTrace(new PrintWriter(w));
     final Object[] nos = new Object[os.length + 2];
     System.arraycopy(os, 0, nos, 2, os.length);

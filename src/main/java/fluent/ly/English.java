@@ -5,7 +5,6 @@ import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
 
-import org.eclipse.jdt.annotation.*;
 import org.jetbrains.annotations.*;
 
 import il.org.spartan.*;
@@ -16,7 +15,7 @@ import il.org.spartan.utils.*;
  * @since 2.6 */
 public interface English {
   interface Inflection {
-    static Inflection stem(final String base) {
+    static Inflection stem(final @NotNull String base) {
       return new Inflection() {
         @Override public String get() {
           return base;
@@ -50,14 +49,14 @@ public interface English {
     return indefinite(English.name(¢));
   }
 
-  static String indefinite(final String className) {
-    final String $ = cCamelCase.components(className)[0];
+  static String indefinite(final @NotNull String className) {
+    final @NotNull String $ = cCamelCase.components(className)[0];
     final char openingLetter = the.characterOf($);
     return isAcronym($) ? indefinite(pronounce(openingLetter)) : //
         (Utils.intIsIn(openingLetter, 'i', 'e', 'o', 'u', 'y') ? "an" : "a") + " " + className;
   }
 
-  static boolean isAcronym(final String $) {
+  static boolean isAcronym(final @NotNull String $) {
     return $.toUpperCase().equals($);
   }
 
@@ -69,7 +68,7 @@ public interface English {
         : ¢.size() == 1 ? the.headOf(¢) : separate.these(¢.subList(0, ¢.size() - 1)).by(SEPARATOR) + " and " + the.lastOf(¢);
   }
 
-  static String lowerFirstLetter(final String input) {
+  static String lowerFirstLetter(final @NotNull String input) {
     return input.isEmpty() ? "genererated" + new Random().nextInt(100) : input.substring(0, 1).toLowerCase() + input.substring(1);
   }
 
@@ -85,7 +84,7 @@ public interface English {
    * @param s string to be pluralize
    * @param i count
    * @return fixed string */
-  static String plurales(final String s, final int i) {
+  static String plurales(final @NotNull String s, final int i) {
     return i == 1 ? "one " + s : i + " " + s + "es";
   }
 
@@ -93,7 +92,7 @@ public interface English {
    * @param s string to be pluralize
    * @param i count
    * @return fixed string */
-  static String plurales(final String s, final Int i) {
+  static String plurales(final @NotNull String s, final Int i) {
     return i == null ? UNKNOWN + " " + s + "es" : i.get() != 1 ? i + " " + s + "es" : "one " + s;
   }
 
@@ -101,7 +100,7 @@ public interface English {
    * @param s string to be pluralize
    * @param i count
    * @return fixed string */
-  static String plurales(final String s, final Integer i) {
+  static String plurales(final @NotNull String s, final Integer i) {
     return i == null ? UNKNOWN + " " + s + "es" : i.intValue() != 1 ? i + " " + s + "es" : "one " + s;
   }
 
@@ -109,7 +108,7 @@ public interface English {
    * @param s string to be pluralize
    * @param i count
    * @return fixed string */
-  static String plurals(final String s, final int i) {
+  static String plurals(final @NotNull String s, final int i) {
     return i == 1 ? "one " + s : i + " " + s + "s";
   }
 
@@ -117,7 +116,7 @@ public interface English {
    * @param s string to be pluralize
    * @param i count
    * @return fixed string */
-  static String plurals(final String s, final Int i) {
+  static String plurals(final @NotNull String s, final Int i) {
     return i == null ? UNKNOWN + " " + s + "s" : i.get() != 1 ? i + " " + s + "s" : "one " + s;
   }
 
@@ -125,7 +124,7 @@ public interface English {
    * @param s string to be pluralize
    * @param i count
    * @return fixed string */
-  static String plurals(final String s, final Integer i) {
+  static String plurals(final @NotNull String s, final Integer i) {
     return i == null ? UNKNOWN + " " + s + "s" : i.intValue() != 1 ? i + " " + s + "s" : "one " + s;
   }
 
@@ -204,10 +203,10 @@ public interface English {
   /** Cut string's suffix to maximal length for every row.
    * @param s JD
    * @return cut string */
-  static String trim(final String s) {
+  static String trim(final @NotNull String s) {
     if (s == null)
       return null;
-    final String[] $ = s.split("\n");
+    final @NotNull String[] $ = s.split("\n");
     IntStream.range(0, $.length).forEach(λ -> $[λ] = trimAbsolute($[λ], TRIM_THRESHOLD, TRIM_SUFFIX));
     return String.join("\n", $);
   }
@@ -217,7 +216,7 @@ public interface English {
    * @param l JD
    * @param x replacement suffix string
    * @return cut string */
-  static String trimAbsolute(final String s, final int l, final String x) {
+  static String trimAbsolute(final @NotNull String s, final int l, final @NotNull String x) {
     assert l - x.length() >= 0;
     return s == null || s.length() <= l ? s : s.substring(0, l - x.length()) + x;
   }
@@ -235,7 +234,7 @@ public interface English {
     return x == null ? UNKNOWN : f.apply(x) + "";
   }
 
-  static String upperFirstLetter(final String input) {
+  static String upperFirstLetter(final @NotNull String input) {
     return input.isEmpty() ? "genererated" + new Random().nextInt(100) : input.substring(0, 1).toUpperCase() + input.substring(1);
   }
 }

@@ -9,7 +9,6 @@ import java.io.*;
 import java.util.*;
 import java.util.function.*;
 
-
 import org.jetbrains.annotations.*;
 import org.junit.*;
 
@@ -24,38 +23,39 @@ public interface Utils {
   String QUOTE = "'";
   String WHITES = "(?m)\\s+";
 
-  @NotNull static <T, C extends Collection<T>> C add( final @NotNull C $, final Iterable<? extends T> ts) {
+  @NotNull static <T, C extends Collection<T>> C add(final @NotNull C $, final Iterable<? extends T> ts) {
     for (final T ¢ : ts)
       if (¢ != null)
         $.add(¢);
     return $;
   }
 
-  @SafeVarargs @NotNull static <T, C extends Collection<T>> C add( final @NotNull C $,  final @NotNull T... ts) {
+  @SafeVarargs static <T, C extends Collection<T>> @NotNull C add(final @NotNull C $, final T @NotNull... ts) {
     for (final T ¢ : ts)
       if (¢ != null)
         $.add(¢);
     return $;
   }
 
-  @SafeVarargs @NotNull static <T, C extends Collection<T>> C addAll( final @NotNull C $,  final  Collection<? extends T>@NotNull ... tss) {
+  @SafeVarargs @NotNull static <T, C extends Collection<T>> C addAll(final @NotNull C $, final Collection<? extends T> @NotNull... tss) {
     for (final Collection<? extends T> ¢ : tss)
       if (¢ != null)
         $.addAll(¢);
     return $;
   }
 
-  @SafeVarargs @NotNull static <T, C extends Collection<T>> C addAll( final @NotNull C $,  final  Iterable<? extends T>@NotNull ... tss) {
+  @SafeVarargs @NotNull static <T, C extends Collection<T>> C addAll(final @NotNull C $, final Iterable<? extends T> @NotNull... tss) {
     for (final Iterable<? extends T> ¢ : tss)
       if (¢ != null)
         add($, ¢);
     return $;
   }
 
-  @SafeVarargs @NotNull static <T, C extends Collection<T>> C addAll( final @NotNull C $,  final @Nullable T @NotNull... ts) {
-    for (final T ¢ : ts)
-      if (¢ != null)
-        add($, ¢);
+  @SafeVarargs @NotNull static <T, C extends Collection<T>> C addAll(final @NotNull C $, final T... ts) {
+    if (ts != null)
+      for (final T ¢ : ts)
+        if (¢ != null)
+          add($, ¢);
     return $;
   }
 
@@ -65,7 +65,7 @@ public interface Utils {
    * @param ts an arbitrary array
    * @param t  an element
    * @return newly created array */
-  @NotNull static <T> T[] append( final @NotNull T[] ts, final T t) {
+  @NotNull static <T> T[] append(final @NotNull T[] ts, final T t) {
     @SuppressWarnings("null") final T @NotNull [] $ = Arrays.copyOf(ts, 1 + ts.length);
     $[ts.length] = t;
     return $;
@@ -104,7 +104,7 @@ public interface Utils {
    * @param   <T> JD
    * @return parameter, but guaranteed to be {@link NotNull}
    * @see #mustBeNull(Object) */
-  @Nullable static <T> T canBeNull(final T $) {
+  static @Nullable <T> T canBeNull(final T $) {
     return $;
   }
 
@@ -135,7 +135,7 @@ public interface Utils {
    * @return its parameter, after verifying that it is not
    *         <code><b>null</b></code>
    * @see #mustBeNull(Object) */
-  @NotNull static <T> @NotNull T cantBeNull( final @Nullable  T $) {
+  @NotNull static <T> @NotNull T cantBeNull(final @Nullable T $) {
     assert $ != null;
     return $;
   }
@@ -156,9 +156,9 @@ public interface Utils {
   /** Remove all non-essential spaces from a string that represents Java code.
    * @param javaCodeFragment JD
    * @return parameter, with all redundant spaces removed from it */
-  static String compressSpaces(final String javaCodeFragment) {
+  static String compressSpaces(final @NotNull String javaCodeFragment) {
     String $ = javaCodeFragment.replaceAll("(?m)\\s+", " ").replaceAll("^\\s", "").replaceAll("\\s$", "");
-    for (final String operator : new String @NotNull [] { ":", "/", "%", ",", "\\{", "\\}", "=", ":", "\\?", ";", "\\+", ">", ">=", "!=", "==", "<",
+    for (final @NotNull String operator : new String @NotNull [] { ":", "/", "%", ",", "\\{", "\\}", "=", ":", "\\?", ";", "\\+", ">", ">=", "!=", "==", "<",
         "<=", "-", "\\*", "\\|", "\\&", "%", "\\(", "\\)", "[\\^]" })
       $ = $.replaceAll(WHITES + operator, operator).replaceAll(operator + WHITES, operator);
     return cantBeNull($);
@@ -169,8 +169,8 @@ public interface Utils {
    * @param patterns a list of substrings
    * @return tree iff the the first parameter contains any of the substrings found
    *         in the second parameter */
-  static boolean contains(final String text,  final @Nullable String... patterns) {
-    for (final String pattern : patterns)
+  static boolean contains(final @NotNull String text, final @Nullable String... patterns) {
+    for (final @NotNull String pattern : patterns)
       if (pattern != null && text.contains(pattern))
         return true;
     return false;
@@ -182,7 +182,7 @@ public interface Utils {
    * @param ts an arbitrary array
    * @param i  position of element to be deleted
    * @return newly created array */
-  @NotNull static <T> T[] delete( final @NotNull T[] ts, final int i) {
+  @NotNull static <T> T[] delete(final @NotNull T[] ts, final int i) {
     @SuppressWarnings("null") final T @NotNull [] $ = Arrays.copyOf(ts, ts.length - 1);
     System.arraycopy(ts, i + 1, $, i, $.length - i);
     return $;
@@ -203,7 +203,7 @@ public interface Utils {
    * @param os an unknown number of objects
    * @return <code><b>null</b></code> <i>iff</i> one of the parameters is
    *         <code><b>null</b></code> */
-  static boolean hasNull( final @Nullable Object... os) {
+  static boolean hasNull(final @Nullable Object... os) {
     for (final Object ¢ : os)
       if (¢ == null)
         return true;
@@ -215,7 +215,7 @@ public interface Utils {
    * @param candidate what to search for
    * @param ts        where to search
    * @return true if the the item is found in the list */
-  @SafeVarargs static <T> boolean in(final T candidate,  final @NotNull T... ts) {
+  @SafeVarargs static <T> boolean in(final T candidate, final @NotNull T... ts) {
     for (final T ¢ : ts)
       if (¢ != null && ¢.equals(candidate))
         return true;
@@ -259,7 +259,7 @@ public interface Utils {
    * @param $ an instance of the type parameter which is required to be
    *          <code><b>null</b></code>.
    * @return parameter */
-  static <@Nullable T> @Nullable Void mustBeNull(final @Nullable  T $) {
+  static <@Nullable T> @Nullable Void mustBeNull(final @Nullable T $) {
     assert $ == null;
     return null;
   }
@@ -294,7 +294,7 @@ public interface Utils {
    * @param c what needs to be prepended
    * @return {@link StringBuilder} parameter with the <code><b>char</b></code>
    *         parameter prepended to it */
-  static StringBuilder prepend(final StringBuilder $, final char c) {
+  static StringBuilder prepend(final @NotNull StringBuilder $, final char c) {
     return cantBeNull($.insert(0, c));
   }
 
@@ -303,7 +303,7 @@ public interface Utils {
    * @param s what needs to be prepended
    * @return {@link StringBuilder} parameter with the {@link String} parameter
    *         prepended to it */
-  static StringBuilder prepend(final StringBuilder $, final String s) {
+  static StringBuilder prepend(final @NotNull StringBuilder $, final @NotNull String s) {
     return cantBeNull($.insert(0, s));
   }
 
@@ -327,7 +327,7 @@ public interface Utils {
    * @param s      JD
    * @param prefix what should be removed
    * @return parameter after all such occurrences are removed. */
-  static String removePrefix(final String s, final String prefix) {
+  static String removePrefix(final @NotNull String s, final @NotNull String prefix) {
     for (String $ = s;; $ = $.substring(prefix.length()))
       if (!$.startsWith(prefix))
         return $;
@@ -337,7 +337,7 @@ public interface Utils {
    * @param s      JD
    * @param suffix what should be removed
    * @return parameter after all such occurrences are removed. */
-  static String removeSuffix(final String s, final String suffix) {
+  static String removeSuffix(final @NotNull String s, final @NotNull String suffix) {
     for (String $ = s;; $ = $.substring(0, $.length() - suffix.length()))
       if (!$.endsWith(suffix))
         return $;
@@ -346,7 +346,7 @@ public interface Utils {
   /** Remove all occurrences of white space character in a given {@link String}
    * @param ¢ JD
    * @return parameter after all such occurrences are removed. */
-  static String removeWhites(final String ¢) {
+  static String removeWhites(final @NotNull String ¢) {
     return cantBeNull(¢.replaceAll("\\s+", ""));
   }
 
@@ -379,7 +379,7 @@ public interface Utils {
    * @param suffixes a list of potential extensions.
    * @return <code><b>true</b></code> <em>iff</em>the file name ends with any one
    *         of the supplied extensions. */
-  static boolean suffixedBy(final File f, final @NotNull  String @NotNull ... suffixes) {
+  static boolean suffixedBy(final File f, final @NotNull String @NotNull... suffixes) {
     return suffixedBy(name(f), suffixes);
   }
 
@@ -388,8 +388,8 @@ public interface Utils {
    * @param suffixes a list of potential suffixes
    * @return <code><b>true</b></code> <em>iff</em> <code>s</code> ends with any
    *         one of the supplied suffixes. */
-  static boolean suffixedBy(final String s, final Iterable<String> suffixes) {
-    for (final String end : suffixes)
+  static boolean suffixedBy(final @NotNull String s, final Iterable<String> suffixes) {
+    for (final @NotNull String end : suffixes)
       if (s.endsWith(end))
         return true;
     return false;
@@ -400,8 +400,8 @@ public interface Utils {
    * @param suffixes a list of potential suffixes
    * @return <code><b>true</b></code> <em>iff</em> <code>s</code> ends with any
    *         one of the supplied suffixes. */
-  static boolean suffixedBy(final String s,  final @NotNull String... suffixes) {
-    for (final String end : suffixes)
+  static boolean suffixedBy(final @NotNull String s, final @NotNull String... suffixes) {
+    for (final @NotNull String end : suffixes)
       if (s.endsWith(end))
         return true;
     return false;
@@ -431,7 +431,7 @@ public interface Utils {
       this.function = function;
     }
 
-    @SafeVarargs public final Iterable<T> to( final @NotNull F... fs) {
+    @SafeVarargs public final Iterable<T> to(final @NotNull F... fs) {
       final List<T> $ = new ArrayList<>();
       for (final F ¢ : fs)
         if (¢ != null)
@@ -441,7 +441,7 @@ public interface Utils {
 
     /** @param <FS> JD
      * @param s JD */
-    public <FS extends Iterable<? extends F>> Iterable<T> to( final @NotNull FS s) {
+    public <FS extends Iterable<? extends F>> Iterable<T> to(final @NotNull FS s) {
       final List<T> $ = new ArrayList<>();
       for (final @Nullable F ¢ : s)
         if (¢ != null)
@@ -465,7 +465,7 @@ public interface Utils {
     /** Determine if an integer can be found in a list of values
      * @param ts where to search
      * @return true if the the item is found in the list */
-    @SafeVarargs public final boolean in( final @NotNull T... ts) {
+    @SafeVarargs public final boolean in(final @NotNull T... ts) {
       for (final T ¢ : ts)
         if (¢ != null && ¢.equals(candidate))
           return true;
@@ -502,7 +502,7 @@ public interface Utils {
    * @author Yossi Gil
    * @since 2014-05-31 */
   @SuppressWarnings("static-method") class TEST {
-    public static @NotNull  Integer[] intToIntegers(final int... is) {
+    public static @NotNull Integer[] intToIntegers(final int... is) {
       final Integer @NotNull [] $ = new Integer @NotNull [is.length];
       for (int ¢ = 0; ¢ < is.length; ++¢)
         $[¢] = fluent.ly.box.it(is[¢]);
@@ -515,7 +515,7 @@ public interface Utils {
       azzert.nay(ss.contains("E"));
       azzert.nay(ss.contains(null));
       azzert.that(ss.size(), is(4));
-      for (final String ¢ : ss)
+      for (final @NotNull String ¢ : ss)
         azzert.aye("", ss.contains(¢));
     }
 
@@ -525,7 +525,7 @@ public interface Utils {
       azzert.nay(ss.contains("E"));
       azzert.nay(ss.contains(null));
       azzert.that(ss.size(), is(4));
-      for (final String ¢ : ss)
+      for (final @NotNull String ¢ : ss)
         azzert.aye("", ss.contains(¢));
       azzert.aye(ss.contains("A"));
     }
@@ -574,13 +574,13 @@ public interface Utils {
     }
 
     @Test public void swapDegenerate() {
-      final String @NotNull [] ss = as.array("A", "B", "C", "D");
+      final @NotNull String @NotNull [] ss = as.array("A", "B", "C", "D");
       swap(ss, 1, 1);
       assertArrayEquals(as.array("A", "B", "C", "D"), ss);
     }
 
     @Test public void swapTypical() {
-      final String @NotNull [] ss = as.array("A", "B", "C", "D");
+      final @NotNull String @NotNull [] ss = as.array("A", "B", "C", "D");
       swap(ss, 1, 2);
       assertArrayEquals(as.array("A", "C", "B", "D"), ss);
     }

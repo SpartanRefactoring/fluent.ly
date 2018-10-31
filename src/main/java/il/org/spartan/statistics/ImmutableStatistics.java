@@ -15,11 +15,11 @@ public abstract class ImmutableStatistics extends Statistics implements java.io.
    * the values of <code>1L</code> to maintain upward compatibility. */
   private static final long serialVersionUID = 1;
 
-  private static StringBuilder appendValue(final @NotNull StringBuilder b, final String name, final double v, final @NotNull Unit u) {
+  private static StringBuilder appendValue(final @NotNull StringBuilder b, final @NotNull String name, final double v, final @NotNull Unit u) {
     return b.append(name).append('=').append(u.format(v));
   }
 
-  private static void appendValue(final @NotNull StringBuilder b, final String name, final int i) {
+  private static void appendValue(final @NotNull StringBuilder b, final @NotNull String name, final int i) {
     b.append(name).append('=').append(i);
   }
 

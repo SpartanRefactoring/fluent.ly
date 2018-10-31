@@ -32,7 +32,7 @@ public class Tab {
   /** What to add before each indented line of text? */
   private String indentation = "";
   /** Indentation is increased by steps of this {@link String}. */
-  public final String tab;
+  public final @NotNull String tab;
 
   /** Instantiate this class with the default <code>'\t'</code> tabulation
    * character. */
@@ -43,14 +43,14 @@ public class Tab {
   /** Instantiate this class with a specified tabulation {@link String}.
    * @param tab a {@link String} by which indentation should be increased at each
    *            {@link #more()} action. */
-  public Tab(final String tab) {
+  public Tab(final @NotNull String tab) {
     this.tab = tab;
   }
 
   /** Increase indentation but returns the previous tabulation string.
    * @return the previous tabulation string. */
   public String begin() {
-    final String $ = toString();
+    final @NotNull String $ = toString();
     more();
     return $;
   }
@@ -81,7 +81,7 @@ public class Tab {
    *               <code>'\n'</code> character.
    * @param os     Arguments, referenced by the format specifiers in the format
    *               string */
-  public void linef(final String format, final Object... os) {
+  public void linef(final @NotNull String format, final Object... os) {
     System.out.printf(toString() + format + "\n", os);
   }
 
@@ -110,7 +110,7 @@ public class Tab {
    * @author Yossi Gil, the Technion.
    * @since 05/08/2008 */
   @SuppressWarnings("static-method") public static class TEST {
-    private static  @NotNull String cat(final String s1, final String s2) {
+    private static  @NotNull String cat(final @NotNull String s1, final @NotNull String s2) {
       return "[[" + s1 + "]][[" + s2 + "]]";
     }
 

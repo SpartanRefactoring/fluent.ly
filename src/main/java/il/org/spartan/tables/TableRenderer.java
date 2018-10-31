@@ -193,7 +193,7 @@ import il.org.spartan.*;
   }
 
   default String renderRow(final Collection<Object> values) {
-    final StringBuilder $ = new StringBuilder(recordBegin());
+    final @NotNull StringBuilder $ = new StringBuilder(recordBegin());
     final Separator s = new Separator(recordSeparator());
     values.forEach(λ -> $.append(s)
         .append(λ instanceof Object[] ? cellArray((Object[]) λ)
@@ -205,7 +205,7 @@ import il.org.spartan.*;
 
   void setHeaderCount(int size);
 
-  default String stringField(final String value) {
+  default String stringField(final @NotNull String value) {
     return value;
   }
 }

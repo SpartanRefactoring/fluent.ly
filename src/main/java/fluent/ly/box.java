@@ -52,7 +52,7 @@ public enum box {
    *         and such that it in its <tt>i</tt><em>th</em> position is the boxed
    *         value of the <tt>i</tt><em>th</em> of the parameter */
   public static @NotNull Byte[] box(final byte bs[]) {
-    final @NotNull Byte[] $ = new Byte[bs.length];
+    final  Byte@NotNull[] $ = new Byte[bs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = box(bs[¢]);
     return $;
@@ -72,7 +72,7 @@ public enum box {
    * @return an array of {@link Character} of the same length as that of the
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
-  public static @NotNull Character@NotNull[] box(final char cs[]) {
+  public static @NotNull Character @NotNull [] box(final char cs[]) {
     final Character @NotNull [] $ = new Character[cs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = box(cs[¢]);
@@ -195,7 +195,7 @@ public enum box {
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
   public static @NotNull Boolean[] it(final boolean bs[]) {
-    final @NotNull Boolean @NotNull [] $ = new Boolean @NotNull [bs.length];
+    final  Boolean @NotNull [] $ = new Boolean @NotNull [bs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = box(bs[¢]);
     return $;
@@ -215,7 +215,7 @@ public enum box {
    *         and such that it in its <tt>i</tt><em>th</em> position is the boxed
    *         value of the <tt>i</tt><em>th</em> of the parameter */
   public static @NotNull Byte[] it(final byte bs[]) {
-    final @NotNull Byte @NotNull [] $ = new Byte @NotNull [bs.length];
+    final  Byte @NotNull [] $ = new Byte @NotNull [bs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = box(bs[¢]);
     return $;
@@ -225,7 +225,7 @@ public enum box {
    * @param ¢ some <code><b>char</b></code> value
    * @return a non-<code><b>null</b></code> {@link Character} with the value of
    *         <code>c</code> */
-  public static Character it(final char ¢) {
+  public static @NotNull Character it(final char ¢) {
     return cantBeNull(Character.valueOf(¢));
   }
 
@@ -235,7 +235,7 @@ public enum box {
    * @return an array of {@link Character} of the same length as that of the
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
-  public static @NotNull Character[] it(final char cs[]) {
+  public static @NotNull Character @NotNull [] it(final char cs[]) {
     final @NotNull Character @NotNull [] $ = new Character @NotNull [cs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = it(cs[¢]);
@@ -257,7 +257,7 @@ public enum box {
    *         parameter, and such that it in its <tt>i</tt><em>th</em> position is
    *         the boxed value of the <tt>i</tt><em>th</em> of the parameter */
   public static @NotNull Double[] it(final double ds[]) {
-    final  Double @NotNull [] $ = new Double  [ds.length];
+    final Double @NotNull [] $ = new Double[ds.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = box(ds[¢]);
     return $;

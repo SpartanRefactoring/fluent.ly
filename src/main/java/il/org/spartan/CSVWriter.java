@@ -23,7 +23,7 @@ final   public class CSVWriter {
   private File file;
   private @Nullable String header;
   /** The n1ame of the file into which records are written. */
-  private final String fileName;
+  private final @NotNull String fileName;
    private final @NotNull OutputStreamWriter inner;
 
   /** Create a new instance, writing into the standard output stream. */
@@ -34,7 +34,7 @@ final   public class CSVWriter {
 
   /** Create a new instance, writing into a given named file
    * @param fileName the name of the output file */
-  public CSVWriter(final String fileName) {
+  public CSVWriter(final @NotNull String fileName) {
     this.fileName = fileName;
     file = new File(fileName);
     inner = open(file);
@@ -95,8 +95,7 @@ final   public class CSVWriter {
     }
   }
 
-  void writeln(final String s) {
-    if (inner != null)
+  void writeln(final @NotNull String s) {
       try {
         inner.write(s);
         inner.write("\n");

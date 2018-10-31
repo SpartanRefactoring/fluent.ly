@@ -19,7 +19,7 @@ import org.jetbrains.annotations.*;
  * @author Oren Rubin */
 public enum CSV {
   ;
-  private static final String NULL = "\\0";
+  private static final @NotNull String NULL = "\\0";
 
   /** Combine the given array of Class objects values into a comma separated
    * string.
@@ -27,7 +27,7 @@ public enum CSV {
    * @return Combined string
    * @see #splitToClasses(String) */
   public static String combine(final Class<?>[] cs) {
-    final @NotNull String[] $ = new String[cs.length];
+    final  String@NotNull[] $ = new String[cs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = cs[¢] == null ? null : Utils.cantBeNull(cs[¢].getName());
     return combine($);
@@ -57,7 +57,7 @@ public enum CSV {
    * @return Combined string
    * @see CSV#escape(String) */
   public static <T extends Enum<T>> String combine(final @NotNull T[] parts) {
-    final String @NotNull [] $ = new String[parts.length];
+    final @NotNull String @NotNull [] $ = new String[parts.length];
     for (int ¢ = 0; ¢ < $.length; ++¢) {
       final @NotNull T t = parts[¢];
       $[¢] = t == null ? null : t.name();
@@ -107,7 +107,7 @@ public enum CSV {
    * @param clazz Class object of T
    * @param s     Input string
    * @return Array of T */
-  public static @NotNull <T extends Enum<T>> T[] split(final Class<T> clazz, final String s) {
+  public static @NotNull <T extends Enum<T>> T[] split(final Class<T> clazz, final @NotNull String s) {
     final @NotNull String[] ss = split(s);
     final T @NotNull [] $ = (T[]) Array.newInstance(clazz, ss.length);
     for (int ¢ = 0; ¢ < $.length; ++¢)
@@ -118,7 +118,7 @@ public enum CSV {
   /** Split a comma separated string into its sub parts
    * @param s input string
    * @return Array of sub parts, in their original order */
-  public static @NotNull String[] split(final String s) {
+  public static @NotNull String[] split(final @NotNull String s) {
     if (s.length() == 0)
       return new String[0];
     final @NotNull List<String> $ = new ArrayList<>();
@@ -136,8 +136,8 @@ public enum CSV {
   /** Split a comma separated string into an array of classes.
    * @param s input string
    * @return Array of T */
-  public static @NotNull Class<?>[] splitToClasses(final String s) {
-    final String @NotNull [] names = split(s);
+  public static @NotNull Class<?>[] splitToClasses(final @NotNull String s) {
+    final @NotNull String @NotNull [] names = split(s);
     final Class<?> @NotNull [] $ = new Class<?>[names.length]; // (T[])
     // Array.newInstance(cls,
     // arr.length);
@@ -155,7 +155,7 @@ public enum CSV {
     final @NotNull PrintWriter pw = new PrintWriter($);
     for (final @NotNull String[] line : data) {
       final @NotNull Separator comma = new Separator(",");
-      for (final String ¢ : line)
+      for (final @NotNull String ¢ : line)
         pw.print(comma + escape(¢));
       pw.println();
     }
@@ -166,7 +166,7 @@ public enum CSV {
   /** Unescape the given input
    * @param s Input string
    * @return Unescaped string */
-  public static String unescape(final String s) {
+  public static String unescape(final @NotNull String s) {
     if (NULL.equals(s))
       return null;
     boolean esc = false;

@@ -72,20 +72,20 @@ public class dump {
 
   public static <T> void go( final @NotNull List<T> ts,  final @NotNull String... ss) {
     out.out("Exploring list");
-    for (final String ¢ : ss)
+    for (final @NotNull String ¢ : ss)
       out.out(¢);
     for (final T ¢ : ts)
       dump.go(¢);
   }
 
   public static void go(final Object os[],  final @NotNull String... ss) {
-    for (final String ¢ : ss)
+    for (final @NotNull String ¢ : ss)
       out.out(¢);
     out.out("elements", os);
   }
 
   public static void go(final @Nullable Object o,  final @NotNull String... ss) {
-    for (final String ¢ : ss)
+    for (final @NotNull String ¢ : ss)
       out.out(¢);
     if (o == null) {
       out.out("NULL");
@@ -98,7 +98,7 @@ public class dump {
     for ( final @NotNull Method m : c.getMethods()) {
       if (m.getParameterTypes().length != 0)
         continue;
-      String name = m.getName();
+       String name = m.getName();
       if ("getClass".equals(name) || "toString".equals(name))
         continue;
       if (name.matches("^get[A-Z].*$"))
@@ -129,7 +129,7 @@ public class dump {
     System.out.flush();
   }
 
-  public static void main(final String[] args) {
+  public static void main(final @NotNull String[] args) {
     // Explore.go(Package.class);
     final ClassLoadingMXBean a = ManagementFactory.getClassLoadingMXBean();
     System.out.println(a.getLoadedClassCount());

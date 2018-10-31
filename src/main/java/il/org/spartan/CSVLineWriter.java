@@ -30,11 +30,11 @@ public class CSVLineWriter extends CSVLine.Ordered {
     this(new CSVWriter(), renderer);
   }
 
-  public CSVLineWriter(final String fileName) {
+  public CSVLineWriter(final @NotNull String fileName) {
     writer = new CSVWriter(fileName + extension());
   }
 
-  public CSVLineWriter(final String fileName, final Renderer renderer) {
+  public CSVLineWriter(final @NotNull String fileName, final Renderer renderer) {
     super(renderer);
     writer = new CSVWriter(fileName + extension());
   }

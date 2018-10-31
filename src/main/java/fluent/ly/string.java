@@ -40,14 +40,14 @@ public enum string {
    * @return the concatenation of the strings in <code>ss</code> */
   public static @NotNull String cat(final @NotNull String... ss) {
     final @NotNull StringBuilder $ = new StringBuilder("");
-    for (final String ¢ : ss)
+    for (final @NotNull String ¢ : ss)
       $.append(¢);
     return $ + "";
   }
 
   public static @NotNull String cat(final @NotNull String[]... sss) {
     final @NotNull StringBuilder $ = new StringBuilder("");
-    for (final String[] ¢ : sss)
+    for (final @NotNull String[] ¢ : sss)
       $.append(cat(¢));
     return $ + "";
   }
@@ -92,10 +92,10 @@ public enum string {
     return $ + "";
   }
 
-  public static String expandLeadingTabs(final String s) {
+  public static @NotNull String expandLeadingTabs(final @NotNull String s) {
     nonnull(s);
     for (String $ = s;;) {
-      final String newValue = $.replaceAll("(?m)^([\t]*)\t", "$1    ");
+      final @NotNull String newValue = $.replaceAll("(?m)^([\t]*)\t", "$1    ");
       if ($.equals(newValue))
         return $;
       $ = newValue;
@@ -106,7 +106,7 @@ public enum string {
     return fill(i, c + "");
   }
 
-  public static @NotNull String fill(final int i, final String s) {
+  public static @NotNull String fill(final int i, final @NotNull String s) {
     final @NotNull StringBuilder $ = new StringBuilder();
     for (int ¢ = 0; ¢ < i; ++¢)
       $.append(s);
@@ -211,11 +211,11 @@ public enum string {
     return "(" + ¢ + ")";
   }
 
-  public static @NotNull String pluralize(final int i, final String singular) {
+  public static @NotNull String pluralize(final int i, final @NotNull String singular) {
     return pluralize(i, singular, singular + "s");
   }
 
-  public static @NotNull String pluralize(final int i, final String singular, final String plural) {
+  public static @NotNull String pluralize(final int i, final @NotNull String singular, final @NotNull String plural) {
     switch (i) {
       case 0:
         return "no " + plural;
@@ -242,11 +242,11 @@ public enum string {
     }
   }
 
-  public static @NotNull String pretty(final String singular, final Collection<?> a) {
+  public static @NotNull String pretty(final @NotNull String singular, final Collection<?> a) {
     return pretty(singular, singular + "s", a);
   }
 
-  public static @NotNull String pretty(final String singular, final String plural, final @Nullable Collection<?> a) {
+  public static @NotNull String pretty(final @NotNull String singular, final @NotNull String plural, final @Nullable Collection<?> a) {
     if (a == null || a.isEmpty())
       return "";
     if (a.size() == 1)
@@ -277,7 +277,7 @@ public enum string {
    * @param s a string to repeat
    * @return a {@link String} containing <code>s</code> concatenated
    *         <code>n</code> times */
-  public static @NotNull String repeat(final int i, final String s) {
+  public static @NotNull String repeat(final int i, final @NotNull String s) {
     final @NotNull StringBuffer $ = new StringBuffer();
     for (int ¢ = 0; ¢ < i; ++¢)
       $.append(s);
@@ -288,7 +288,7 @@ public enum string {
     return ¢ == 0 ? 0 : ¢ > 0 ? 1 : -1;
   }
 
-  public static @NotNull String sprintf(final String format, final Object... args) {
+  public static @NotNull String sprintf(final @NotNull String format, final Object... args) {
     return new Formatter().format(format, args) + "";
   }
 
@@ -319,7 +319,7 @@ public enum string {
   public static @NotNull List<String> toLines(final @NotNull String s) throws IOException {
     final @NotNull List<String> $ = new ArrayList<>();
     for (final @NotNull BufferedReader br = new BufferedReader(new StringReader(s));;) {
-      final String line = br.readLine();
+      final @NotNull String line = br.readLine();
       if (line == null)
         return $;
       $.add(line);
@@ -337,15 +337,15 @@ public enum string {
     }
   }
 
-  public static String visualize(final String ¢) {
+  public static String visualize(final @NotNull String ¢) {
     return esc(¢).replaceAll(" ", "\\s");
   }
 
-  public static @NotNull String wrap(final char with, final String s) {
+  public static @NotNull String wrap(final char with, final @NotNull String s) {
     return with + s + with;
   }
 
-  public static @NotNull String wrap(final String with, final String s) {
+  public static @NotNull String wrap(final @NotNull String with, final @NotNull String s) {
     return with + s + with;
   }
 

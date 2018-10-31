@@ -62,7 +62,7 @@ public abstract class ___ {
    *                  of an error.
    * @throws Postcondition A {@link RuntimeException} to be thrown in the case
    *                       <code>condition</code> was <code><b>false</b></code> */
-  public static void ensure(final boolean condition, final String message) throws Postcondition {
+  public static void ensure(final boolean condition, final @NotNull String message) throws Postcondition {
     ensure(condition, message, "");
   }
 
@@ -77,7 +77,7 @@ public abstract class ___ {
    *                  format string.
    * @throws Postcondition A {@link RuntimeException} to be thrown in the case
    *                       <code>condition</code> was <code><b>false</b></code> */
-  public static void ensure(final boolean condition, final String format, final Object... args) throws Postcondition {
+  public static void ensure(final boolean condition, final @NotNull String format, final Object... args) throws Postcondition {
     if (!condition)
       throw new Postcondition(nprintf(format, args));
   }
@@ -96,7 +96,7 @@ public abstract class ___ {
    * @param message text to be associated with the exception thrown in the case of
    *                an error.
    * @throws Negative in case <code>d</code> was nonnegative */
-  public static void negative(final double d, final String message) throws Negative {
+  public static void negative(final double d, final @NotNull String message) throws Negative {
     negative(d, message, "");
   }
 
@@ -108,7 +108,7 @@ public abstract class ___ {
    * @param args   <code>printf</code>-like arguments to be used with the format
    *               string.
    * @throws Negative in case <code>d</code> was nonnegative */
-  public static void negative(final double d, final String format, final Object... args) throws Negative {
+  public static void negative(final double d, final @NotNull String format, final Object... args) throws Negative {
     if (d >= 0)
       throw new Negative(d, format, args);
   }
@@ -127,7 +127,7 @@ public abstract class ___ {
    * @param message text to be associated with the exception thrown in the case of
    *                an error.
    * @throws Negative in case <code>n</code> was nonnegative */
-  public static void negative(final int i, final String message) throws Negative {
+  public static void negative(final int i, final @NotNull String message) throws Negative {
     negative(i, message, "");
   }
 
@@ -139,7 +139,7 @@ public abstract class ___ {
    * @param args   <code>printf</code>-like arguments to be used with the format
    *               string.
    * @throws Negative in case <code>n</code> was nonnegative */
-  public static void negative(final int i, final String format, final Object... args) throws Negative {
+  public static void negative(final int i, final @NotNull String format, final Object... args) throws Negative {
     if (i >= 0)
       throw new Negative(i, format, args);
   }
@@ -158,7 +158,7 @@ public abstract class ___ {
    * @param message text to be associated with the exception thrown in the case of
    *                an error.
    * @throws NonNan in case <code>d</code> was NaN */
-  public static void nonNaN(final double d, final String message) throws NonNan {
+  public static void nonNaN(final double d, final @NotNull String message) throws NonNan {
     nonNaN(d, message, "");
   }
 
@@ -170,7 +170,7 @@ public abstract class ___ {
    * @param args   <code>printf</code>-like arguments to be used with the format
    *               string.
    * @throws NonNan in case <code>d</code> was NaN */
-  public static void nonNaN(final double d, final String format, final Object... args) throws NonNan {
+  public static void nonNaN(final double d, final @NotNull String format, final Object... args) throws NonNan {
     if (Double.isNaN(d))
       throw new NonNan(d, format, args);
   }
@@ -206,7 +206,7 @@ public abstract class ___ {
    * @param message text to be associated with the exception thrown in the case of
    *                an error.
    * @throws NonNegative in case <code>n</code> was negative */
-  public static void nonnegative(final double d, final String message) throws NonNegative {
+  public static void nonnegative(final double d, final @NotNull String message) throws NonNegative {
     nonnegative(d, message, "");
   }
 
@@ -218,7 +218,7 @@ public abstract class ___ {
    * @param args   <code>printf</code>-like arguments to be used with the format
    *               string.
    * @throws NonNegative in case <code>d</code> was negative */
-  public static void nonnegative(final double d, final String format, final Object... args) throws NonNegative {
+  public static void nonnegative(final double d, final @NotNull String format, final Object... args) throws NonNegative {
     if (d < 0)
       throw new NonNegative(d, format, args);
   }
@@ -240,7 +240,7 @@ public abstract class ___ {
    * @param args   <code>printf</code>-like arguments to be used with the format
    *               string.
    * @throws NonNegative in case <code>n</code> was negative */
-  public static void nonnegative(final int i, final String format, final Object... args) throws NonNegative {
+  public static void nonnegative(final int i, final @NotNull String format, final Object... args) throws NonNegative {
     if (i < 0)
       throw new NonNegative(i, format, args);
   }
@@ -267,7 +267,7 @@ public abstract class ___ {
    * @param o       if <code><b>null</b></code>, program will halt.
    * @param message an error message to be associated with the failure
    * @throws NotNull in case <code>o</code> was <code><b>null</b></code> */
-  public static void nonnull(final Object o, final String message) throws NotNullValue {
+  public static void nonnull(final Object o, final @NotNull String message) throws NotNullValue {
     nonnull(o, message, "");
   }
 
@@ -279,7 +279,7 @@ public abstract class ___ {
    * @param args   <code>printf</code>-like arguments to be used with the format
    *               string.
    * @throws NotNull in case <code>o</code> was <code><b>null</b></code> */
-  public static void nonnull(final Object o, final String format, final Object... args) throws NotNullValue {
+  public static void nonnull(final Object o, final @NotNull String format, final Object... args) throws NotNullValue {
     if (o == null)
       throw new NotNullValue(format, args);
   }
@@ -298,7 +298,7 @@ public abstract class ___ {
    * @param message text to be associated with the exception thrown in the case of
    *                an error.
    * @throws NonPositive in case <code>d</code> was positive */
-  public static void nonpositive(final double d, final String message) throws NonPositive {
+  public static void nonpositive(final double d, final @NotNull String message) throws NonPositive {
     nonpositive(d, message, "");
   }
 
@@ -310,7 +310,7 @@ public abstract class ___ {
    * @param args   <code>printf</code>-like arguments to be used with the format
    *               string.
    * @throws NonPositive in case <code>d</code> was positive */
-  public static void nonpositive(final double d, final String format, final Object... args) throws NonPositive {
+  public static void nonpositive(final double d, final @NotNull String format, final Object... args) throws NonPositive {
     if (d > 0)
       throw new NonPositive(d, format, args);
   }
@@ -329,7 +329,7 @@ public abstract class ___ {
    * @param message text to be associated with the exception thrown in the case of
    *                an error.
    * @throws NonPositive in case <code>n</code> was positive */
-  public static void nonpositive(final int i, final String message) throws NonPositive {
+  public static void nonpositive(final int i, final @NotNull String message) throws NonPositive {
     nonpositive(i, message, "");
   }
 
@@ -341,7 +341,7 @@ public abstract class ___ {
    * @param args   <code>printf</code>-like arguments to be used with the format
    *               string.
    * @throws NonPositive in case <code>n</code> was positive */
-  public static void nonpositive(final int i, final String format, final Object... args) throws NonPositive {
+  public static void nonpositive(final int i, final @NotNull String format, final Object... args) throws NonPositive {
     if (i > 0)
       throw new NonPositive(i, format, args);
   }
@@ -364,7 +364,7 @@ public abstract class ___ {
     return sprintf(format, box(i), o);
   }
 
-  public static String nprintf(final String format, final Object... args) {
+  public static String nprintf(final @NotNull String format, final Object... args) {
     return format == null ? "" : args == null ? format : sprintf(format, args);
   }
 
@@ -382,7 +382,7 @@ public abstract class ___ {
    * @param message text to be associated with the exception thrown in the case of
    *                an error.
    * @throws Positive in case <code>n</code> was nonpositive */
-  public static void positive(final double d, final String message) throws Positive {
+  public static void positive(final double d, final @NotNull String message) throws Positive {
     positive(d, message, "");
   }
 
@@ -394,7 +394,7 @@ public abstract class ___ {
    * @param args   <code>printf</code>-like arguments to be used with the format
    *               string.
    * @throws Positive in case <code>d</code> was not positive */
-  public static void positive(final double d, final String format, final Object... args) throws Positive {
+  public static void positive(final double d, final @NotNull String format, final Object... args) throws Positive {
     if (d <= 0)
       throw new Positive(d, format, args);
   }
@@ -413,7 +413,7 @@ public abstract class ___ {
    * @param message text to be associated with the exception thrown in the case of
    *                an error.
    * @throws Positive in case <code>n</code> was nonpositive */
-  public static void positive(final int i, final String message) throws Positive {
+  public static void positive(final int i, final @NotNull String message) throws Positive {
     positive(i, message, "");
   }
 
@@ -425,7 +425,7 @@ public abstract class ___ {
    * @param args   <code>printf</code>-like arguments to be used with the format
    *               string.
    * @throws Positive in case <code>d</code> was nonpositive */
-  public static void positive(final int i, final String format, final Object... args) throws Positive {
+  public static void positive(final int i, final @NotNull String format, final Object... args) throws Positive {
     if (i <= 0)
       throw new Positive(i, format, args);
   }
@@ -446,7 +446,7 @@ public abstract class ___ {
    *                  of an error.
    * @throws Precondition A {@link RuntimeException} to be thrown in the case
    *                      <code>condition</code> was <code><b>false</b></code> */
-  public static void require(final boolean condition, final String message) throws Precondition {
+  public static void require(final boolean condition, final @NotNull String message) throws Precondition {
     ___.require(condition, message, "");
   }
 
@@ -461,7 +461,7 @@ public abstract class ___ {
    *                  format string.
    * @throws Precondition A {@link RuntimeException} to be thrown in the case
    *                      <code>condition</code> was <code><b>false</b></code> */
-  public static void require(final boolean condition, final String format, final Object... args) throws Precondition {
+  public static void require(final boolean condition, final @NotNull String format, final Object... args) throws Precondition {
     if (!condition)
       throw new Precondition(nprintf(format, args));
   }
@@ -482,7 +482,7 @@ public abstract class ___ {
    *                  of an error.
    * @throws Invariant A {@link RuntimeException} to be thrown in the case
    *                   <code>condition</code> was <code><b>false</b></code> */
-  public static void sure(final boolean condition, final String message) throws Invariant {
+  public static void sure(final boolean condition, final @NotNull String message) throws Invariant {
     sure(condition, message, "");
   }
 
@@ -496,7 +496,7 @@ public abstract class ___ {
    *                  format string.
    * @throws Invariant A {@link RuntimeException} to be thrown in the case
    *                   <code>condition</code> was <code><b>false</b></code> */
-  public static void sure(final boolean condition, final String format, final Object... args) throws Invariant {
+  public static void sure(final boolean condition, final @NotNull String format, final Object... args) throws Invariant {
     if (!condition)
       throw new Invariant(nprintf(format, args));
   }
@@ -504,7 +504,7 @@ public abstract class ___ {
   /** A never-returning method indicating code sites with missing functionality
    * @param args a list of strings in a <code>printf</code> like format describing
    *             the task to be done. */
-  public static void todo(final String... args) {
+  public static void todo(final @NotNull String... args) {
     note.bug("Feature unsupported. ", args);
   }
 
@@ -519,11 +519,11 @@ public abstract class ___ {
    * reached.
    * @param message a string describing the violation
    * @throws Reachability will always be thrown */
-  public static void unreachable(final String message) throws Reachability {
+  public static void unreachable(final @NotNull String message) throws Reachability {
     unreachable(message, "");
   }
 
-  public static void unreachable(final String format, final Object... args) throws Reachability {
+  public static void unreachable(final @NotNull String format, final Object... args) throws Reachability {
     throw new Reachability(nprintf(format, args));
   }
 
@@ -590,7 +590,7 @@ public abstract class ___ {
 
     /** instantiate this class with a given textual description
      * @param message a description of the exceptional situation */
-    public Bug(final String message) {
+    public Bug(final @NotNull String message) {
       super(message);
     }
 
@@ -603,7 +603,7 @@ public abstract class ___ {
 
       /** instantiate this class with a given textual description
        * @param message a description of the exceptional situation */
-      public Assertion(final String message) {
+      public Assertion(final @NotNull String message) {
         super(message);
       }
 
@@ -615,7 +615,7 @@ public abstract class ___ {
 
         /** instantiate this class with a given textual description
          * @param message a description of the exceptional situation */
-        public Invariant(final String message) {
+        public Invariant(final @NotNull String message) {
           super(message);
         }
       }
@@ -628,7 +628,7 @@ public abstract class ___ {
 
         /** instantiate this class with a given textual description
          * @param message a description of the exceptional situation */
-        public Reachability(final String message) {
+        public Reachability(final @NotNull String message) {
           super(message);
         }
       }
@@ -647,11 +647,11 @@ public abstract class ___ {
 
         /** instantiate this class with a given textual description
          * @param message a description of the exceptional situation */
-        public Value(final String message) {
+        public Value(final @NotNull String message) {
           super(message);
         }
 
-        public Value(final String format, final Object... args) {
+        public Value(final @NotNull String format, final Object... args) {
           super(nprintf(format, args));
         }
 
@@ -668,11 +668,11 @@ public abstract class ___ {
 
           /** instantiate this class with a given textual description
            * @param message a description of the exceptional situation */
-          public NotNullValue(final String message) {
+          public NotNullValue(final @NotNull String message) {
             super(message);
           }
 
-          public NotNullValue(final String format, final Object... args) {
+          public NotNullValue(final @NotNull String format, final Object... args) {
             super(format, args);
           }
         }
@@ -684,11 +684,11 @@ public abstract class ___ {
         public abstract static class Numerical extends Value {
           private static final long serialVersionUID = 0x535306B6F01C989BL;
 
-          public Numerical(final String expected, final double d, final String message) {
+          public Numerical(final @NotNull String expected, final double d, final @NotNull String message) {
             super(nprintf("Found %g while expecting a %s number.", d, expected) + message);
           }
 
-          Numerical(final String expected, final int n, final String message) {
+          Numerical(final @NotNull String expected, final int n, final @NotNull String message) {
             super(nprintf("Found %d while expecting a %s integer.", n, expected) + message);
           }
 
@@ -697,17 +697,17 @@ public abstract class ___ {
            * @since 23/01/2008 */
           public static final class Negative extends Numerical {
             private static final long serialVersionUID = 0x3F251E6CFC5B0106L;
-            static final String expected = "negative";
+            static final @NotNull String expected = "negative";
 
             public Negative(final double d) {
               this(d, "");
             }
 
-            public Negative(final double d, final String message) {
+            public Negative(final double d, final @NotNull String message) {
               super(expected, d, message);
             }
 
-            public Negative(final double d, final String format, final Object... args) {
+            public Negative(final double d, final @NotNull String format, final Object... args) {
               this(d, nprintf(format, args));
             }
 
@@ -715,11 +715,11 @@ public abstract class ___ {
               this(n, "");
             }
 
-            public Negative(final int n, final String message) {
+            public Negative(final int n, final @NotNull String message) {
               super(expected, n, message);
             }
 
-            public Negative(final int n, final String format, final Object... args) {
+            public Negative(final int n, final @NotNull String format, final Object... args) {
               this(n, nprintf(format, args));
             }
           }
@@ -729,17 +729,17 @@ public abstract class ___ {
            * @since 23/01/2008 */
           public static final class NonNan extends Numerical {
             private static final long serialVersionUID = -0x49B8350294AF1EFBL;
-            static final String expected = "NonNan";
+            static final @NotNull String expected = "NonNan";
 
             public NonNan(final double d) {
               this(d, "");
             }
 
-            public NonNan(final double d, final String message) {
+            public NonNan(final double d, final @NotNull String message) {
               super(expected, d, message);
             }
 
-            public NonNan(final double d, final String format, final Object... args) {
+            public NonNan(final double d, final @NotNull String format, final Object... args) {
               this(d, nprintf(format, args));
             }
 
@@ -747,11 +747,11 @@ public abstract class ___ {
               this(n, "");
             }
 
-            public NonNan(final int n, final String message) {
+            public NonNan(final int n, final @NotNull String message) {
               super(expected, n, message);
             }
 
-            public NonNan(final int n, final String format, final Object... args) {
+            public NonNan(final int n, final @NotNull String format, final Object... args) {
               this(n, nprintf(format, args));
             }
           }
@@ -761,17 +761,17 @@ public abstract class ___ {
            * @since 23/01/2008 */
           public static final class NonNegative extends Numerical {
             private static final long serialVersionUID = 1;
-            static final String expected = "nonnegative";
+            static final @NotNull String expected = "nonnegative";
 
             public NonNegative(final double d) {
               this(d, "");
             }
 
-            public NonNegative(final double d, final String message) {
+            public NonNegative(final double d, final @NotNull String message) {
               super("expected", d, message);
             }
 
-            public NonNegative(final double d, final String format, final Object... args) {
+            public NonNegative(final double d, final @NotNull String format, final Object... args) {
               this(d, nprintf(format, args));
             }
 
@@ -779,11 +779,11 @@ public abstract class ___ {
               this(n, "");
             }
 
-            public NonNegative(final int n, final String message) {
+            public NonNegative(final int n, final @NotNull String message) {
               super("expected", n, message);
             }
 
-            public NonNegative(final int n, final String format, final Object... args) {
+            public NonNegative(final int n, final @NotNull String format, final Object... args) {
               this(n, nprintf(format, args));
             }
           }
@@ -792,17 +792,17 @@ public abstract class ___ {
            * @since 23/01/2008 */
           public static final class NonPositive extends Numerical {
             private static final long serialVersionUID = -0x7A57F2BC061EDE6BL;
-            static final String expected = "nonpositive";
+            static final @NotNull String expected = "nonpositive";
 
             public NonPositive(final double d) {
               this(d, "");
             }
 
-            public NonPositive(final double d, final String message) {
+            public NonPositive(final double d, final @NotNull String message) {
               super("nonpositive", d, message);
             }
 
-            public NonPositive(final double d, final String format, final Object... args) {
+            public NonPositive(final double d, final @NotNull String format, final Object... args) {
               this(d, nprintf(format, args));
             }
 
@@ -810,11 +810,11 @@ public abstract class ___ {
               this(n, "");
             }
 
-            public NonPositive(final int n, final String message) {
+            public NonPositive(final int n, final @NotNull String message) {
               super("nonpositive", n, message);
             }
 
-            public NonPositive(final int n, final String format, final Object... args) {
+            public NonPositive(final int n, final @NotNull String format, final Object... args) {
               this(n, nprintf(format, args));
             }
           }
@@ -824,17 +824,17 @@ public abstract class ___ {
            * @since 23/01/2008 */
           public static final class Positive extends Numerical {
             private static final long serialVersionUID = -0x49B8350294AF1EFBL;
-            static final String expected = "positive";
+            static final @NotNull String expected = "positive";
 
             public Positive(final double d) {
               this(d, "");
             }
 
-            public Positive(final double d, final String message) {
+            public Positive(final double d, final @NotNull String message) {
               super(expected, d, message);
             }
 
-            public Positive(final double d, final String format, final Object... args) {
+            public Positive(final double d, final @NotNull String format, final Object... args) {
               this(d, nprintf(format, args));
             }
 
@@ -842,11 +842,11 @@ public abstract class ___ {
               this(n, "");
             }
 
-            public Positive(final int n, final String message) {
+            public Positive(final int n, final @NotNull String message) {
               super(expected, n, message);
             }
 
-            public Positive(final int n, final String format, final Object... args) {
+            public Positive(final int n, final @NotNull String format, final Object... args) {
               this(n, nprintf(format, args));
             }
           }
@@ -861,7 +861,7 @@ public abstract class ___ {
 
         /** instantiate this class with a given textual description
          * @param message a description of the exceptional situation */
-        public Variant(final String message) {
+        public Variant(final @NotNull String message) {
           super(message);
         }
 
@@ -909,7 +909,7 @@ public abstract class ___ {
       private static final long serialVersionUID = -0x7230DE698510633DL;
 
       /** @param message a description of the exceptional situation */
-      protected Contract(final String message) {
+      protected Contract(final @NotNull String message) {
         super(message);
       }
 
@@ -921,7 +921,7 @@ public abstract class ___ {
 
         /** instantiate this class with a given textual description
          * @param message a description of the exceptional situation */
-        public Postcondition(final String message) {
+        public Postcondition(final @NotNull String message) {
           super(message);
         }
       }
@@ -934,7 +934,7 @@ public abstract class ___ {
 
         /** instantiate this class with a given textual description
          * @param message a description of the exceptional situation */
-        public Precondition(final String message) {
+        public Precondition(final @NotNull String message) {
           super(message);
         }
       }

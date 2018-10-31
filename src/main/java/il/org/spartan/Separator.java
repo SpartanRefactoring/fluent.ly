@@ -23,7 +23,7 @@ import fluent.ly.*;
 public final class Separator {
   /** @param args JD */
   public static void main( final @NotNull String[] args) {
-    for (final String a : args)
+    for (final @NotNull String a : args)
       System.out.print(new Separator(", ") + a);
   }
 
@@ -31,7 +31,7 @@ public final class Separator {
    * @param is      JD
    * @param between what to put between the items
    * @return String value of method <code>separateBy</code> */
-  public static String separateBy(final int @NotNull [] is, final String between) {
+  public static String separateBy(final int @NotNull [] is, final @NotNull String between) {
     if (is.length == 0)
       return "";
     @NotNull String $ = "";
@@ -46,7 +46,7 @@ public final class Separator {
    * @param between what to put between the items
    * @param ts      JD
    * @return the parameters separated */
-  public static <T> String separateBy(final String between,  final @NotNull T[] ts) {
+  public static <T> String separateBy(final @NotNull String between,  final @NotNull T[] ts) {
     return wrap("", "", ts, between);
   }
 
@@ -56,7 +56,7 @@ public final class Separator {
    * @param ts      JD
    * @param between what to put between the items
    * @return String value of method <code>wrap</code> */
-  public static <T> String wrap(final String wrap, final Iterable<T> ts, final String between) {
+  public static <T> String wrap(final @NotNull String wrap, final Iterable<T> ts, final @NotNull String between) {
     return wrap(wrap, wrap, ts, between);
   }
 
@@ -66,7 +66,7 @@ public final class Separator {
    * @param ts      JD
    * @param between what to put between the items
    * @return String <code>wrap</code> */
-  public static <T> String wrap(final String begin, final String end, final Iterable<T> ts, final String between) {
+  public static <T> String wrap(final @NotNull String begin, final @NotNull String end, final Iterable<T> ts, final @NotNull String between) {
     if (is.empty(ts))
       return "";
      final @NotNull StringBuilder $ = new StringBuilder(begin);
@@ -81,7 +81,7 @@ public final class Separator {
    * @param end     what to place after the items
    * @param ts      JD
    * @param between what to put between the items */
-  public static <T> String wrap(final String begin, final String end,  final @NotNull T[] ts, final String between) {
+  public static <T> String wrap(final @NotNull String begin, final @NotNull String end,  final @NotNull T[] ts, final @NotNull String between) {
     if (ts.length == 0)
       return "";
      final @NotNull StringBuilder $ = new StringBuilder(begin);
@@ -92,7 +92,7 @@ public final class Separator {
   }
 
   private boolean first = true;
-  private final String s;
+  private final @NotNull String s;
 
   /** Instantiates this class.
    * @param c JD */
@@ -102,7 +102,7 @@ public final class Separator {
 
   /** Instantiates this class.
    * @param s JD */
-  public Separator(final String s) {
+  public Separator(final @NotNull String s) {
     this.s = s;
   }
 

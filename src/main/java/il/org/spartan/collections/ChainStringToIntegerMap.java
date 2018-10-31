@@ -8,7 +8,7 @@ import org.jetbrains.annotations.*;
 public class ChainStringToIntegerMap {
   public Map<String, Integer> inner = new HashMap<>();
 
-  public boolean containsKey(final String key) {
+  public boolean containsKey(final @NotNull String key) {
     return inner.containsKey(key);
   }
 
@@ -32,13 +32,13 @@ public class ChainStringToIntegerMap {
     return inner.keySet();
   }
 
-  public ChainStringToIntegerMap put(final String key, final int value) {
+  public ChainStringToIntegerMap put(final @NotNull String key, final int value) {
     assert !inner.containsKey(key);
     inner.put(key, Integer.valueOf(value));
     return this;
   }
 
-  public ChainStringToIntegerMap putIfAbsent(final String key, final int value) {
+  public ChainStringToIntegerMap putIfAbsent(final @NotNull String key, final int value) {
     inner.putIfAbsent(key, Integer.valueOf(value));
     return this;
   }
@@ -49,12 +49,12 @@ public class ChainStringToIntegerMap {
   }
 
   public ChainStringToIntegerMap putOn(final int value,  final @NotNull String... keys) {
-    for (final String key : keys)
+    for (final @NotNull String key : keys)
       put(key, value);
     return this;
   }
 
-  public ChainStringToIntegerMap remove(final String key) {
+  public ChainStringToIntegerMap remove(final @NotNull String key) {
     inner.remove(key);
     return this;
   }

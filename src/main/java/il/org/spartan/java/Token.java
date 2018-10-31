@@ -85,7 +85,7 @@ public enum Token {
   EOF(NONCODE), //
   NL(NONCODE), //
   SPACE(NONCODE),;
-  public static void main(final String argv[]) throws IOException {
+  public static void main(final @NotNull String argv[]) throws IOException {
     main(new RawTokenizer(System.in));
   }
 

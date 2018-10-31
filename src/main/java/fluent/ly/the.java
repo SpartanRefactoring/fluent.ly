@@ -31,7 +31,7 @@ public interface the {
     return nth(i + "", n + "");
   }
 
-  static String nth(final String s, final String n) {
+  static String nth(final @NotNull String s, final @NotNull String n) {
     return " #" + s + "/" + n;
   }
 
@@ -52,7 +52,7 @@ public interface the {
     return $;
   }
 
-  static String tailOf(final String ¢) {
+  static String tailOf(final @NotNull String ¢) {
     return ¢.substring(1);
   }
 
@@ -67,7 +67,7 @@ public interface the {
     return $;
   }
 
-  @Contract("null -> null") @Nullable static <T> T headOf(final @Nullable  List<T> ¢) {
+  @Contract("null -> null") static @Nullable <T> T headOf(final @Nullable  List<T> ¢) {
     return ¢ == null || ¢.isEmpty() ? null : ¢.get(0);
   }
 
@@ -79,7 +79,7 @@ public interface the {
     return s.charAt(i);
   }
 
-  @Contract("null -> null") @Nullable static <@Nullable T> T lastOf(final @Nullable  List<T> ¢) {
+  @Contract("null -> null") static @Nullable <@Nullable T> T lastOf(final @Nullable  List<T> ¢) {
     return ¢ == null || ¢.isEmpty() ? null : ¢.get(¢.size() - 1);
   }
 
@@ -108,11 +108,11 @@ public interface the {
     };
   }
 
-  @Nullable static <T> T onlyOneOf(final @Nullable  List<T> ¢) {
+  static @Nullable <T> T onlyOneOf(final @Nullable  List<T> ¢) {
     return ¢ == null || ¢.size() != 1 ? null : headOf(¢);
   }
 
-  @Contract("null -> null") @Nullable static <T> T secondOf(final @Nullable  List<T> ¢) {
+  @Contract("null -> null") static @Nullable <T> T secondOf(final @Nullable  List<T> ¢) {
     return ¢ == null || ¢.size() < 2 ? null : ¢.get(1);
   }
 

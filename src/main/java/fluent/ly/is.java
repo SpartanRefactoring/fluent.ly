@@ -45,7 +45,7 @@ public interface is {
     return !in(candidate, ts);
   }
 
-  static boolean empty(final String s) {
+  static boolean empty(final @NotNull String s) {
     return s == null || s.isEmpty();
   }
 

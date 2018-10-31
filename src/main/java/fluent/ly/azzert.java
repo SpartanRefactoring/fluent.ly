@@ -97,20 +97,20 @@ public class azzert extends org.junit.Assert {
     assertCollectionsEqual("", ts1, Arrays.asList(ts2));
   }
 
-  public static <T> void assertCollectionsEqual(final String s,  final @NotNull Collection<T> c1,  final @NotNull Collection<T> c2) {
+  public static <T> void assertCollectionsEqual(final @NotNull String s,  final @NotNull Collection<T> c1,  final @NotNull Collection<T> c2) {
     assertContained(s, c1, c2);
     assertContained(s, c2, c1);
   }
 
-  public static <T> void assertCollectionsEqual(final String s,  final @NotNull Collection<T> ts1, final T[] ts2) {
+  public static <T> void assertCollectionsEqual(final @NotNull String s,  final @NotNull Collection<T> ts1, final T[] ts2) {
     assertCollectionsEqual(s, ts1, Arrays.asList(ts2));
   }
 
-  public static <T> void assertCollectionsEqual(final String s, final T[] ts1,  final @NotNull Collection<T> ts2) {
+  public static <T> void assertCollectionsEqual(final @NotNull String s, final T[] ts1,  final @NotNull Collection<T> ts2) {
     assertCollectionsEqual(s, ts2, ts1);
   }
 
-  public static <T> void assertContained(final String s,  final @NotNull Collection<T> c1,  final @NotNull Collection<T> c2) {
+  public static <T> void assertContained(final @NotNull String s,  final @NotNull Collection<T> c1,  final @NotNull Collection<T> c2) {
     // assertLE(s, c1.size(), c2.size());
      final @NotNull ArrayList<T> missing = new ArrayList<>();
     for (final T ¢ : c1)
@@ -133,7 +133,7 @@ public class azzert extends org.junit.Assert {
     assertContains("", ts, t);
   }
 
-  public static <T> void assertContains(final String s,  final @NotNull Collection<T> ts, final T t) {
+  public static <T> void assertContains(final @NotNull String s,  final @NotNull Collection<T> ts, final T t) {
     assert ts.contains(t) : s + " t = " + t;
   }
 
@@ -161,27 +161,27 @@ public class azzert extends org.junit.Assert {
     assertEquals(a, Integer.valueOf(b));
   }
 
-  public static void assertEquals(final String message, final boolean b1, final boolean b2) {
+  public static void assertEquals(final @NotNull String message, final boolean b1, final boolean b2) {
     assertEquals(message, Boolean.valueOf(b1), Boolean.valueOf(b2));
   }
 
-  public static void assertEquals(final String message, final boolean b1, final Boolean b2) {
+  public static void assertEquals(final @NotNull String message, final boolean b1, final Boolean b2) {
     assertEquals(message, Boolean.valueOf(b1), b2);
   }
 
-  public static void assertEquals(final String message, final Boolean b1, final boolean b2) {
+  public static void assertEquals(final @NotNull String message, final Boolean b1, final boolean b2) {
     assertEquals(message, b1, Boolean.valueOf(b2));
   }
 
-  public static void assertEquals(final String reason, final int i1, final int i2) {
+  public static void assertEquals(final @NotNull String reason, final int i1, final int i2) {
     assertThat(reason, fluent.ly.box.it(i1), CoreMatchers.equalTo(fluent.ly.box.it(i2)));
   }
 
-  public static void assertEquals(final String message, final int a, final Integer b) {
+  public static void assertEquals(final @NotNull String message, final int a, final Integer b) {
     assertEquals(message, Integer.valueOf(a), b);
   }
 
-  public static void assertEquals(final String message, final Integer a, final int b) {
+  public static void assertEquals(final @NotNull String message, final Integer a, final int b) {
     assertEquals(message, a, Integer.valueOf(b));
   }
 
@@ -189,11 +189,11 @@ public class azzert extends org.junit.Assert {
     that("", Boolean.valueOf(¢), is(Boolean.FALSE));
   }
 
-  public static void assertFalse(final String s, final boolean b) {
+  public static void assertFalse(final @NotNull String s, final boolean b) {
     that(s, b, is(Boolean.FALSE));
   }
 
-  public static void assertLE(final String s, final int i, final int m) {
+  public static void assertLE(final @NotNull String s, final int i, final int m) {
     assert i <= m : s + " n=" + i + " m=" + m;
   }
 
@@ -201,7 +201,7 @@ public class azzert extends org.junit.Assert {
     assertNotContains("", ts, t);
   }
 
-  public static <T> void assertNotContains(final String s,  final @NotNull Collection<T> ts, final T t) {
+  public static <T> void assertNotContains(final @NotNull String s,  final @NotNull Collection<T> ts, final T t) {
     assert !ts.contains(t) : s + " t = " + t;
   }
 
@@ -209,15 +209,15 @@ public class azzert extends org.junit.Assert {
     assertThat("", o1, CoreMatchers.not(o2));
   }
 
-  public static void assertNotEquals(final String message,  final @NotNull Object o1, final Object o2) {
+  public static void assertNotEquals(final @NotNull String message,  final @NotNull Object o1, final Object o2) {
     assert !o1.equals(o2);
   }
 
-  public static void assertNotEquals( final @NotNull String s1, final String s2) {
+  public static void assertNotEquals( final @NotNull String s1, final @NotNull String s2) {
     assertNotEquals(null, s1, s2);
   }
 
-  public static void assertNotEquals(final String message,  final @NotNull String s1, final String s2) {
+  public static void assertNotEquals(final @NotNull String message,  final @NotNull String s1, final @NotNull String s2) {
     assert !s1.equals(s2) : message;
   }
 
@@ -225,7 +225,7 @@ public class azzert extends org.junit.Assert {
     assert ¢ == null;
   }
 
-  public static void assertNull(final String message, final Object o) {
+  public static void assertNull(final @NotNull String message, final Object o) {
     assertEquals(message, null, o);
   }
 
@@ -241,7 +241,7 @@ public class azzert extends org.junit.Assert {
     that("", Boolean.valueOf(¢), is(Boolean.TRUE));
   }
 
-  public static void assertTrue(final String s, final boolean b) {
+  public static void assertTrue(final @NotNull String s, final boolean b) {
     that(s, Boolean.valueOf(b), is(Boolean.TRUE));
   }
 
@@ -253,7 +253,7 @@ public class azzert extends org.junit.Assert {
     return aye("", claim);
   }
 
-  public static @NotNull  Asserter aye(final String reason, final boolean claim) {
+  public static @NotNull  Asserter aye(final @NotNull String reason, final boolean claim) {
     return new Asserter().andAye(reason, claim);
   }
 
@@ -293,11 +293,11 @@ public class azzert extends org.junit.Assert {
     return OrderingComparison.comparesEqualTo(Short.valueOf(¢));
   }
 
-  public static Matcher<@Nullable String> containsString(final String substring) {
+  public static Matcher<@Nullable String> containsString(final @NotNull String substring) {
     return StringContains.containsString(substring);
   }
 
-  public static <T> Matcher<T> describedAs(final String description, final Matcher<T> m, final Object... values) {
+  public static <T> Matcher<T> describedAs(final @NotNull String description, final Matcher<T> m, final Object... values) {
     return DescribedAs.describedAs(description, m, values);
   }
 
@@ -305,11 +305,11 @@ public class azzert extends org.junit.Assert {
     return CombinableMatcher.either(¢);
   }
 
-  public static Matcher<String> endsWith(final String suffix) {
+  public static Matcher<String> endsWith(final @NotNull String suffix) {
     return StringEndsWith.endsWith(suffix);
   }
 
-  public static <T> void equals(final String prefix,  final @NotNull Collection<T> set,  final @NotNull Collection<T> ts) {
+  public static <T> void equals(final @NotNull String prefix,  final @NotNull Collection<T> set,  final @NotNull Collection<T> ts) {
     @NotNull Set<T> temp = new HashSet<>();
     temp.addAll(set);
     temp.removeAll(ts);
@@ -340,7 +340,7 @@ public class azzert extends org.junit.Assert {
     Assert.fail();
   }
 
-  public static void fail(final String ¢) {
+  public static void fail(final @NotNull String ¢) {
     Assert.fail(¢);
   }
 
@@ -482,11 +482,11 @@ public class azzert extends org.junit.Assert {
 
   /** @param message what to print
    * @param o       what to examine */
-  @Contract("_, !null -> fail") public static void isNull(final String message, final @Nullable  Object o) {
+  @Contract("_, !null -> fail") public static void isNull(final @NotNull String message, final @Nullable  Object o) {
     azzert.assertNull(message, o);
   }
 
-  public static @NotNull  Wrapper<String> iz(final String ¢) {
+  public static @NotNull  Wrapper<String> iz(final @NotNull String ¢) {
     return new Wrapper<>(¢);
   }
 
@@ -558,7 +558,7 @@ public class azzert extends org.junit.Assert {
     return nay("", claim);
   }
 
-  public static @NotNull  Asserter nay(final String reason, final boolean claim) {
+  public static @NotNull  Asserter nay(final @NotNull String reason, final boolean claim) {
     return new Asserter().andNay(reason, claim);
   }
 
@@ -613,7 +613,7 @@ public class azzert extends org.junit.Assert {
     assertThat("", ¢, notNullValue());
   }
 
-  public static void notNull(final String s, final @Nullable Object o) {
+  public static void notNull(final @NotNull String s, final @Nullable Object o) {
     assertThat(s, o, notNullValue());
   }
 
@@ -648,7 +648,7 @@ public class azzert extends org.junit.Assert {
     return IsSame.sameInstance(target);
   }
 
-  public static @NotNull  Matcher<String> startsWith(final String prefix) {
+  public static @NotNull  Matcher<String> startsWith(final @NotNull String prefix) {
     return StringStartsWith.startsWith(prefix);
   }
 
@@ -688,39 +688,39 @@ public class azzert extends org.junit.Assert {
     assertThat("", Short.valueOf(s), m);
   }
 
-  public static void that(final String reason, final boolean b,  final @NotNull Matcher<? super Boolean> m) {
+  public static void that(final @NotNull String reason, final boolean b,  final @NotNull Matcher<? super Boolean> m) {
     assertThat(reason, Boolean.valueOf(b), m);
   }
 
-  public static void that(final String reason, final byte b,  final @NotNull Matcher<? super @Nullable Byte> m) {
+  public static void that(final @NotNull String reason, final byte b,  final @NotNull Matcher<? super @Nullable Byte> m) {
     assertThat(reason, Byte.valueOf(b), m);
   }
 
-  public static void that(final String reason, final char c,  final @NotNull Matcher<? super Character> m) {
+  public static void that(final @NotNull String reason, final char c,  final @NotNull Matcher<? super Character> m) {
     assertThat(reason, Character.valueOf(c), m);
   }
 
-  public static void that(final String reason, final double d,  final @NotNull Matcher<? super @Nullable Double> m) {
+  public static void that(final @NotNull String reason, final double d,  final @NotNull Matcher<? super @Nullable Double> m) {
     assertThat(reason, Double.valueOf(d), m);
   }
 
-  public static void that(final String reason, final float f,  final @NotNull Matcher<? super Float> m) {
+  public static void that(final @NotNull String reason, final float f,  final @NotNull Matcher<? super Float> m) {
     assertThat(reason, Float.valueOf(f), m);
   }
 
-  public static void that(final String reason, final int i,  final @NotNull Matcher<? super Integer> m) {
+  public static void that(final @NotNull String reason, final int i,  final @NotNull Matcher<? super Integer> m) {
     assertThat(reason, Integer.valueOf(i), m);
   }
 
-  public static void that(final String reason, final long l,  final @NotNull Matcher<? super @Nullable Long> m) {
+  public static void that(final @NotNull String reason, final long l,  final @NotNull Matcher<? super @Nullable Long> m) {
     assertThat(reason, Long.valueOf(l), m);
   }
 
-  public static void that(final String reason, final short s,  final @NotNull Matcher<? super Short> m) {
+  public static void that(final @NotNull String reason, final short s,  final @NotNull Matcher<? super Short> m) {
     assertThat(reason, Short.valueOf(s), m);
   }
 
-  public static <@Nullable T> void that(final String reason, final @Nullable T actual,  final @NotNull Matcher<? super @Nullable T> t) {
+  public static <@Nullable T> void that(final @NotNull String reason, final @Nullable T actual,  final @NotNull Matcher<? super @Nullable T> t) {
     assertThat(reason, actual, t);
   }
 
@@ -736,7 +736,7 @@ public class azzert extends org.junit.Assert {
     assertEquals("", a, b);
   }
 
-  public static void xassertEquals(final String s, final int a, final int b) {
+  public static void xassertEquals(final @NotNull String s, final int a, final int b) {
     assertEquals(s, Integer.valueOf(a), Integer.valueOf(b));
   }
 
@@ -761,7 +761,7 @@ public class azzert extends org.junit.Assert {
       return andAye("", claim);
     }
 
-    public @NotNull Asserter andAye(final String reason, final boolean claim) {
+    public @NotNull Asserter andAye(final @NotNull String reason, final boolean claim) {
       azzert.that(reason, claim, is(true));
       return this;
     }
@@ -770,7 +770,7 @@ public class azzert extends org.junit.Assert {
       return andNay("", claim);
     }
 
-    public @NotNull Asserter andNay(final String reason, final boolean claim) {
+    public @NotNull Asserter andNay(final @NotNull String reason, final boolean claim) {
       azzert.that(reason, claim, is(false));
       return this;
     }

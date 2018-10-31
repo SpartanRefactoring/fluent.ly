@@ -16,13 +16,13 @@ import il.org.spartan.statistics.*;
  * @author Yossi Gil
  * @since Dec 25, 2009 */
 public class CSVStatistics extends CSVLine.Ordered {
-  private static final String SUMMARY_EXTENSION = ".summary";
+  private static final @NotNull String SUMMARY_EXTENSION = ".summary";
 
-  @SuppressWarnings("null") private static String removeExtension( final @NotNull String baseName) {
+  private static String removeExtension( final @NotNull String baseName) {
     return baseName.replaceFirst("\\.csv$", "");
   }
 
-  private final String keysHeader;
+  private final @NotNull String keysHeader;
   final Map<String, RealStatistics> stats = new LinkedHashMap<>();
   final CSVWriter inner;
   final CSVWriter summarizer;
@@ -35,7 +35,7 @@ public class CSVStatistics extends CSVLine.Ordered {
    * @param keysHeader the name of the column in which the names of the numerical
    *                   columns in the principal file
    * @throws IOException */
-  public CSVStatistics(final String baseName, final String keysHeader) {
+  public CSVStatistics(final @NotNull String baseName, final @NotNull String keysHeader) {
     assert baseName != null;
     assert keysHeader != null;
     inner = new CSVWriter(removeExtension(baseName));
@@ -45,7 +45,7 @@ public class CSVStatistics extends CSVLine.Ordered {
 
   public String close() {
     inner.close();
-    for (final String key : stats.keySet()) {
+    for (final @NotNull String key : stats.keySet()) {
        final @NotNull CSVLine l = new CSVLine.Ordered.Separated("%");
       l.put(keysHeader, key);
       @SuppressWarnings("null") final ImmutableStatistics s = stats.get(key);
@@ -74,19 +74,19 @@ public class CSVStatistics extends CSVLine.Ordered {
     inner.writeFlush(this);
   }
 
-  @Override public CSVStatistics put(final String key, final double value, final FormatSpecifier... ss) {
+  @Override public CSVStatistics put(final @NotNull String key, final double value, final FormatSpecifier... ss) {
     getStatistics(key).record(value);
     super.put(key, value, ss);
     return this;
   }
 
-  @Override public CSVStatistics put(final String key, final int value) {
+  @Override public CSVStatistics put(final @NotNull String key, final int value) {
     getStatistics(key).record(value);
     super.put(key, value);
     return this;
   }
 
-  @Override public CSVStatistics put(final String key, final long value) {
+  @Override public CSVStatistics put(final @NotNull String key, final long value) {
     getStatistics(key).record(value);
     super.put(key, value);
     return this;
@@ -96,7 +96,7 @@ public class CSVStatistics extends CSVLine.Ordered {
     return summarizer.fileName();
   }
 
-  RealStatistics getStatistics(final String key) {
+  RealStatistics getStatistics(final @NotNull String key) {
     stats.putIfAbsent(key, new RealStatistics());
     return stats.get(key);
   }
@@ -106,13 +106,13 @@ public class CSVStatistics extends CSVLine.Ordered {
       inner.writeFlush(this);
     }
 
-    @Override public CSVStatistics put(final String key, final double value, final FormatSpecifier... ss) {
+    @Override public CSVStatistics put(final @NotNull String key, final double value, final FormatSpecifier... ss) {
       getStatistics(key).record(value);
       super.put(key, value, ss);
       return CSVStatistics.this;
     }
 
-    @Override public CSVStatistics put(final String key, final long value) {
+    @Override public CSVStatistics put(final @NotNull String key, final long value) {
       getStatistics(key).record(value);
       super.put(key, value);
       return CSVStatistics.this;

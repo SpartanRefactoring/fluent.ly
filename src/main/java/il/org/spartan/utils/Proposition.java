@@ -4,6 +4,8 @@ import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
 
+import org.jetbrains.annotations.*;
+
 import fluent.ly.*;
 
 /*** Third lecture:
@@ -18,7 +20,7 @@ public interface Proposition extends BooleanSupplier {
     return AND(null, s1, s2, ss);
   }
 
-  static Proposition AND(final String toString, final BooleanSupplier s1, final BooleanSupplier s2, final BooleanSupplier... ss) {
+  static Proposition AND(final @NotNull String toString, final BooleanSupplier s1, final BooleanSupplier s2, final BooleanSupplier... ss) {
     return new And(toString, s1, s2, ss);
   }
 
@@ -30,7 +32,7 @@ public interface Proposition extends BooleanSupplier {
     return new Singleton(¢);
   }
 
-  static Proposition that(final String toString, final BooleanSupplier s) {
+  static Proposition that(final @NotNull String toString, final BooleanSupplier s) {
     return new Singleton(toString, s);
   }
 
@@ -38,7 +40,7 @@ public interface Proposition extends BooleanSupplier {
     return new Or(s1, s2, ss);
   }
 
-  static Proposition OR(final String toString, final BooleanSupplier s1, final BooleanSupplier s2, final BooleanSupplier... ss) {
+  static Proposition OR(final @NotNull String toString, final BooleanSupplier s1, final BooleanSupplier s2, final BooleanSupplier... ss) {
     return new Or(toString, s1, s2, ss);
   }
 
@@ -60,7 +62,7 @@ public interface Proposition extends BooleanSupplier {
    * {@link #AND(BooleanSupplier, BooleanSupplier, BooleanSupplier...)} */
   Proposition and(BooleanSupplier s, BooleanSupplier... ss);
 
-  default Proposition and(final String toString, final BooleanSupplier s) {
+  default Proposition and(final @NotNull String toString, final BooleanSupplier s) {
     return and(Proposition.that(toString, s));
   }
 
@@ -70,7 +72,7 @@ public interface Proposition extends BooleanSupplier {
 
   Proposition or(BooleanSupplier s, BooleanSupplier... ss);
 
-  default Proposition or(final String toString, final BooleanSupplier s) {
+  default Proposition or(final @NotNull String toString, final BooleanSupplier s) {
     return or(Proposition.that(toString, s));
   }
 
@@ -79,12 +81,12 @@ public interface Proposition extends BooleanSupplier {
   }
 
   abstract class Aggregate<Inner> extends Outer<Inner> implements Proposition {
-    public Aggregate(final String toString, final Inner inner) {
+    public Aggregate(final  String toString, final Inner inner) {
       super(inner);
       this.toString = toString;
     }
 
-    @Override public final String toString() {
+    @Override public final @NotNull String toString() {
       return toString != null ? toString : inner instanceof Aggregate ? inner + "" : super.toString();
     }
 
@@ -106,7 +108,7 @@ public interface Proposition extends BooleanSupplier {
       add(s, ss);
     }
 
-    And(final String toString, final BooleanSupplier s1, final BooleanSupplier s2, final BooleanSupplier[] ss) {
+    And(final @NotNull String toString, final BooleanSupplier s1, final BooleanSupplier s2, final BooleanSupplier[] ss) {
       super(toString);
       add(s1, s2, ss);
     }
@@ -145,7 +147,7 @@ public interface Proposition extends BooleanSupplier {
       add(s1, s2, ss);
     }
 
-    public Or(final String toString, final BooleanSupplier s1, final BooleanSupplier s2, final BooleanSupplier[] ss) {
+    public Or(final @NotNull String toString, final BooleanSupplier s1, final BooleanSupplier s2, final BooleanSupplier[] ss) {
       super(toString);
       add(s1, s2, ss);
     }
@@ -196,7 +198,7 @@ public interface Proposition extends BooleanSupplier {
    * @author Yossi Gil
    * @since 2017-03-19 */
   abstract class Some extends Aggregate<List<BooleanSupplier>> {
-    public Some(final String toString) {
+    public Some(final @NotNull String toString) {
       super(toString, an.empty.list());
     }
 
