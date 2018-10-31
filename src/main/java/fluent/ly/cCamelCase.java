@@ -12,7 +12,7 @@ public interface cCamelCase {
     return javaName.split(JAVA_CAMEL_CASE_SEPARATOR);
   }
 
-  static String lastComponent(final Class<?> ¢) {
+  @SuppressWarnings("null") static String lastComponent(final Class<?> ¢) {
     return lastComponent(¢.getCanonicalName());
   }
 

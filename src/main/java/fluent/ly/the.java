@@ -78,7 +78,7 @@ public interface the {
     return s.charAt(i);
   }
 
-  @Contract("null -> null") @Nullable static <@Nullable T> T lastOf(final @Nullable List<T> ¢) {
+  @Contract("null -> null") @Nullable static <@Nullable T> T lastOf(final @Nullable List<@Nullable T> ¢) {
     return ¢ == null || ¢.isEmpty() ? null : ¢.get(¢.size() - 1);
   }
 

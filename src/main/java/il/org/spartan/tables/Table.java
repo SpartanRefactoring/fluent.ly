@@ -15,8 +15,7 @@ import il.org.spartan.utils.*;
  * including aggregation information.
  * @author Yossi Gil
  * @since 2016-12-25 */
-@SuppressWarnings("null")
-public class Table extends Row<Table> implements Closeable {
+@SuppressWarnings("null") public class Table extends Row<Table> implements Closeable {
   private static final long serialVersionUID = 0x4AA7BE471985E874L;
   String path;
 
@@ -79,7 +78,7 @@ public class Table extends Row<Table> implements Closeable {
   /** Close operation from {@link Closeable} for saving output files.
    * @author oran1248
    * @since 2017-04-21 */
- @Override public void close() {
+  @Override public void close() {
     if (!stats.isEmpty())
       for (final Statistic s : statisics) {
         for (final @NotNull String key : keySet()) {

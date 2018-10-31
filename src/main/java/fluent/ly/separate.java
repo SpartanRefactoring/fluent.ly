@@ -19,8 +19,8 @@ import il.org.spartan.*;
  * collection, and return a {@link String} composed by the elements of this
  * collection, separated by a given {@link String} or <code><b>char</b></code>.
  * @author Yossi Gil
- * @since 07/08/2008 */  @SuppressWarnings("null") 
-public enum separate {
+ * @since 07/08/2008 */
+@SuppressWarnings("null") public enum separate {
   ;
   @NotNull public static final String COMMA = ",";
   @NotNull public static final String DOT = ".";
@@ -39,7 +39,7 @@ public enum separate {
     System.out.println("Arguments are: " + separate.these(args).by(", "));
   }
 
-@NotNull public static String separateBySpaces(final  Iterable<String> $) {
+  @NotNull public static String separateBySpaces(final Iterable<String> $) {
     return as.string(separateBySpaces($.iterator()));
   }
 
@@ -141,9 +141,9 @@ public enum separate {
      * @return a {{@link String}} obtained by concatenating the textual
      *         representation of the elements in <code>ts</code> separated by
      *         <code>between</code> */
-    @NotNull static <T> String by( final @NotNull Iterable<? extends T> ts, final @NotNull String between) {
-       final @NotNull Separator s = new Separator(between);
-       final @NotNull StringBuffer $ = new StringBuffer();
+    @NotNull static <T> String by(final @NotNull Iterable<? extends T> ts, final @NotNull String between) {
+      final @NotNull Separator s = new Separator(between);
+      final @NotNull StringBuffer $ = new StringBuffer();
       for (final T ¢ : ts)
         $.append(s).append(¢);
       return as.string($);
@@ -155,9 +155,9 @@ public enum separate {
      * @return a {{@link String}} obtained by concatenating the textual
      *         representation of the elements in <code>ts</code> separated by
      *         <code>between</code> */
-    @NotNull static String separateBy( final @NotNull Iterable<?> os, final @NotNull String between) {
-       final @NotNull Separator s = new Separator(between);
-       final @NotNull StringBuffer $ = new StringBuffer();
+    @NotNull static String separateBy(final @NotNull Iterable<?> os, final @NotNull String between) {
+      final @NotNull Separator s = new Separator(between);
+      final @NotNull StringBuffer $ = new StringBuffer();
       for (final Object ¢ : os)
         $.append(s).append(¢);
       return as.string($);
@@ -283,11 +283,11 @@ public enum separate {
     }
 
     @Test public final void byFOfTTArrayChar() {
-       final @NotNull Applicator<Object, String> f = new Applicator<>(λ -> "'" + λ + "'");
+      final @NotNull Applicator<Object, String> f = new Applicator<>(λ -> "'" + λ + "'");
       assert f != null : "Function literals should never by null.";
-       final @NotNull Collection<String> c = as.list("Hello", "World");
+      final @NotNull Collection<String> c = as.list("Hello", "World");
       azzert.that(c.size(), is(2));
-       final @NotNull Iterable<String> ts = f.to(c);
+      final @NotNull Iterable<String> ts = f.to(c);
       azzert.that(count.of(ts), is(2));
       azzert.that(separate.these(ts).by(' '), is("'Hello' 'World'"));
     }
@@ -321,7 +321,7 @@ public enum separate {
     }
 
     @Test public final void byMapOfKeyValueStringString() {
-       final @NotNull Map<String, Integer> map = new TreeMap<>();
+      final @NotNull Map<String, Integer> map = new TreeMap<>();
       map.put("One", box.it(1));
       map.put("Two", box.it(2));
       map.put("Three", box.it(3));
@@ -366,15 +366,15 @@ public enum separate {
     }
 
     @Test public final void separateByNoItemslPruneWhitesSpaceSeparated() {
-       final @NotNull SeparationSubject these = separate.these();
+      final @NotNull SeparationSubject these = separate.these();
       assert these != null : null;
       final Iterable<?> os = these.os;
       assert os != null : null;
       azzert.aye(is.empty(os));
-       final @NotNull String[] ss = as.strings(os);
+      final @NotNull String[] ss = as.strings(os);
       assert ss != null : null;
       azzert.zero(ss.length);
-       final @NotNull String[] noWhites = prune.whites(ss);
+      final @NotNull String[] noWhites = prune.whites(ss);
       azzert.zero(noWhites.length);
       azzert.that(SeparationSubject.separateBy(noWhites, " "), is(""));
     }
@@ -392,11 +392,11 @@ public enum separate {
     }
 
     @Test public void separateBySpaceMultipleIterator() {
-       azzert.that(separateBySpaces(as.list(new String[] { "X", "Y", "Z" })), is("X Y Z"));
+      azzert.that(separateBySpaces(as.list(new String[] { "X", "Y", "Z" })), is("X Y Z"));
     }
 
     @Test public void separateBySpaceOnIteator() {
-       azzert.that(separateBySpaces(as.list(new String[] { "Hello", "World " })), is("Hello World "));
+      azzert.that(separateBySpaces(as.list(new String[] { "Hello", "World " })), is("Hello World "));
     }
 
     @Test public void separateBySpaceOnSingletonIteator() {

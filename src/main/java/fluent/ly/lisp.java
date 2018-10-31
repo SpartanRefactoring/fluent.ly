@@ -5,7 +5,6 @@ import static il.org.spartan.Utils.*;
 import java.util.*;
 import java.util.stream.*;
 
-
 import org.jetbrains.annotations.*;
 
 /** @noinspection unused */
@@ -17,13 +16,17 @@ public interface lisp {
     return ¢;
   }
 
-  @NotNull static <T> List<T> cons(final T first,  final @NotNull List<T> rest) {
+  @NotNull static <T> List<T> cons(final T first, final @NotNull List<T> rest) {
     rest.add(0, first);
     return rest;
   }
 
-  @Nullable static <T> T next(final int i, final @NotNull List<T> ts) {
-    return inRange(i + 1, ts) ? ts.get(i + 1) : the.lastOf(ts);
+  @Nullable static <T> T next(final int i, final @Nullable List<@Nullable T> ts) {
+    return inRange(i + 1, ts) ? get(ts, i) : the.lastOf(ts);
+  }
+
+  static <T> @Nullable T get(final List<@Nullable T> ts, final int i) {
+    return (ts == null) ? null : ts.get(i + 1);
   }
 
   /** Retrieve previous item in a list
@@ -31,7 +34,7 @@ public interface lisp {
    * @param ts the indexed list
    * @return previous item in the list, if such an item exists, otherwise, the
    *         last node */
-  static <T> T prev(final int i,  final @NotNull List<T> ts) {
+  static <T> T prev(final int i, final @NotNull List<T> ts) {
     return ts.get(i < 1 ? 0 : i - 1);
   }
 
@@ -51,7 +54,7 @@ public interface lisp {
     return replace(ts, element, ts.size() - 1);
   }
 
-  @NotNull static <T> Iterable<T> rest2( final @NotNull Iterable<T> ¢) {
+  @NotNull static <T> Iterable<T> rest2(final @NotNull Iterable<T> ¢) {
     return the.lastOf(the.lastOf(¢));
   }
 

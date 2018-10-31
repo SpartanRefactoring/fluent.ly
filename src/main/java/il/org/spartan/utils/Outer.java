@@ -1,5 +1,7 @@
 package il.org.spartan.utils;
 
+import il.org.spartan.*;
+
 /** TODO Yossi Gil: document class
  * @author Yossi Gil
  * @since 2017-03-21 */
@@ -21,7 +23,7 @@ public class Outer<Inner> {
     return equals($);
   }
 
-  protected boolean equals(final Outer<Inner> other) {
+  @SuppressWarnings("null") protected boolean equals(final Outer<Inner> other) {
     if (inner == null) {
       if (other.inner != null)
         return false;
@@ -31,6 +33,6 @@ public class Outer<Inner> {
   }
 
   @Override public int hashCode() {
-    return 31 + (inner == null ? 0 : inner.hashCode());
+    return 31 + Utils.hash(inner);
   }
 }

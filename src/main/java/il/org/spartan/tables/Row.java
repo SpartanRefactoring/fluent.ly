@@ -13,7 +13,7 @@ import il.org.spartan.utils.*;
  * @param <Self> uses for fluent API, __ of subclass
  * @author Yossi Gil
  * @since 2017-01-04 */
-public abstract class Row<Self extends Row<?>> extends LinkedHashMap<String, Object> {
+@SuppressWarnings("null") public abstract class Row<Self extends Row<?>> extends LinkedHashMap<String, Object> {
   private static final long serialVersionUID = 0x5F4CC2841512340L;
 
   public Row() {
@@ -52,7 +52,7 @@ public abstract class Row<Self extends Row<?>> extends LinkedHashMap<String, Obj
   }
 
   /** Adds a key and a {@code double</b><code> value to this instance &#64;param
-     * key The key to be added; must not be {@code null &#64;param value The value
+      * key The key to be added; must not be {@code null &#64;param value The value
    * associated with the key @return {@code this} */
   public Self col(final @NotNull String key, final double value) {
     return col(key, value + "");

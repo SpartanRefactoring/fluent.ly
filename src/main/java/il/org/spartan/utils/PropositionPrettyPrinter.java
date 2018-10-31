@@ -147,7 +147,7 @@ public class PropositionPrettyPrinter {
     traversal.topDown(¢);
   }
 
-  public static void main(final  String[] args) {
+  public static void main(final String[] args) {
     final PropositionPrettyPrinter p = new PropositionPrettyPrinter();
     // example 1
     p.present( //

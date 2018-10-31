@@ -30,7 +30,7 @@ public final class CSVWriter {
     fileName = "";
   }
 
-  public CSVWriter(final @NotNull String fileName) {
+  @SuppressWarnings("null") public CSVWriter(final @NotNull String fileName) {
     this.fileName = fileName;
     file = new File(fileName);
     inner = open(file);
@@ -76,7 +76,7 @@ public final class CSVWriter {
     }
   }
 
-  void writeln(final @NotNull String s) {
+  void writeln(final String s) {
     try {
       inner.write(s);
       inner.write("\n");

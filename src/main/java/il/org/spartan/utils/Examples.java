@@ -23,7 +23,7 @@ public class Examples implements Iterable<Example> {
     return inner.spliterator();
   }
 
-  public Converter convert(final  String from) {
+  public Converter convert(final String from) {
     return to -> add(new Example.Converts() {
       @Override public String from() {
         return from;
@@ -35,7 +35,7 @@ public class Examples implements Iterable<Example> {
     });
   }
 
-  public Examples ignores(final  String code) {
+  public Examples ignores(final String code) {
     return add((Ignores) () -> code);
   }
 

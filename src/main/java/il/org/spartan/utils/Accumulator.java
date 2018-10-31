@@ -81,7 +81,7 @@ public abstract class Accumulator {
 
     @SuppressWarnings("static-method") public static class TEST {
       @Test public void booleanAdds() {
-         final @NotNull Counter c = new Counter();
+        final @NotNull Counter c = new Counter();
         azzert.that(c.value(), is(0));
         c.add(true);
         azzert.that(c.value(), is(1));
@@ -96,7 +96,7 @@ public abstract class Accumulator {
       }
 
       @Test public void emptyAdds() {
-         final @NotNull Counter c = new Counter();
+        final @NotNull Counter c = new Counter();
         for (int ¢ = 0; ¢ < 19; ++¢)
           c.add();
         azzert.that(c.value(), is(19));
@@ -125,7 +125,7 @@ public abstract class Accumulator {
 
     @SuppressWarnings("static-method") public static class TEST {
       @Test public void booleanAdds() {
-         final @NotNull Last c = new Last();
+        final @NotNull Last c = new Last();
         azzert.that(as.bit(false), is(0));
         azzert.that(c.value(), is(0));
         c.add(true);
@@ -142,7 +142,7 @@ public abstract class Accumulator {
       }
 
       @Test public void emptyAdds() {
-         final @NotNull Last c = new Last();
+        final @NotNull Last c = new Last();
         for (int ¢ = 0; ¢ < 19; ++¢)
           c.add(¢);
         c.add(11);

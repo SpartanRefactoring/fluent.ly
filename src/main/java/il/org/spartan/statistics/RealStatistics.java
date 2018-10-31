@@ -42,7 +42,7 @@ public class RealStatistics extends ImmutableStatistics {
     return this;
   }
 
-  @NotNull protected RealStatistics recordValue(final double v) {
+  @SuppressWarnings("null") @NotNull protected RealStatistics recordValue(final double v) {
     if (n() == 0) {
       min = max = v;
       flips = 2;
@@ -104,13 +104,13 @@ public class RealStatistics extends ImmutableStatistics {
     }
 
     @Test(expected = ArithmeticException.class) public void meanEmpty() {
-       final @NotNull RealStatistics x = new RealStatistics();
+      final @NotNull RealStatistics x = new RealStatistics();
       assertEquals(0, x.mean(), 1E-20);
       x.relativeError();
     }
 
     @Test public void meanZero() {
-       final @NotNull RealStatistics x = new RealStatistics().record(1).record(-1);
+      final @NotNull RealStatistics x = new RealStatistics().record(1).record(-1);
       assertEquals(0, x.mean(), 1E-20);
       x.relativeError();
     }

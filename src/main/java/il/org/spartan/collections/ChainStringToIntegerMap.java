@@ -48,7 +48,7 @@ public class ChainStringToIntegerMap {
     return this;
   }
 
-  public ChainStringToIntegerMap putOn(final int value,  final @NotNull String... keys) {
+  public ChainStringToIntegerMap putOn(final int value, final @NotNull String... keys) {
     for (final @NotNull String key : keys)
       put(key, value);
     return this;

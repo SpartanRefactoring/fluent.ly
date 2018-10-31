@@ -3,7 +3,6 @@ package il.org.spartan.collections;
 import java.io.*;
 import java.util.*;
 
-
 import org.jetbrains.annotations.*;
 
 import fluent.ly.*;
@@ -37,8 +36,7 @@ import fluent.ly.*;
  * <code>/home</code> directories.
  * @author Yossi Gil
  * @since 2015-09-23. */
-@SuppressWarnings("null")
-public class FilesGenerator {
+@SuppressWarnings("null") public class FilesGenerator {
   /** @param ____ ignored */
   public static void main(final @NotNull String[] ____) {
     for (final File ¢ : new FilesGenerator(".java").from("."))
@@ -71,8 +69,8 @@ public class FilesGenerator {
   }
 
   private static Iterable<File> asFiles(final Iterable<@NotNull String> fileNames) {
-     final @NotNull List<File> $ = new ArrayList<>();
-    for ( final @NotNull String fileName : fileNames)
+    final @NotNull List<File> $ = new ArrayList<>();
+    for (final @NotNull String fileName : fileNames)
       $.add(new File(fileName));
     return $;
   }
@@ -160,7 +158,7 @@ public class FilesGenerator {
       }
 
       private boolean ofInterest() {
-        for ( final @NotNull String extension : extensions)
+        for (final @NotNull String extension : extensions)
           if (next.getName().endsWith(extension))
             return true;
         return false;

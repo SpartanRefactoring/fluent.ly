@@ -144,7 +144,8 @@ public enum string {
     try {
       Integer.valueOf(s);
       return true;
-    } catch (final NumberFormatException ¢) {      forget.it(¢);
+    } catch (final NumberFormatException ¢) {
+      forget.it(¢);
       return false;
     }
   }
@@ -153,7 +154,8 @@ public enum string {
     try {
       Long.valueOf(s);
       return true;
-    } catch (final NumberFormatException ¢) {      forget.it(¢);
+    } catch (final NumberFormatException ¢) {
+      forget.it(¢);
       return false;
     }
   }
@@ -273,7 +275,9 @@ public enum string {
   }
 
   @NotNull public static String sprintf(final @NotNull String format, final Object... args) {
-    return new Formatter().format(format, args) + "";
+    try (Formatter $ = new Formatter()) {
+      return $.format(format, args) + "";
+    }
   }
 
   public static String sprintf(final @NotNull String[] args) {

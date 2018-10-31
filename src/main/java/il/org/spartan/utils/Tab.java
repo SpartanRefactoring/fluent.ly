@@ -28,8 +28,7 @@ import fluent.ly.*;
  *
  * @author Adrian Kuhn
  * @since August 4th, 2008 */
-@SuppressWarnings("null")
-public class Tab {
+@SuppressWarnings("null") public class Tab {
   /** What to add before each indented line of text? */
   private String indentation = "";
   @NotNull public final String tab;
@@ -92,8 +91,8 @@ public class Tab {
 
   /** Send a formatted line, indented by this instance, to {@link System#out}.
    * @param os what to print */
-  public void println( final @NotNull Object... os) {
-     final @NotNull StringBuilder sb = new StringBuilder();
+  public void println(final @NotNull Object... os) {
+    final @NotNull StringBuilder sb = new StringBuilder();
     for (final Object ¢ : os)
       sb.append(¢);
     System.out.println(toString() + sb);
@@ -119,7 +118,7 @@ public class Tab {
     }
 
     @Test public void emptyFalse() {
-       final @NotNull Tab t = new Tab("abc");
+      final @NotNull Tab t = new Tab("abc");
       t.more();
       assert !t.isEmpty();
     }
@@ -129,13 +128,13 @@ public class Tab {
     }
 
     @Test public void testBeginAtLevelOne() {
-       final @NotNull Tab t = new Tab("abc");
+      final @NotNull Tab t = new Tab("abc");
       t.more();
       azzert.that(cat(t.begin(), t + ""), is(cat("abc", "abcabc")));
     }
 
     @Test public void testBeginAtZero() {
-       final @NotNull Tab t = new Tab("abc");
+      final @NotNull Tab t = new Tab("abc");
       azzert.that(cat(t.begin(), t + ""), is(cat("", "abc")));
     }
 
@@ -149,13 +148,13 @@ public class Tab {
     }
 
     @Test public void testEndAtLevelOne() {
-       final @NotNull Tab t = new Tab("abc");
+      final @NotNull Tab t = new Tab("abc");
       t.more();
       azzert.that(cat(t.end(), t + ""), is(cat("", "")));
     }
 
     @Test public void testEndAtLevelTwo() {
-       final @NotNull Tab t = new Tab("abc");
+      final @NotNull Tab t = new Tab("abc");
       t.more();
       t.more();
       azzert.that(cat(t.end(), t + ""), is(cat("abc", "abc")));
@@ -163,32 +162,32 @@ public class Tab {
 
     @Test(expected = ___.Bug.Contract.Precondition.class) //
     public void testEndAtLevelZero() {
-       final @NotNull Tab t = new Tab("abc");
+      final @NotNull Tab t = new Tab("abc");
       azzert.that(cat(t.end(), t + ""), is(cat("", "")));
     }
 
     @Test public void testOneMore() {
-       final @NotNull Tab t = new Tab("abc");
+      final @NotNull Tab t = new Tab("abc");
       t.more();
       azzert.that(t + "", is("abc"));
     }
 
     @Test public void testOneMoreOneLess() {
-       final @NotNull Tab t = new Tab("abc");
+      final @NotNull Tab t = new Tab("abc");
       t.more();
       t.less();
       azzert.that(t + "", is(""));
     }
 
     @Test public void testTwoMore() {
-       final @NotNull Tab t = new Tab("abc");
+      final @NotNull Tab t = new Tab("abc");
       t.more();
       t.more();
       azzert.that(t + "", is("abcabc"));
     }
 
     @Test public void testTwoMoreOneLess() {
-       final @NotNull Tab t = new Tab("abc");
+      final @NotNull Tab t = new Tab("abc");
       t.more();
       t.more();
       t.less();
@@ -196,7 +195,7 @@ public class Tab {
     }
 
     @Test public void testTwoMoreTwoLessOneMore() {
-       final @NotNull Tab t = new Tab("abc");
+      final @NotNull Tab t = new Tab("abc");
       t.more();
       t.more();
       t.less();
@@ -206,7 +205,7 @@ public class Tab {
     }
 
     @Test public void testTwoMoreTwoLessTwoMore() {
-       final @NotNull Tab t = new Tab("abc");
+      final @NotNull Tab t = new Tab("abc");
       t.more();
       t.more();
       t.less();

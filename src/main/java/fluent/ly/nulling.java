@@ -2,32 +2,34 @@ package fluent.ly;
 
 import java.util.function.*;
 
+import org.jetbrains.annotations.*;
+
 /** TODO Yossi Gil: document class
  * @author Yossi Gil
  * @since 2017-04-12 */
 public interface nulling {
-  static <T> T ly(final BooleanSupplier ¢) {
+  static <@Nullable T> @Nullable T ly(final BooleanSupplier ¢) {
     return nil.ignoring(¢.getAsBoolean());
   }
 
-  static <T> T ly(final DoubleSupplier ¢) {
+  static <@Nullable T> @Nullable T ly(final DoubleSupplier ¢) {
     return nil.ignoring(¢.getAsDouble());
   }
 
-  static <T> T ly(final IntSupplier ¢) {
+  static <@Nullable T> @Nullable T ly(final IntSupplier ¢) {
     return nil.ignoring(¢.getAsInt());
   }
 
-  static <T> T ly(final LongSupplier ¢) {
+  static <@Nullable T> @Nullable T ly(final LongSupplier ¢) {
     return nil.ignoring(¢.getAsLong());
   }
 
-  static <T> T ly(final Runnable ¢) {
+  static <@Nullable T> @Nullable T ly(final Runnable ¢) {
     ¢.run();
     return the.nil();
   }
 
-  static <T, R> T ly(final Supplier<R> ¢) {
+  static <@Nullable T, @Nullable R> T ly(final Supplier<R> ¢) {
     return nil.forgetting(¢.get());
   }
 }

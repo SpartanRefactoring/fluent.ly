@@ -2,10 +2,12 @@ package il.org.spartan.utils;
 
 import java.util.*;
 
+import org.jetbrains.annotations.*;
+
 /** TODO Yossi Gil: document class
  * @author Yossi Gil
  * @since 2017-03-19 */
-public abstract class ReduceCollectionsAdd<T, C extends Collection<T>> extends NullReduce<C> {
+public abstract class ReduceCollectionsAdd<T, @Nullable C extends Collection<T>> extends NullReduce<C> {
   @Override public final C reduce(final C c1, final C c2) {
     if (c1 == null)
       return c2;

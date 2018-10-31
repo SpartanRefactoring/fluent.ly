@@ -483,7 +483,7 @@ import il.org.spartan.Utils.FoundHandleForT.*;
       return $;
     }
 
-    @Test public void addAllTypical() {
+    @Test @SuppressWarnings("unchecked") public void addAllTypical() {
       final Set<String> ss = new HashSet<>();
       accumulate.to(ss).addAll(as.set("A", "B"), null, as.set("B", "C", "D"));
       azzert.nay(ss.contains("E"));
@@ -567,5 +567,9 @@ import il.org.spartan.Utils.FoundHandleForT.*;
       swap($, 0, 1);
       assertArrayEquals(intToIntegers(1, 29, 60), $);
     }
+  }
+
+  static int hash(Object ¢) {
+    return ¢ == null ? 0 : ¢.hashCode();
   }
 }

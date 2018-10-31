@@ -21,7 +21,7 @@ import il.org.spartan.utils.*;
  * @author Yossi Gil
  * @since 2017-03-10 */
 public interface lazy<@Nullable T> extends Supplier<@Nullable T> {
-  static <T> lazy<T> get(@¢ final Supplier<@Nullable T> ¢) {
+  static <@Nullable T> lazy<@Nullable T> get(@¢ final Supplier<@Nullable T> ¢) {
     return new lazy<@Nullable T>() {
       /** Cached value; invalid cache if {@code null} */
       @Nullable T $;
@@ -30,13 +30,13 @@ public interface lazy<@Nullable T> extends Supplier<@Nullable T> {
        * thread safe. Instance is always unique.
        * @Return value of the supplier */
       @Override @Nullable public T get() {
-         set($ != null ? $ : ¢.get());
-         return $;
+        set($ != null ? $ : ¢.get());
+        return $;
       }
 
       /** [[SuppressWarningsSpartan]] */
       void set(@Nullable T value) {
-         $ = value;
+        $ = value;
       }
     };
   }

@@ -1,6 +1,5 @@
 package fluent.ly;
 
-
 import org.jetbrains.annotations.*;
 import org.junit.*;
 

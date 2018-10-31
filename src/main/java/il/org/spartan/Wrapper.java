@@ -1,6 +1,5 @@
 package il.org.spartan;
 
-
 import org.jetbrains.annotations.*;
 
 /** A generic wrapper classes which can store and retrieve values of any type.
@@ -25,15 +24,19 @@ public class Wrapper<@Nullable T> {
     return (Wrapper<T>) Utils.cantBeNull(super.clone());
   }
 
-  @Override public final boolean equals(final @Nullable  Object ¢) {
-    return super.equals(¢) || ¢ != null && getClass() == ¢.getClass() && equals((Wrapper<?>) ¢);
+  @Override @SuppressWarnings("unchecked") public final boolean equals(final @Nullable Object ¢) {
+    return super.equals(¢) || ¢ != null && getClass() == ¢.getClass() && equals((Wrapper<T>) ¢);
   }
 
   /** @param ¢ JD
    * @return <code><b>true</b></code> <i>iff</i> method <code>equals</code>
    *         returns <code><b>true</b></code> for the wrapped objects. */
-  public boolean equals(final Wrapper<?> ¢) {
-    return inner == null ? ¢.inner == null : inner.equals(¢.inner);
+  public boolean equals(final Wrapper<T> ¢) {
+    return inner == null ? ¢.inner == null : equalsAux(¢.inner);
+  }
+
+  private boolean equalsAux(final T ¢) {
+    return inner != null && inner.equals(¢);
   }
 
   /** @return value wrapped in this object. */
@@ -41,7 +44,7 @@ public class Wrapper<@Nullable T> {
     return inner;
   }
 
-  @Override public int hashCode() {
+  @Override @SuppressWarnings("null") public int hashCode() {
     return inner == null ? 0 : inner.hashCode();
   }
 

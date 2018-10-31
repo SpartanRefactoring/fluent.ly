@@ -7,8 +7,8 @@ import java.io.*;
 import org.jetbrains.annotations.*;
 
 import fluent.ly.*;
-@SuppressWarnings("null") 
-public class Tokenizer {
+
+@SuppressWarnings("null") public class Tokenizer {
   @NotNull public static Reader reader(final @NotNull File ¢) throws FileNotFoundException {
     return new FileReader(¢);
   }
@@ -24,7 +24,7 @@ public class Tokenizer {
   /** Instantiate {@link Tokenizer}.
    * @param f read input from this file
    * @throws FileNotFoundException */
-  public Tokenizer( final @NotNull File f) throws FileNotFoundException {
+  public Tokenizer(final @NotNull File f) throws FileNotFoundException {
     this(f.getPath(), reader(f));
   }
 

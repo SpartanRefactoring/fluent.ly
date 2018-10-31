@@ -18,8 +18,7 @@ import fluent.ly.*;
  * single line. Within are some other useful auxiliary functions for string
  * manipulations.
  * @author Oren Rubin */
-@SuppressWarnings("null") 
-public enum CSV {
+@SuppressWarnings("null") public enum CSV {
   ;
   @NotNull private static final String NULL = "\\0";
 
@@ -82,7 +81,9 @@ public enum CSV {
    * @return A two dimensional array of strings
    * @throws IOException some problem with file 'filename' */
   public static String[][] load(final File ¢) throws IOException {
-    return load(new FileReader(¢));
+    try (FileReader $ = new FileReader(¢)) {
+      return load($);
+    }
   }
 
   /** Read a CSV file from the given Reader object.
@@ -103,7 +104,7 @@ public enum CSV {
 
   @NotNull public static <T extends Enum<T>> T[] split(final Class<T> clazz, final @NotNull String s) {
     final String @NotNull [] ss = split(s);
-    final T @NotNull [] $ = (T[]) Array.newInstance(clazz, ss.length);
+    @SuppressWarnings("unchecked") final T @NotNull [] $ = (T[]) Array.newInstance(clazz, ss.length);
     for (int ¢ = 0; ¢ < $.length; ++¢)
       $[¢] = ss[¢] == null ? null : Enum.valueOf(clazz, ss[¢]);
     return $;

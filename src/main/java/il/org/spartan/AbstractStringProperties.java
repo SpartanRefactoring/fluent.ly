@@ -2,14 +2,13 @@ package il.org.spartan;
 
 import java.util.*;
 
-
 import org.jetbrains.annotations.*;
 
 import fluent.ly.*;
 
 /** @author Yossi Gil
- * @since Apr 8, 2012 */  @SuppressWarnings("null") 
-public abstract class AbstractStringProperties {
+ * @since Apr 8, 2012 */
+@SuppressWarnings("null") public abstract class AbstractStringProperties {
   final Renderer renderer;
 
   public AbstractStringProperties() {
@@ -174,7 +173,7 @@ public abstract class AbstractStringProperties {
         return "\\\\";
       }
 
-      @Override @NotNull String makeField(final @Nullable  String ¢) {
+      @Override @NotNull String makeField(final @Nullable String ¢) {
         return ¢ == null ? "" : !¢.contains(delimiter()) ? ¢ : ¢.replaceAll(delimiter(), "\\" + delimiter());
       }
     };

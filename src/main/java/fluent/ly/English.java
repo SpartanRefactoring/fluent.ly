@@ -13,7 +13,7 @@ import il.org.spartan.utils.*;
 /** Utility class for linguistic issues. Used by GUI dialogs.
  * @author Ori Roth
  * @since 2.6 */
-public interface English {
+@SuppressWarnings("null") public interface English {
   interface Inflection {
     static Inflection stem(final @NotNull String base) {
       return new Inflection() {
@@ -207,7 +207,7 @@ public interface English {
   static String trim(final @Nullable String s) {
     if (s == null)
       return null;
-    @SuppressWarnings("null") final @NotNull String @NotNull [] $ = s.split("\n");
+    final @NotNull String @NotNull [] $ = s.split("\n");
     IntStream.range(0, $.length).forEach(λ -> $[λ] = trimAbsolute($[λ], TRIM_THRESHOLD, TRIM_SUFFIX));
     return String.join("\n", $);
   }

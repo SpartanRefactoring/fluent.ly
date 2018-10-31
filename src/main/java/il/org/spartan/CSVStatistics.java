@@ -15,10 +15,10 @@ import il.org.spartan.statistics.*;
  * column in the main CSV file.
  * @author Yossi Gil
  * @since Dec 25, 2009 */
-public class CSVStatistics extends CSVLine.Ordered {
+@SuppressWarnings("null") public class CSVStatistics extends CSVLine.Ordered {
   @NotNull private static final String SUMMARY_EXTENSION = ".summary";
 
-  private static String removeExtension( final @NotNull String baseName) {
+  @NotNull private static String removeExtension(final @NotNull String baseName) {
     return baseName.replaceFirst("\\.csv$", "");
   }
 
@@ -46,7 +46,7 @@ public class CSVStatistics extends CSVLine.Ordered {
   public String close() {
     inner.close();
     for (final @NotNull String key : stats.keySet()) {
-       final @NotNull CSVLine l = new CSVLine.Ordered.Separated("%");
+      final @NotNull CSVLine l = new CSVLine.Ordered.Separated("%");
       l.put(keysHeader, key);
       final ImmutableStatistics s = stats.get(key);
       l//

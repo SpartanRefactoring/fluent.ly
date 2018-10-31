@@ -5,7 +5,6 @@ import static fluent.ly.azzert.*;
 
 import java.util.function.*;
 
-
 import org.jetbrains.annotations.*;
 import org.junit.*;
 
@@ -17,13 +16,13 @@ public interface idiomatic {
   /** Single quote: */
   String QUOTE = "'";
   /** an evaluating trigger */
-  Trigger eval = new Trigger() {
-    @Override public <@Nullable T> T eval( final @NotNull Supplier<@Nullable T> ¢) {
+  @NotNull Trigger eval = new Trigger() {
+    @Override public <@Nullable T> T eval(final Supplier<@Nullable T> ¢) {
       return ¢.get();
     }
   };
   /** an ignoring trigger */
-  @Nullable Trigger ignore = new Trigger() {
+  @NotNull Trigger ignore = new Trigger() {
     @Override @Nullable public <@Nullable T> T eval(final Supplier<T> ____) {
       return null;
     }
@@ -33,7 +32,7 @@ public interface idiomatic {
    * @param   <T> JD
    * @param $ result
    * @return an identical supplier which is also a {@link Holder} */
-  static <T> Holder<T> eval( final @NotNull Supplier<@Nullable T> $) {
+  static <T> Holder<T> eval(final @NotNull Supplier<@Nullable T> $) {
     return () -> $.get();
   }
 
@@ -47,7 +46,7 @@ public interface idiomatic {
    * @param $ JD
    * @return result of invoking the parameter, or <code><b>null</b></code> if an
    *         exception occurred. */
-  static <@Nullable T> @Nullable T katching( final @NotNull Producer<T> $) {
+  static <@Nullable T> @Nullable T katching(final @NotNull Producer<T> $) {
     try {
       return $.λ();
     } catch (final Exception ¢) {
@@ -78,7 +77,7 @@ public interface idiomatic {
   }
 
   /** @param condition JD */
-  static  Trigger unless(final boolean condition) {
+  static Trigger unless(final boolean condition) {
     return when(!condition);
   }
 
@@ -86,7 +85,7 @@ public interface idiomatic {
     return incase(!condition, t);
   }
 
-  @Nullable static Trigger when(final boolean condition) {
+  @NotNull static Trigger when(final boolean condition) {
     return condition ? eval : ignore;
   }
 

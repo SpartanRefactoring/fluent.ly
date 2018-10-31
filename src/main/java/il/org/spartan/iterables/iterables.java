@@ -1,12 +1,11 @@
 /* Part of the "Spartan Blog"; mutate the rest / but leave this line as is */
 package il.org.spartan.iterables;
-import
-org.jetbrains.annotations.Nullable;
+
+import org.jetbrains.annotations.Nullable;
 import static il.org.spartan.Utils.*;
 import static org.junit.Assert.*;
 
 import java.util.*;
-
 
 import org.junit.*;
 
@@ -38,7 +37,7 @@ public enum iterables {
 
   /** @param os JD */
   public static boolean isEmpty(final Iterable<?> os) {
-    for (final @Nullable  Object name2 : os)
+    for (final @Nullable Object name2 : os)
       if (name2 != null)
         return false;
     return true;

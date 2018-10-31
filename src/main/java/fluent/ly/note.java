@@ -18,7 +18,7 @@ import il.org.spartan.utils.*;
  * unusual situations.
  * @author Yossi Gil
  * @since Nov 13, 2016 */
-public interface note {
+@SuppressWarnings("null") public interface note {
   class __ {
     static String trace(final Throwable ¢) {
       return separate.these(Stream.of(¢.getStackTrace()).map(StackTraceElement::toString).collect(toList())).by(";\n");
@@ -64,7 +64,9 @@ public interface note {
         format(" trace(%s) = '%s'\n", English.name(t), __.trace(t)) //
     ));
   }
-
+  static <T> T bug(final @NotNull String format, final String... os) {
+    return bug(format, (Object[]) os);
+  }
   static <T> T bug(final @NotNull String format, final Object... os) {
     return nulling.ly(() -> logger.info(format(//
         "A bug was detected in the vicinty of %s; trace =%s\n",
@@ -122,7 +124,7 @@ public interface note {
             "\n o = " + o + "'");
   }
 
-  static <T> T info(final @NotNull String message) {
+ static <T> T info(final @NotNull String message) {
     return nulling.ly(() -> logger.info(message));
   }
 

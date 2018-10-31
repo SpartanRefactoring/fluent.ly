@@ -44,7 +44,7 @@ public interface fault {
     return false;
   }
 
-  @NotNull static String specifically(final @NotNull String explanation, final Object... os) {
+  @NotNull @SuppressWarnings("null") static String specifically(final @NotNull String explanation, final Object... os) {
     return dump("\n " + explanation) + Stream.of(os).map(λ -> dump(λ.getClass().getSimpleName(), λ)).reduce((x, y) -> x + y).get() + done();
   }
 

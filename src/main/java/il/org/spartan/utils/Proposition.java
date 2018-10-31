@@ -15,8 +15,7 @@ import fluent.ly.*;
  * </ol>
  * @author Yossi Gil
  * @since 2017-03-06 */
-@SuppressWarnings("null")
-public interface Proposition extends BooleanSupplier {
+@SuppressWarnings("null") public interface Proposition extends BooleanSupplier {
   static Proposition AND(final BooleanSupplier s1, final BooleanSupplier s2, final BooleanSupplier... ss) {
     return AND(null, s1, s2, ss);
   }
@@ -82,7 +81,7 @@ public interface Proposition extends BooleanSupplier {
   }
 
   abstract class Aggregate<Inner> extends Outer<Inner> implements Proposition {
-    public Aggregate(final  String toString, final Inner inner) {
+    public Aggregate(final String toString, final Inner inner) {
       super(inner);
       this.toString = toString;
     }

@@ -1,5 +1,7 @@
 package il.org.spartan.utils;
 
+import static java.lang.System.*;
+
 import java.io.*;
 import java.text.*;
 import java.util.*;
@@ -37,8 +39,8 @@ public interface system {
   static Process dumpOutput(final Process $) {
     if (isWindows())
       return $;
-    try (BufferedReader in = new BufferedReader(new InputStreamReader($.getInputStream()))) {
-      for (String line = in.readLine(); line != null; line = in.readLine())
+    try (BufferedReader r = new BufferedReader(new InputStreamReader($.getInputStream()))) {
+      for (String line = r.readLine(); line != null; line = r.readLine())
         System.out.println(line);
     } catch (final IOException ¢) {
       note.io(¢, $ + "");
@@ -128,7 +130,7 @@ public interface system {
   }
 
   /** @return the name of the class from which this method was called. */
-  static String myFullClassName() {
+  @NotNull @SuppressWarnings("null") static String myFullClassName() {
     final StackTraceElement[] $ = new Throwable().getStackTrace();
     for (int ¢ = 1; ¢ < $.length; ++¢)
       if (!$[¢].getClassName().equals($[0].getClassName()))
@@ -174,8 +176,8 @@ public interface system {
     return bash("./essence <" + fileName + ">" + essenced(fileName));
   }
 
-  static String userName() {
-    return English.upperFirstLetter(System.getProperty("user.name", "User"));
+  @SuppressWarnings("null") static String userName() {
+    return English.upperFirstLetter(getProperty("user.name", "User"));
   }
 
   /** This function counts the number of words the given string contains. Words

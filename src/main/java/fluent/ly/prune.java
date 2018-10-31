@@ -25,8 +25,7 @@ import org.junit.*;
  *
  * @author Yossi Gil
  * @since 27/08/2008 */
-@SuppressWarnings("null") 
-public enum prune {
+@SuppressWarnings("null") public enum prune {
   ;
   @NotNull private static String @NotNull [] asArrray(final @NotNull List<String> $) {
     return cantBeNull($.toArray(new String[0]));
@@ -104,7 +103,7 @@ public enum prune {
     }
 
     @Test public void nullsPruneSparseCollectionContents() {
-      final  String[] a = nulls(sparseCollection).toArray(new String[3]);
+      final String[] a = nulls(sparseCollection).toArray(new String[3]);
       assertEquals("A", a[0]);
       assertEquals("B", a[1]);
       assertEquals("C", a[2]);
