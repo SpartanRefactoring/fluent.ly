@@ -5,7 +5,6 @@ import java.util.*;
 import org.jetbrains.annotations.*;
 
 public interface array {
-
   /** Sorts an array
    * @param ¢ what to sort
    * @return given array with elements in sorted order */
@@ -31,8 +30,8 @@ public interface array {
    * @param ts an arbitrary array
    * @param i  position of element to be deleted
    * @return newly created array */
-  @NotNull static <T> T[] delete(final @NotNull T[] ts, final int i) {
-    final T @NotNull [] $ = Arrays.copyOf(ts, ts.length - 1);
+  static <T> T[] delete(final T[] ts, final int i) {
+    @SuppressWarnings("null") final T @NotNull [] $ = Arrays.copyOf(ts, ts.length - 1);
     System.arraycopy(ts, i + 1, $, i, $.length - i);
     return $;
   }
@@ -43,8 +42,8 @@ public interface array {
    * @param ts an arbitrary array
    * @param t  an element
    * @return newly created array */
-  @NotNull static <T> T[] append(final @NotNull T[] ts, final T t) {
-    final T @NotNull [] $ = Arrays.copyOf(ts, 1 + ts.length);
+  static <T> T @NotNull [] append(final @NotNull T[] ts, final T t) {
+    @SuppressWarnings("null") final T @NotNull [] $ = Arrays.copyOf(ts, 1 + ts.length);
     $[ts.length] = t;
     return $;
   }

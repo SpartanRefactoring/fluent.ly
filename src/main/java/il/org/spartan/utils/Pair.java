@@ -38,7 +38,6 @@ public class Pair<First, Second> {
     return hash(second) ^ hash(first) >>> 1;
   }
 
-
   @Override @NotNull public String toString() {
     return "<" + first + "," + second + ">";
   }
