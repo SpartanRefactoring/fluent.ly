@@ -53,8 +53,8 @@ import fluent.ly.*;
   }
 
   public static class ListProperties extends AbstractStringProperties {
-    @NotNull private final List<String> keys = new ArrayList<>();
-    @NotNull private final List<String> values = new ArrayList<>();
+    @NotNull private final List<String> keys = an.empty.list();
+    @NotNull private final List<String> values = an.empty.list();
 
     @Override @Nullable public String get(final @NotNull String key) {
       final int $ = keys.lastIndexOf(key);

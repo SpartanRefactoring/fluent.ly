@@ -32,7 +32,7 @@ import il.org.spartan.*;
    *           type is isomorphic to array parameters in Java
    * @return an {@link Iterable} over the array, which can then be used to to
    *         iterate over the parameter(s) */
-  public static Iterable<Integer> asIterable(final @NotNull Integer... is) {
+  public static Iterable<Integer> iterable(final @NotNull Integer... is) {
     // Create an object of a new <em>anonymous</em> class that
     // <code><b>implements</b></code> {@link Iterable}
     return () -> new Iterator<Integer>() {
@@ -79,7 +79,7 @@ import il.org.spartan.*;
   }
 
   @NotNull public static List<Integer> ingeterList(final int... is) {
-    final @NotNull List<Integer> $ = new ArrayList<>();
+    final @NotNull List<Integer> $ = an.empty.list();
     for (final int ¢ : is)
       $.add(fluent.ly.box.it(¢));
     return $;
@@ -164,7 +164,7 @@ import il.org.spartan.*;
    * @return an array of the parameter values, each converted to i
    *         {@link String} */
   public static String @NotNull [] strings(final @Nullable Iterable<? extends @Nullable Object> os) {
-    final @NotNull List<@NotNull String> $ = new ArrayList<>();
+    final @NotNull List<@NotNull String> $ = an.empty.list();
     if (os != null)
       for (final @Nullable Object ¢ : os)
         if (¢ != null)

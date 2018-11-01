@@ -39,7 +39,7 @@ import org.junit.*;
   }
 
   @NotNull public static <T> List<T> nulls(final @NotNull Iterable<T> ts) {
-    final @NotNull ArrayList<T> $ = new ArrayList<>();
+    final @NotNull List<T> $ = an.empty.list();
     for (final @Nullable T ¢ : ts)
       if (¢ != null)
         $.add(¢);
@@ -47,7 +47,7 @@ import org.junit.*;
   }
 
   @NotNull public static <T> T[] nulls(final T[] ts) {
-    final @NotNull List<@NotNull T> $ = new ArrayList<>();
+    final @NotNull List<@NotNull T> $ = an.empty.list();
     if (ts != null)
       for (final @Nullable T ¢ : ts)
         if (¢ != null)

@@ -34,7 +34,7 @@ import il.org.spartan.utils.*;
     }
 
     @SafeVarargs public final Iterable<T> to(final @NotNull F... fs) {
-      final List<T> $ = new ArrayList<>();
+      final List<T> $ = an.empty.list();
       for (final F ¢ : fs)
         if (¢ != null)
           $.add(function.apply(¢));
@@ -44,7 +44,7 @@ import il.org.spartan.utils.*;
     /** @param <FS> JD
      * @param s JD */
     public <FS extends Iterable<? extends F>> Iterable<T> to(final @NotNull FS s) {
-      final List<T> $ = new ArrayList<>();
+      final List<T> $ = an.empty.list();
       for (final @Nullable F ¢ : s)
         if (¢ != null)
           $.add(function.apply(¢));
@@ -397,15 +397,6 @@ import il.org.spartan.utils.*;
    * @return parameter, quoted */
   static String quote(final @Nullable String $) {
     return $ != null ? QUOTE + $ + QUOTE : "<null reference>";
-  }
-
-  /** Remove any duplicates that may be present in a given {@link List}
-   * @param    <T> JD
-   * @param ts JD */
-  static <T> void removeDuplicates(final List<T> ts) {
-    final Set<T> noDuplicates = new LinkedHashSet<>(ts);
-    ts.clear();
-    ts.addAll(noDuplicates);
   }
 
   /** Remove all occurrences of a given prefix from a given {@link String} .

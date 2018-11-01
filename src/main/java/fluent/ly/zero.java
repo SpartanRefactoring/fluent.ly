@@ -3,21 +3,21 @@ package fluent.ly;
 /** Fluent API, see usage
  * @author Yossi Gil
  * @since 2017-04-10 */
-@SuppressWarnings("unused")
-public interface zero {
- static int forgetting(final Object _1, final Object... _2) {
+@SuppressWarnings("unused") public enum zero {
+  ;
+  public static int forgetting(final Object _1, final Object... _2) {
     return 0;
   }
 
-  static int forget(final boolean __) {
+  public static int forget(final boolean __) {
     return 0;
   }
 
-  static int forget(final double __) {
+  public static int forget(final double __) {
     return 0;
   }
 
- static int forget(final long __) {
+  public static int forget(final long __) {
     return 0;
   }
 }

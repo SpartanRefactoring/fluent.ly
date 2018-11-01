@@ -69,7 +69,7 @@ import fluent.ly.*;
   }
 
   private static Iterable<File> asFiles(final Iterable<@NotNull String> fileNames) {
-    final @NotNull List<File> $ = new ArrayList<>();
+    final @NotNull List<File> $ = an.empty.list();
     for (final @NotNull String fileName : fileNames)
       $.add(new File(fileName));
     return $;

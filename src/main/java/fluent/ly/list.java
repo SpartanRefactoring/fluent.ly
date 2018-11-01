@@ -99,4 +99,13 @@ public interface list {
   static <T> @Nullable T penultimate(final List<T> ¢) {
     return eval(() -> ¢.get(¢.size() - 2)).unless(¢ == null || ¢.size() < 2);
   }
+
+  /** Remove any duplicates that may be present in a given {@link List}
+   * @param    <T> JD
+   * @param ts JD */
+  static <T> void removeDuplicates(final List<T> ts) {
+    final Set<T> noDuplicates = new LinkedHashSet<>(ts);
+    ts.clear();
+    ts.addAll(noDuplicates);
+  }
 }

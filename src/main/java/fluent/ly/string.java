@@ -305,7 +305,7 @@ public enum string {
   }
 
   @NotNull public static List<String> toLines(final @NotNull String s) throws IOException {
-    final @NotNull List<String> $ = new ArrayList<>();
+    final @NotNull List<String> $ = an.empty.list();
     for (final @NotNull BufferedReader br = new BufferedReader(new StringReader(s));;) {
       final @Nullable String line = br.readLine();
       if (line == null)

@@ -113,7 +113,7 @@ import fluent.ly.*;
   public static String @NotNull [] split(final @NotNull String s) {
     if (s.length() == 0)
       return new String[0];
-    final @NotNull List<String> $ = new ArrayList<>();
+    final @NotNull List<String> $ = an.empty.list();
     for (int from = 0;;) {
       final int to = s.indexOf(',', from);
       if (to < 0) {

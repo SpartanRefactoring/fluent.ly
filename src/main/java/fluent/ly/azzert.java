@@ -111,7 +111,7 @@ public class azzert extends org.junit.Assert {
 
   public static <T> void assertContained(final @NotNull String s, final @NotNull Collection<T> c1, final @NotNull Collection<T> c2) {
     // assertLE(s, c1.size(), c2.size());
-    final @NotNull ArrayList<T> missing = new ArrayList<>();
+    final @NotNull List<T> missing = an.empty.list();
     for (final T ¢ : c1)
       if (!c2.contains(¢))
         missing.add(¢);

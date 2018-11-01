@@ -9,34 +9,37 @@ import org.jetbrains.annotations.*;
  * @since 21/06/2008 */
 public enum all {
   ;
-  /** Determine whether all elements in an {@link Iterable} collection are not
-   * null.
-   * @param    <T> type of elements in the collection
-   * @param ts an {@link Iterable} collection of elements to be tested
-   * @return <code><b>true</b></code> <i>iff</i> <code>ts</code> is not
-   *         <code><b>null</b></code> and all elements in it is not are not
-   *         <code><b>null</b></code> */
-  public static <T> boolean notNull(final @Nullable Iterable<T> ts) {
-    if (ts == null)
-      return false;
-    for (final @Nullable T ¢ : ts)
-      if (¢ == null)
+  public enum not {
+    ;
+    /** Determine whether all elements in an {@link Iterable} collection are not
+     * null.
+     * @param    <T> type of elements in the collection
+     * @param ts an {@link Iterable} collection of elements to be tested
+     * @return <code><b>true</b></code> <i>iff</i> <code>ts</code> is not
+     *         <code><b>null</b></code> and all elements in it is not are not
+     *         <code><b>null</b></code> */
+    public static <T> boolean nil(final @Nullable Iterable<T> ts) {
+      if (ts == null)
         return false;
-    return true;
-  }
+      for (final @Nullable T ¢ : ts)
+        if (¢ == null)
+          return false;
+      return true;
+    }
 
-  /** Determine whether all elements in an array are not null.
-   * @param    <T> type of elements in the array
-   * @param ts an array of elements to be tested
-   * @return <code><b>true</b></code> <i>iff</i> <code>ts</code> is not
-   *         <code><b>null</b></code> and all elements in it are not
-   *         <code><b>null</b></code>. */
-  public static <T> boolean notNull(final @Nullable T[] ts) {
-    if (ts == null)
-      return false;
-    for (final @Nullable T ¢ : ts)
-      if (¢ == null)
+    /** Determine whether all elements in an array are not null.
+     * @param    <T> type of elements in the array
+     * @param ts an array of elements to be tested
+     * @return <code><b>true</b></code> <i>iff</i> <code>ts</code> is not
+     *         <code><b>null</b></code> and all elements in it are not
+     *         <code><b>null</b></code>. */
+    public static <T> boolean nil(final @Nullable T[] ts) {
+      if (ts == null)
         return false;
-    return true;
+      for (final @Nullable T ¢ : ts)
+        if (¢ == null)
+          return false;
+      return true;
+    }
   }
 }
